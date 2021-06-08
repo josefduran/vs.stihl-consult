@@ -5,8 +5,8 @@ export const HomePage = () => {
 
     const history = useHistory();
 
-    const handleClickGoSearch = () => {
-        history.push("/search")
+    const handleClickGoSearch = (option="options") => {
+        history.push(`/${option}`)
     };
 
     return (
@@ -18,19 +18,19 @@ export const HomePage = () => {
             </div>
 
             <div className="hp_container_cards">
-                <div className="hp_card" onClick={ handleClickGoSearch }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>+1 acre</p>
                 </div>
-                <div className="hp_card" onClick={ handleClickGoSearch }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>-1 acre</p>
                 </div>
-                <div className="hp_card" onClick={ handleClickGoSearch }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>small yard</p>
                 </div>
-                <div className="hp_card" onClick={ handleClickGoSearch }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch("search")}>
                     <img src="../../assets/marcador-de-posicion.png" alt="marcador.png"/>
                     <p>use my address</p>
                 </div>

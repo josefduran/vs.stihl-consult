@@ -1,0 +1,177 @@
+.LP_container_main{
+    display: grid;
+    grid-template-columns: 34% 65%;
+}
+.aa_container{
+    padding: 2em;
+    background-color: rgb(187, 187, 187);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* =========== = =======================*/
+/* 		 Header aside 
+/* =========== = =======================*/
+.aa_header > h4{
+    font-weight: 100;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+   
+}
+
+.aa_header > h2{
+    font-weight: 100;
+    margin: .8em 0;
+    margin-bottom: 0;
+    font-size: 1.9em;
+}
+.aa_header > hr{
+    border-color: rgba(0, 0, 0, 0.466);
+    margin: .3em 0;
+}
+/* =========== = =======================*/
+/* 		 Main aside 
+/* =========== = =======================*/
+.aa_container_img{
+    width: 100%;
+    height: 350px;
+    max-height: 400px;
+    background-color: rgb(83, 83, 83);
+}
+.aa_container_img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* vertical-align: top; */
+}
+/* =========== = =======================*/
+/* 		 Footer aside 
+/* =========== = =======================*/
+.aa_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 1em; */
+    
+}
+.aa_logo{
+    padding: 0.6em 1em;
+    text-align: center;
+    width: 25%;
+}
+
+.aa_btn_sendKit{
+    border: none;
+    cursor: pointer;
+    background-color: rgb(46, 45, 45);
+    color: white;
+    padding: .5em 0;
+    text-transform: uppercase;
+    font-weight:400;  
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 55%;
+    font-size: .8em;
+}
+.aa_btn_sendKit>img{
+    width: 15%;
+    filter: invert();
+}
+.aa_btn_sendKit:hover{
+    background-color: rgb(22, 21, 21); 
+}
+
+
+/*======================================================================================*/
+.rp_container_item_radio{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    position: relative;
+    margin: 1em 0 1em 0;
+    align-items: center;
+}
+
+.rp_subtitle{
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    color: rgb(255, 115, 0);
+    text-transform: uppercase;
+    margin-bottom: .3em;
+}
+.question{
+    color: rgb(97, 97, 97);
+    font-weight: bolder;
+    font-size: .9em;
+}
+
+
+.rp_container{
+    padding: 1em 0em 1em 1em;
+}
+
+
+input[type="radio"]{ display: none;}
+
+.line, .none{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(255, 115, 0);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    left: 40%;
+}
+
+.line::before{
+    content: "";
+    position: absolute;
+    width: 730%;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.342);
+    top: 50%;
+    transform: translateY(-50%);
+    right: -730%;
+    cursor: auto;
+}
+
+.icon_item_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 30%;
+    margin: auto;
+    font-size: .8em;
+}
+.column{
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding:0 1em;
+    width: 90%;
+}
+.sub{
+    font-size: 0.8em;
+}
+.icon_item_container >img{
+    width: 20px;
+    height: 20px;
+    filter: grayscale(1);
+}
+
+.relative{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+input[type="radio"]:checked  ~ .label{
+    background-color: rebeccapurple;   
+}
+
+.input_label>label:hover{
+    transition: all .3s ease;
+    background-color: rgb(216, 98, 1);
+}
