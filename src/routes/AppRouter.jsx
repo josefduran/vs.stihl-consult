@@ -4,7 +4,7 @@ import {
     Route,
     Redirect
 } from "react-router-dom";
-import { LayoutHome } from "../components/LayoutHome";
+import { LayoutHome } from "../components/Layout/LayoutHome";
 import { OptionsPage } from "../components/Pages/OptionsPage";
 import { SearchPage} from "../components/Pages/SearchPage";
 

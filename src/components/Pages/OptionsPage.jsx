@@ -1,6 +1,6 @@
 import React from 'react'
 import {LateralMenu} from '../LateralMenu'
-import { LayoutProducts } from '../LayoutProducts'
+import { LayoutProducts } from '../Layout/LayoutProducts'
 
 export const OptionsPage = () => {
     return (

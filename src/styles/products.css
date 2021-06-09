@@ -1,14 +1,17 @@
-.LP_container_main{
+/* .LP_container_main{
     display: grid;
     grid-template-columns: 34% 65%;
-}
+} */
 .aa_container{
+    width: 29%;
+    height: 100vh;
     padding: 2em;
     background-color: rgb(187, 187, 187);
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed;
 }
 /* =========== = =======================*/
 /* 		 Header aside 
@@ -88,10 +91,11 @@
 /*======================================================================================*/
 .rp_container_item_radio{
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 28% 72%;
     position: relative;
     margin: 1em 0 1em 0;
     align-items: center;
+    text-transform: uppercase;
 }
 
 .rp_subtitle{
@@ -110,6 +114,12 @@
 
 .rp_container{
     padding: 1em 0em 1em 1em;
+    position: fixed;
+    overflow-y: scroll;
+    width: 65%;
+    height: 100vh;
+    right: 0;
+    top: 0;
 }
 
 
@@ -119,11 +129,11 @@ input[type="radio"]{ display: none;}
     display: inline-block;
     width: 25px;
     height: 25px;
-    background-color: rgb(255, 115, 0);
+    background-color: rgb(194, 194, 194);
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    left: 40%;
+    left: 44%;
 }
 
 .line::before{
@@ -150,11 +160,11 @@ input[type="radio"]{ display: none;}
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding:0 1em;
-    width: 90%;
+    padding:0;
+    width: 100%;
 }
 .sub{
-    font-size: 0.8em;
+    font-size: 0.75em;
 }
 .icon_item_container >img{
     width: 20px;
@@ -168,10 +178,65 @@ input[type="radio"]{ display: none;}
 }
 
 input[type="radio"]:checked  ~ .label{
-    background-color: rebeccapurple;   
+    background-color: rgb(255, 115, 0);   
 }
 
 .input_label>label:hover{
     transition: all .3s ease;
+    background-color: rgb(153, 153, 153);
+}
+/*============================================================*/
+
+/* =========== = =======================*/
+/* 		 Cards 
+/* =========== = =======================*/
+
+.container_cards{
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5em .5em;
+    padding-right: 1.3em;
+}
+.card{
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.137);
+    text-transform: uppercase;
+    padding: 1em;
+}
+
+.card_title{
+    font-size: 1em;
+}
+.card_desc{
+    font-size: 0.8em;
+    text-transform: lowercase;
+}
+.card > img{
+    width: 100%;
+    /* height: 300px; */
+    object-fit: cover;
+}
+.container_btn{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+.container_btn > button{
+    padding: .5em;
+    cursor: pointer;
+    border:none;
+    width:48%;
+    color: white;
+    font-weight: bold;
+}
+.container_btn > button:nth-child(1){
     background-color: rgb(216, 98, 1);
+}
+.container_btn > button:nth-child(2){
+    background-color: rgb(34, 34, 34);
+}
+.container_btn > button:hover{
+    opacity: .8 ;
 }
