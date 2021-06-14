@@ -1,12 +1,21 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { locationSelected } from '../../redux/actions/actionLocation';
 
 export const HomePage = () => {
 
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleClickGoSearch = (option="options") => {
-        history.push(`/${option}`)
+    const handleClickGoSearch = (option) => {
+        
+        dispatch(locationSelected(option))
+
+        let route = (option === "search") ? "search" : "options" 
+        
+        history.push(`/${route}`)
+        
     };
 
     return (
@@ -18,15 +27,15 @@ export const HomePage = () => {
             </div>
 
             <div className="hp_container_cards">
-                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch("+1 acre") }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>+1 acre</p>
                 </div>
-                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch("-1 acree") }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>-1 acre</p>
                 </div>
-                <div className="hp_card" onClick={ ()=> handleClickGoSearch() }>
+                <div className="hp_card" onClick={ ()=> handleClickGoSearch("small yard") }>
                     <img src="../../assets/home.png" alt="home.png"/>
                     <p>small yard</p>
                 </div>

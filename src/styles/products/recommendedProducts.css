@@ -1,0 +1,28 @@
+.rp_container_item_radio {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 28% 72%;
+    margin: 1em 0 1em 0;
+    position: relative;
+    text-transform: uppercase;
+  }
+  
+  .rp_subtitle {
+    color: rgb(255, 115, 0);
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    margin-bottom: 0.3em;
+    text-transform: uppercase;
+  }
+  
+  
+  .rp_container {
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 1em 0em 1em 1em;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 65%;
+  }
+  

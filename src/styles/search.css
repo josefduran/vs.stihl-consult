@@ -30,6 +30,7 @@
   grid-template-columns: 80% 20%;
   margin: 2.5em auto 0 auto;
   width: 70%;
+  position: relative;
 }
 .sp_form > button {
   background-color: rgb(248, 99, 0);
@@ -68,4 +69,11 @@
 }
 .sh_logo {
   margin: 1.5em auto 1.5em auto;
+}
+.pac-container {
+  width: 53.5%!important;
+
+  left: 16.25%!important;
+  /* top:0!important; */
+  /* transform: translateX(50%); */
 }

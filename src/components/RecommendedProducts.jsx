@@ -1,6 +1,6 @@
 import { data_options_radio } from '../assets/data'
 import { Card } from './Card'
-import { RadioButtons } from './RadioButtons'
+import {  CustomOptions } from './CustomOptions'
 
 const list = [1,2,3,4,5];
 
@@ -12,7 +12,7 @@ export const RecommendedProducts = () => {
 
             <div className="rp_container_options_radio">
                {
-                   data_options_radio.map( opt => <RadioButtons key={opt.name} {...opt}/> )
+                   data_options_radio.map( opt => <CustomOptions key={opt.name} {...opt}/> )
                }
             </div>
 

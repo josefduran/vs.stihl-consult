@@ -1,0 +1,90 @@
+.aa_container {
+  background-color: rgb(187, 187, 187);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  padding: 2em;
+  position: fixed;
+  text-transform: uppercase;
+  width: 29%;
+}
+/* =========== = =======================*/
+/* 		 Header aside 
+/* =========== = =======================*/
+.aa_header > h4 {
+  font-size: 1em;
+  font-weight: 100;
+  /* letter-spacing: 1px; */
+}
+
+.aa_header > h2 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-bottom: 0;
+  margin: 0.5em 0;
+}
+.aa_header > hr {
+  border-color: rgba(0, 0, 0, 0.466);
+  margin: 0.3em 0;
+}
+/* =========== = =======================*/
+/* 		 Main aside 
+/* =========== = =======================*/
+.aa_container_img {
+  align-items: center;
+  background-color: rgb(255, 94, 0);
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  justify-content: space-evenly;
+  max-height: 370px;
+  width: 320px;
+  margin: auto;
+}
+
+.aa_location {
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.aa_container_img > img {
+  filter: invert();
+  width: 70%;
+}
+/* =========== = =======================*/
+/* 		 Footer aside 
+/* =========== = =======================*/
+.aa_footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.aa_logo {
+  padding: 0.8em 1em;
+  text-align: center;
+  width: 25%;
+}
+
+.aa_btn_sendKit {
+  align-items: center;
+  background-color: rgb(46, 45, 45);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.8em;
+  font-weight: 400;
+  justify-content: space-evenly;
+  letter-spacing: 1px;
+  padding: 0.8em 0;
+  text-transform: uppercase;
+  width: 55%;
+}
+.aa_btn_sendKit > img {
+  filter: invert();
+  width: 15%;
+}
+.aa_btn_sendKit:hover {
+  background-color: rgb(22, 21, 21);
+}

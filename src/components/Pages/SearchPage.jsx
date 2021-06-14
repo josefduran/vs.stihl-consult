@@ -1,50 +1,34 @@
-import React, { useState } from 'react'
+
+import { useEffect, useState } from 'react';
+import { FormLocation } from '../FormLocation';
+
+const GOOGLE_MAP_API_KEY = '<YOUR API KEY>';
+
+const loadGoogleMapScript = (callback) => {
+    if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
+        callback();
+    } else {
+        const googleMapScript = document.createElement("script");
+        googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`;
+        window.document.body.appendChild(googleMapScript);
+        googleMapScript.addEventListener("load", callback);
+    }
+}
+
 
 export const SearchPage = () => {
 
-    const [search, setSearch] = useState("")
+    const [loadMap, setLoadMap] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        loadGoogleMapScript(() => {
+            setLoadMap(true)
+        });
+    }, []);
 
-        if(search.trim().length === 0){
-            alert("this null")
-        }
-        else {
-            alert(search)
-            setSearch("");
-        }
-        
-        e.target[0].focus();
-    };
-    
     return (
         <>
-            <div className="sh_backgorund_page"></div>
-            <div className="sh_overlay_page"></div>
-
-            <div className="sh_logo logo media_logo">
-                <p>EDGE</p>
-            </div>
-
-            <p className="sp_text">Let's get started</p>
-
-            <form className="sp_form" onSubmit={handleSubmit}>
-                <div className="sp_container_input">
-                    <img src="../../assets/placeholder.png" alt="placeholder.png" />
-                    <input
-                        autoFocus
-                        type="text"
-                        placeholder="Enter your address"
-                        name="search"
-                        value={search}
-                        onChange={({ target }) => {
-                            setSearch(target.value)
-                        }}
-                    />
-                </div>
-                <button>show my fd</button>
-            </form>
+            {!loadMap ? <div>Loading...</div> : <FormLocation />}
         </>
     )
 }

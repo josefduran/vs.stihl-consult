@@ -1,0 +1,50 @@
+
+.container_cards {
+    display: grid;
+    gap: 1.5em 0.5em;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2em;
+    padding-right: 1.3em;
+  }
+  .card {
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.137);
+    padding: 1em;
+    text-transform: uppercase;
+  }
+  
+  .card_title {
+    font-size: 1em;
+  }
+  .card_desc {
+    font-size: 0.8em;
+    text-transform: lowercase;
+  }
+  .card > img {
+    object-fit: cover;
+    width: 100%;
+  }
+  .container_btn {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    width: 100%;
+  }
+  .container_btn > button {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5em;
+    width: 48%;
+  }
+  .container_btn > button:nth-child(1) {
+    background-color: rgb(216, 98, 1);
+  }
+  .container_btn > button:nth-child(2) {
+    background-color: rgb(34, 34, 34);
+  }
+  .container_btn > button:hover {
+    opacity: 0.8;
+  }
+  
