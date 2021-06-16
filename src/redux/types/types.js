@@ -1,4 +1,4 @@
 
 export const type = {
-    locationSelected : '[location] select location'
+    locationSelected : '[location] select location',
 }

@@ -10,9 +10,18 @@ export const HomePage = () => {
 
     const handleClickGoSearch = (option) => {
         
-        dispatch(locationSelected(option))
+        let route = "" 
+        if(option === "search") {
+        
+            route = "search" 
 
-        let route = (option === "search") ? "search" : "options" 
+        }else{
+            route = "options"
+            dispatch(locationSelected(option))
+        }
+            
+
+        
         
         history.push(`/${route}`)
         

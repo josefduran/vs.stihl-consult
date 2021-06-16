@@ -77,3 +77,8 @@
   /* top:0!important; */
   /* transform: translateX(50%); */
 }
+.container_selected_place{
+  background-color: red;
+  width: 100%;
+  
+}
