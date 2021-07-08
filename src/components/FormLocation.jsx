@@ -12,11 +12,15 @@ export const FormLocation = () => {
 
     const handleClick = () => {
 
-        (place)
-            ? dispatch(locationSelected(place.address, place.lat, place.lng))
-            : dispatch(locationSelected(placeInputRef.current.value));
-        
-        history.push(`/options`)
+        if (placeInputRef.current.value !== "") {
+            (place)
+                ? dispatch(locationSelected(place.address, place.lat, place.lng))
+                : dispatch(locationSelected(placeInputRef.current.value));
+
+            history.push(`/options`)
+        } else {
+            alert("Enter your address")
+        }
     };
 
 

@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
 
 let location = "";
+
+
+
 export const AsideAddress = () => {
 
     const dataLocation = useSelector(state => state.location);
@@ -16,19 +20,32 @@ export const AsideAddress = () => {
 
 
     useEffect(() => {
-        
-        if(dataLocation.lat || dataLocation.lng){
-            function initMap() {
-                new window.google.maps.Map(document.getElementById("map"), {
-                    center: { lat: dataLocation.lat, lng: dataLocation.lng },
-                    zoom: 20,
-                });
-            }
-    
-            initMap();
-        }
+        loadGoogleMapScript(() => {
+         
+            if(dataLocation.lat || dataLocation.lng){
 
-    }, [dataLocation])
+                function initMap() {
+                    new window.google.maps.Map(document.getElementById("map"), {
+                        center: { lat: dataLocation.lat, lng: dataLocation.lng },
+                        zoom: 22,
+                        mapTypeId: "satellite",
+                        heading: 90,
+                        tilt: 45,
+                        disableDefaultUI: true,
+                        mapTypeControl: false,
+                        zoomControl: false
+                    });
+                }
+        
+                initMap();
+            }
+        });
+    }, [dataLocation]);
+
+    const handleSendEmail = () => {
+        console.log('mail to')
+    };
+
 
     return (
         <div className="aa_container">
@@ -63,7 +80,7 @@ export const AsideAddress = () => {
                     <div className="logo aa_logo">
                         <p>EDGE</p>
                     </div>
-                    <button className="aa_btn_sendKit">
+                    <button className="aa_btn_sendKit" onClick={handleSendEmail}>
                         <img src="./../assets/carta.png" alt="" />
                         <p>Send me my kit</p>
                     </button>

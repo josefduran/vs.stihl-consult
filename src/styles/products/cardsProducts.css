@@ -10,6 +10,10 @@
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.137);
     padding: 1em;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .card_title {
@@ -21,13 +25,15 @@
   }
   .card > img {
     object-fit: cover;
-    width: 100%;
+    width: 200px;
+    /* height: 200px; */
+    max-height: 200px;
   }
   .container_btn {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-top: 1em;
+    
     width: 100%;
   }
   .container_btn > button {
@@ -47,4 +53,13 @@
   .container_btn > button:hover {
     opacity: 0.8;
   }
-  
+  .text_content{
+    margin: 2em 0em 1em 0em;
+  }
+
+  .no_products{
+    grid-area: 1/2;
+    text-align: center;
+    margin-top: 3em;
+    font-size: 2em;
+  }

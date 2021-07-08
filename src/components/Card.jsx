@@ -1,13 +1,20 @@
 import React from 'react'
 
-export const Card = () => {
+export const Card = ({ model, img, category, power, size, profile, tags }) => {
     return (
         <div className="card">
-            <img src="../../assets/carta.png" alt="img_card" />
 
+            {
+                (img) && <img src={`../../assets/img_products/${img}`} alt={img} />
+            }
 
-            <h2 className="card_title">Lorem, ipsum dolor.</h2>
-            <p className="card_desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. dae?</p>
+            <div className="text_content">
+                <h2 className="card_title">{model}</h2>
+
+                <p className="card_desc"><b>{profile}</b>-<span style={{color:'red'}}>{power}</span>-<b>{size}</b>-{tags}</p>
+                <p className="card_desc"><u>{category}</u></p>
+            </div>
+
             <div className="container_btn">
                 <button>More details</button>
                 <button>Other options</button>
