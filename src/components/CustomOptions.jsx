@@ -10,10 +10,11 @@ export const CustomOptions = ({ question, name, isIcon, options }) => {
 
     
     const filter = JSON.parse(sessionStorage.getItem("filter"))
+
     const [value, setValue] = useState(() => ({
-        power: filter.power,
-        frequent: filter.frequent,
-        vegetation: filter.vegetation,
+        power: filter?.power,
+        frequent: filter?.frequent,
+        vegetation: filter?.vegetation,
     }))
 
     const handleChange = ({ target }) => {

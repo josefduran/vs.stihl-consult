@@ -5,7 +5,12 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 const path = require("path");
-const fs = require("fs-extra");
+
+
+const fs = require("fs"); 
+// const fs = require("fs-extra"); //TODO: problema en este paquete
+
+
 const fetch = require("node-fetch");
 
 const arboUrl = "http://us04-arbo-dev.vs-networks.com:8000/api/manifest/catalog";
@@ -48,34 +53,49 @@ const fetchData = {
   }),
 };
 
-function download(files, basePath, prefix) {
-  if (files.length === 0) {
-    return;
+async function download(files, basePath, prefix) {
+  if (files.length === 0) return;
+
+  try {
+
+    const file = files.pop();
+
+    const res = await fetch(file.url);
+
+    console.log(`${prefix}: ${file.path}`);
+    const filepath = `${basePath}/${file.path}`;
+    
+    fs.ensureDirSync(path.dirname(filepath));
+    const dest = fs.createWriteStream(filepath);
+    res.body.pipe(dest);
+    download(files, basePath, prefix);
+
+  } catch (error) {
+
+    console.log(error);
+    download(files, basePath, prefix);
   }
-  const file = files.pop();
-  fetch(file.url)
-    .then((res) => {
-      console.log(`${prefix}: ${file.path}`);
-      const filepath = `${basePath}/${file.path}`;
-      fs.ensureDirSync(path.dirname(filepath));
-      const dest = fs.createWriteStream(filepath);
-      res.body.pipe(dest);
-      download(files, basePath, prefix);
-    })
-    .catch((err) => {
-      console.error(err);
-      download(files, basePath, prefix);
-    });
+
 }
 
 // Main script starts here.
+// mainScript
 
-fetch(arboUrl, fetchData)
-  .then((res) => res.json())
-  .then((json) => {
+export const mainScript = async () => {
+
+  try {
+    const res = await fetch(arboUrl, fetchData);
+
+    const json = await res.json();
+
     console.log("Retrieved arbo manifest");
     const files = json.files.map((entry) => ({ url: entry.url, path: entry.name }));
     console.log(`Found ${files.length} entries in arbo`);
     download(files, "./data/product-catalog", "arbo");
-  })
-  .catch(console.error);
+
+  } catch (error) {
+    
+    console.log(error)
+  }
+
+};

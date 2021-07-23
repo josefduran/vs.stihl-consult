@@ -13,7 +13,7 @@ export const AsideAddress = () => {
     if (dataLocation.address === "+1 acre" ||
         dataLocation.address === "-1 acre" ||
         dataLocation.address === "small yard") {
-        location = "348 garden city drive, Irwin, Pa 15146"
+        location = "Custom address"
     } else {
         location = dataLocation.address
     }
@@ -21,7 +21,7 @@ export const AsideAddress = () => {
 
     useEffect(() => {
         loadGoogleMapScript(() => {
-         
+            
             if(dataLocation.lat || dataLocation.lng){
 
                 function initMap() {
@@ -69,7 +69,7 @@ export const AsideAddress = () => {
                             : (
                                 <>
                                     <img src="../../assets/home.png" alt="ubication_img" />
-                                    <p className="aa_location">Custom</p>
+                                    <p className="aa_location">{ dataLocation.address }</p>
                                 </>
                             )
                     }
