@@ -8,7 +8,7 @@ const path = require("path");
 const fs= require("fs");
 const fetch = require("node-fetch");
 
-const env = "pro";
+const env = "rc";
 const arboUrl         = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
 const variantsUrl     = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
 const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
