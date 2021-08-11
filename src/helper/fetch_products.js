@@ -4,14 +4,21 @@
 // This script allows developers to download the current data from
 // the Arbo, STIHL Rewards variants, and registration endpoints.
 
+import { useDispatch } from "react-redux";
+import { getProducts } from "../redux/actions/actionProducts";
+
 const path = require("path");
-const fs= require("fs");
+const fs = require("fs");
+
 const fetch = require("node-fetch");
 
 const env = "rc";
-const arboUrl         = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
-const variantsUrl     = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
+const arboUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
+const variantsUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
 const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
+
+
+let filesjpg = []
 
 const fetchData = {
     method: "POST",
@@ -51,76 +58,113 @@ const fetchData = {
     })
 };
 
+export const useFetchproducts = () => {
 
-function download(files, basePath, prefix) {
-    if (files.length === 0) {
-        return
+    const dispatch = useDispatch();
+
+    async function download(files, basePath, prefix) {
+   
+        if (files.length === 0) {
+            return
+        }
+        const file = files.pop();
+        
+        try {
+            
+
+            if (file.path === 'products/protective-work-wear.json') {
+                const res = await fetch(file.url);
+                const data = await res.json();
+                // console.log(data);
+                dispatch(getProducts(data));                
+                return;
+            }else{
+                //Guarda el path de las img en un array
+                if(file.path.split('.')[1] === "jpg"){
+                    filesjpg.push(file.path);
+                }
+            }
+            
+            // else{
+            //     const res = await fetch(file.url);
+
+            //     const filepath = `${basePath}/${file.path}`;
+            //     fs.ensureDirSync(path.dirname(filepath));
+            //     const dest = fs.createWriteStream(filepath);
+            //     res.body.pipe(dest);
+            // }
+
+
+            download(files, basePath, prefix);
+
+        } catch (error) {
+            
+            download(files, basePath, prefix);
+        }
+
+
     }
-    const file = files.pop();
-    fetch(file.url)
-        .then(res => {
-            console.log(`${prefix}: ${file.path}`);
-            const filepath = `${basePath}/${file.path}`;
-            fs.ensureDirSync(path.dirname(filepath));
-            const dest = fs.createWriteStream(filepath);
-            res.body.pipe(dest);
-            download(files, basePath, prefix);
-        })
-        .catch(err => {
-            console.error(err);
-            download(files, basePath, prefix);
-        });
-}
 
-// Main script starts here.
+    // Main script starts here.
 
-fetch(registrationUrl, fetchData)
-    .then(res => res.json())
-    .then((json) => {
-        console.log(`Retrieved registration manifest`);
-        console.log(json.files);
-        const files = json.files.map(entry => {
-            return { url: entry.url,  path: entry.name };
-        });
-        console.log(`Found ${files.length} entries in registrations`);
-        download(files, "./arbo-data", "webapps");
-    })
-    .catch(console.error);
+    // fetch(registrationUrl, fetchData)
+    //     .then(res => res.json())
+    //     .then((json) => {
+    //         // console.log(`Retrieved registration manifest`);
+    //         // console.log(json.files);
+    //         const files = json.files.map(entry => {
+    //             return { url: entry.url,  path: entry.name };
+    //         });
+    //         // console.log(`Found ${files.length} entries in registrations`);
+    //         download(files, "./arbo-data", "webapps");
+    //     })
+    //     .catch(err => {
+    //         // console.log('error 3')
+    //         // console.error(err)
+    //     })
 
 
-fetch(variantsUrl, { headers: { "Accept": "application/json" }})
-    .then(res => res.json())
-    .then((json) => {
-        console.log("Retrieved variants manifest");
-        const files = json.files.map(entry => {
-            return { url: entry.url,  path: entry.name };
-        });
-        console.log(`Found ${files.length} entries in variants`);
-        download(files, "./arbo-data/data/product-registration", "variants");
-    })
-    .catch(console.error);
+    // fetch(variantsUrl, { headers: { "Accept": "application/json" }})
+    //     .then(res => res.json())
+    //     .then((json) => {
+    //         // console.log("Retrieved variants manifest");
+    //         const files = json.files.map(entry => {
+    //             return { url: entry.url,  path: entry.name };
+    //         });
+    //         // console.log(`Found ${files.length} entries in variants`);
+    //         download(files, "./arbo-data/data/product-registration", "variants");
+    //     })
+    //     .catch(err=>{
+    //         // console.log('error 4')
+    //         // console.error(err)
+    //     });
 
 
     // Main script starts here.
-// mainScript
+    // mainScript
 
-export const mainScript = async () => {
+    const mainScript = async () => {
 
-  try {
-    const res = await fetch(arboUrl, fetchData)
-    .then(res => res.json())
-    .then((json) => {
-        console.log("Retrieved arbo manifest");
-        const files = json.files.map(entry => {
-            return { url: entry.url,  path: entry.name };
-        });
-        console.log(`Found ${files.length} entries in arbo`);
-        download(files, "./arbo-data/data/product-catalog", "arbo");
-    })
-    .catch(console.error);
-  } catch (error) {
-    
-    console.log(error)
-  }
+        try {
+            await fetch(arboUrl, fetchData)
+                .then(res => res.json())
+                .then((json) => {
+                    // console.log("Retrieved arbo manifest");
+                    const files = json.files.map(entry => {
+                        return { url: entry.url, path: entry.name };
+                    });
+                    // console.log(`Found ${files.length} entries in arbo`);
+                    download(files, "./arbo-data/data/product-catalog", "arbo");
+                })
+                .catch(() => { });
+        } catch (error) {
+            // console.log('error 1')
+            console.log(error)
+        }
 
-};
+    };
+
+    return {
+        mainScript
+    }
+}

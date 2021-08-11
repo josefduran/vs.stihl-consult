@@ -2,43 +2,48 @@ import { data_options_radio } from '../helper/data'
 import { Card } from './Card'
 import { CustomOptions } from './CustomOptions'
 
-import { products } from '../helper/data_products'
+// import { products } from '../helper/data_products'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export const RecommendedProducts = () => {
 
     const [cards, setCards] = useState([]);
+    const { data:products } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
     
     useEffect(() => {
+            // let size = "";
+            // switch (option_filter.frequent) {
+            //     case "infrequent":
+            //         size = "<1"; break;
+            //     case "frequent":
+            //         size = "1"; break;
+            //     case "constant":
+            //         size = ">1"; break;
+            //     default: break;
+            // }
 
-            let size = "";
-            switch (option_filter.frequent) {
-                case "infrequent":
-                    size = "<1"; break;
-                case "frequent":
-                    size = "1"; break;
-                case "constant":
-                    size = ">1"; break;
-                default: break;
+            // let vegetation = "";
+
+            // if (option_filter.vegetation === "light") {
+            //     vegetation = "small"
+            // }else{
+            //     vegetation = option_filter.vegetation;
+            // }
+
+            // const data_filtered = products.filter(card => 
+            //     card.size === size  && 
+            //     card.tags.toLocaleLowerCase().includes(vegetation) &&
+            //     card.power === option_filter.power
+            // );
+
+            // setCards(data_filtered);
+           
+            if(products.length !== 0){
+                setCards(products)
+                console.log(products[1])
             }
-
-            let vegetation = "";
-
-            if (option_filter.vegetation === "light") {
-                vegetation = "small"
-            }else{
-                vegetation = option_filter.vegetation;
-            }
-
-            const data_filtered = products.filter(card => 
-                card.size === size  && 
-                card.tags.toLocaleLowerCase().includes(vegetation) &&
-                card.power === option_filter.power
-            );
-
-            setCards(data_filtered);
 
     }, [option_filter])
 

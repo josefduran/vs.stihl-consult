@@ -1,14 +1,20 @@
 import { useEffect } from 'react';
-import { mainScript } from '../../helper/fetch_products';
+import { useSelector } from 'react-redux';
+import { useFetchproducts } from '../../helper/fetch_products';
 import { useRoutebyHome } from '../../hook/useRoutebyHome';
 
 export const HomePage = () => {
 
     const { handleClickGoSearch } = useRoutebyHome();
-
+    const { data:products } = useSelector(state => state.products)
+    const { mainScript } =  useFetchproducts();
+    
     useEffect(() => {
-        //TODO: Ejecutarr el script de la API
-        mainScript() 
+        if(products.length === 0){
+            mainScript();
+            console.log('render fetch') 
+        }
+
     }, [])
 
     return (
