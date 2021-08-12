@@ -1,19 +1,18 @@
 import React from 'react'
 
-export const Card = ({ prices=[],features=[],shortDescription="",name="",category="" }) => {
-    
+export const Card = ({ model, img, category, power, size, profile, tags }) => {
     return (
         <div className="card">
 
             {
-                (features?.length !== 0) ? <img src={`${features[0].imageProcessUrl}`}  /> : <img src="./assets/carta.png"  />
+                (img) && <img src={`../../assets/img_products/${img}`} alt={img} />
             }
-            
+
             <div className="text_content">
-                <h5>{name}</h5>
-                <p className="card_desc">{shortDescription}</p>
-                <p className="card_desc"> <b>Price: ${ (prices?.length !== 0) ? prices[0].amount: '0.0' }</b></p>
-                <p className="card_desc">Category: <u>{category}</u></p>
+                <h2 className="card_title">{model}</h2>
+
+                <p className="card_desc"><b>{profile}</b>-<span style={{color:'red'}}>{power}</span>-<b>{size}</b>-{tags}</p>
+                <p className="card_desc"><u>{category}</u></p>
             </div>
 
             <div className="container_btn">

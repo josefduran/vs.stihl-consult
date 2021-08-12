@@ -1,13 +1,11 @@
 import { combineReducers, createStore } from "redux";
 import { locationReducer } from "../reducer/AppReducer";
 import { filteredReducer } from "../reducer/FilteredReducer";
-import { productsFetchingReducer } from "../reducer/ProductsFetchingReducer";
 
 
 const reducers = combineReducers({
     location: locationReducer,
-    filter:filteredReducer,
-    products: productsFetchingReducer
+    filter:filteredReducer
 })
 
 

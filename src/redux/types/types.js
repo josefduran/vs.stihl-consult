@@ -1,6 +1,5 @@
 
 export const type = {
     locationSelected : '[location] select location',
-    filterSelected:'[filtered] selected option for filter',
-    getProducts:'[get products]'
+    filterSelected:'[filtered] selected option for filter'
 }
