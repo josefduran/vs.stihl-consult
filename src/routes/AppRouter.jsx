@@ -8,6 +8,7 @@ import { LayoutHome } from "../components/Layout/LayoutHome";
 import { OptionsPage } from "../components/Pages/OptionsPage";
 import { SearchPage} from "../components/Pages/SearchPage";
 
+
 export const AppRouter = () => {
     return (
         <Router>
@@ -15,6 +16,9 @@ export const AppRouter = () => {
                 <Switch>
                     <Route path="/search" component={SearchPage}/>
                     <Route path="/options" component={OptionsPage}/>
+                    <Route path="/options2" component={OptionsPage}/>
+
+                    
                     <Route path="/" component={LayoutHome}/>
                     <Redirect to="/" />
                 </Switch>

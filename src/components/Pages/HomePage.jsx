@@ -10,12 +10,13 @@ export const HomePage = () => {
     const { mainScript } =  useFetchproducts();
     
     useEffect(() => {
+        console.log(process.env.REACT_APP_KEY)
         if(products.length === 0){
             mainScript();
             console.log('render fetch') 
         }
 
-    }, [])
+    }, [mainScript,products])
 
     return (
         <div className="hp_background">

@@ -1,9 +1,11 @@
 import { type } from "../types/types";
 
 const products =  JSON.parse(localStorage.getItem('products'));
+const images =  JSON.parse(localStorage.getItem('images'));
 
 const initialState = {
-    data: products ? products :[]
+    data: products ? products : [],
+    pathImg: images ? images : []
 }
 
 export const productsFetchingReducer = (state = initialState, action) => {
@@ -13,7 +15,13 @@ export const productsFetchingReducer = (state = initialState, action) => {
         case type.getProducts:
             return {
                 ...state,
-                data:action.payload.data
+                data: action.payload.data
+            }
+
+        case type.getPathUrlImages:
+            return {
+                ...state,
+                pathImg: action.payload.imgpath
             }
 
         default:

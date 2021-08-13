@@ -5,21 +5,21 @@
 // the Arbo, STIHL Rewards variants, and registration endpoints.
 
 import { useDispatch } from "react-redux";
-import { getProducts } from "../redux/actions/actionProducts";
+import { getPathImages, getProducts } from "../redux/actions/actionProducts";
 
-const path = require("path");
-const fs = require("fs");
+// const path = require("path");
+// const fs = require("fs");
 
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 
 const env = "rc";
 const arboUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
-const variantsUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
-const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
+// const variantsUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
+// const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
 
 
 let filesjpg = []
-
+let contador = 0;
 const fetchData = {
     method: "POST",
     headers: { "Accept": "application/json" },
@@ -75,13 +75,15 @@ export const useFetchproducts = () => {
             if (file.path === 'products/protective-work-wear.json') {
                 const res = await fetch(file.url);
                 const data = await res.json();
-                // console.log(data);
                 dispatch(getProducts(data));                
-                return;
+                
             }else{
                 //Guarda el path de las img en un array
-                if(file.path.split('.')[1] === "jpg"){
-                    filesjpg.push(file.path);
+                if(file.path.split('.')[1] === "jpg" && contador <= 10){
+                    filesjpg.push(file.url);
+                    // console.log(filesjpg)
+                    dispatch(getPathImages(filesjpg));
+                    contador++
                 }
             }
             
@@ -165,6 +167,7 @@ export const useFetchproducts = () => {
     };
 
     return {
-        mainScript
+        mainScript,
+        filesjpg
     }
 }

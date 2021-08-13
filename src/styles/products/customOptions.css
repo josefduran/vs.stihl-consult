@@ -69,3 +69,34 @@
     background-color: rgb(153, 153, 153);
     transition: all 0.3s ease;
   }
+
+
+  /*Options 2 customize*/
+
+ .contenedor_opt{
+   width: 100%;
+   background-color: rgb(131, 131, 131);
+   height: 100vh;
+
+   display: grid;
+   grid-template-columns: repeat(1,1fr);
+   text-align: center;
+   padding: 1em;
+   padding-bottom: 10em;
+   gap: 1em;
+   overflow-y: scroll;
+ }
+.img_content{
+  background-color: white;
+}
+ .img > img {
+   width: 100px;
+   height: 100px;
+   object-fit: cover;
+ }
+ .url{
+   padding: .5em 1em;
+ }
+ .url>p{
+   white-space: wrap;
+ }

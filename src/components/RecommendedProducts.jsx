@@ -10,7 +10,7 @@ export const RecommendedProducts = () => {
 
     const [cards, setCards] = useState([]);
     const { data:products } = useSelector(state => state.products)
-    const option_filter = useSelector(state => state.filter);
+    // const option_filter = useSelector(state => state.filter);
     
     useEffect(() => {
             // let size = "";
@@ -42,10 +42,10 @@ export const RecommendedProducts = () => {
            
             if(products.length !== 0){
                 setCards(products)
-                console.log(products[1])
+                console.log({products})
             }
 
-    }, [option_filter])
+    }, [products])
 
 
     return (
