@@ -10,7 +10,7 @@ export const Card = ({ prices=[],features=[],shortDescription="",name="",categor
     var imgpath = '' 
     // console.log(array);
     // console.log(indices);
-    console.log(pathImg[0]);
+    console.log(pathImg.length);
     console.log(prices[0].sku);
     var x = []; 
     for (x of pathImg) {
@@ -21,28 +21,29 @@ export const Card = ({ prices=[],features=[],shortDescription="",name="",categor
         }
     }
     return (
-        <div className="card">
+        <div>
 
-            {/* {
-                (features?.length !== 0) 
-                    ? <img src={`${features[0].imageProcessUrl}`}  alt={`${features[0].imageProcessUrl}`}/> 
-                    : <img src={guante} alt="./assets/carta.png" />
-            } */}
-            <img src={imgpath} />
-            <div className="text_content">
-                <h5>{name}</h5>
-                <p className="card_desc">{shortDescription}</p>
-                <p className="card_desc"> <b>Price: ${ (prices?.length !== 0) ? prices[0].amount: '0.0' }</b></p>
-                <p className="card_desc">Category: <u>{category}</u></p>
-                <p className="" style={{color:'red'}}>PcID: <b>{pcId}</b></p>
-                <p className="" style={{color:'blue'}}>SKU: <b>{prices[0].sku}</b></p>
-            </div>
+            {
+                (imgpath !== '') 
+                    ? 
+                    <div className="card">
+                        <img src={imgpath} />
+                        <div className="text_content">
+                            <h5>{name}</h5>
+                            <p className="card_desc">{shortDescription}</p>
+                            <p className="card_desc"> <b>Price: ${ (prices?.length !== 0) ? prices[0].amount: '0.0' }</b></p>
+                            <p className="card_desc">Category: <u>{category}</u></p>
+                            <p className="" style={{color:'red'}}>PcID: <b>{pcId}</b></p>
+                            <p className="" style={{color:'blue'}}>SKU: <b>{prices[0].sku}</b></p>
+                        </div>
 
-            <div className="container_btn">
-                <button>More details</button>
-                <button>Other options</button>
-            </div>
-
+                        <div className="container_btn">
+                            <button>More details</button>
+                            <button>Other options</button>
+                        </div>
+                    </div> 
+                    : null
+            } 
         </div>
     )
 }

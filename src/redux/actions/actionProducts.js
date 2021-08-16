@@ -14,7 +14,7 @@ export const getProducts = (data=[]) => {
 
 
 export const getPathImages = (images=[]) => {
-    localStorage.setItem('images',JSON.stringify(images));
+    //localStorage.setItem('images',JSON.stringify(images));
     return {
         type: type.getPathUrlImages,
         payload: {
