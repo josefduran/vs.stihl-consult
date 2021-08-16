@@ -79,9 +79,9 @@ export const useFetchproducts = () => {
                 
             }else{
                 // Guarda el path de las img en un array
-                if(file.path.split('.')[1] === "jpg" && contador <= 10){
+                if(file.path.split('.')[1] === "jpg"){
                     filesjpg.push(file.url);
-                    // console.log(filesjpg)
+                    console.log(filesjpg)
                     dispatch(getPathImages(filesjpg));
                     contador++
                 }
