@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
+import home from '../assets/home.png'
+import carta from '../assets/carta.png'
 
 let location = "";
 
@@ -68,7 +70,7 @@ export const AsideAddress = () => {
                             )
                             : (
                                 <>
-                                    <img src="../../assets/home.png" alt="ubication_img" />
+                                    <img src={home} alt="ubication_img" />
                                     <p className="aa_location">{ dataLocation.address }</p>
                                 </>
                             )
@@ -81,7 +83,7 @@ export const AsideAddress = () => {
                         <p>EDGE</p>
                     </div>
                     <button className="aa_btn_sendKit" onClick={handleSendEmail}>
-                        <img src="./../assets/carta.png" alt="" />
+                        <img src={carta} alt="" />
                         <p>Send me my kit</p>
                     </button>
                 </footer>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { filterSelected } from '../redux/actions/actionFilter'
+
+import marcador from '../assets/marcador-de-posicion.png'
 
 export const CustomOptions = ({ question, name, isIcon, options }) => {
 
@@ -68,7 +69,7 @@ export const CustomOptions = ({ question, name, isIcon, options }) => {
 
                             <div className={`cp_icon_item_container ${(!isIcon) && "cp_column"}`}>
                                 {
-                                    (isIcon) ? <img src={opt.img_path} alt="img_path" /> : <b>{opt.name}</b>
+                                    (isIcon) ? <img src={marcador} alt="img_path" /> : <b>{opt.name}</b>
                                 }
                                 <p className={` ${(!isIcon) && "cp_subtitle"}`}>{(isIcon) ? <b>{opt.name}</b> : opt.subtitle}</p>
                             </div>

@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import { useFetchproducts } from '../../helper/fetch_products';
 import { useRoutebyHome } from '../../hook/useRoutebyHome';
 
+import home from '../../assets/home.png' 
+import marcador from "../../assets/marcador-de-posicion.png" 
+
 export const HomePage = () => {
 
     const { handleClickGoSearch } = useRoutebyHome();
@@ -10,7 +13,6 @@ export const HomePage = () => {
     const { mainScript } =  useFetchproducts();
     
     useEffect(() => {
-        console.log(process.env.REACT_APP_KEY)
         if(products.length === 0){
             mainScript();
             console.log('render fetch') 
@@ -28,19 +30,19 @@ export const HomePage = () => {
 
             <div className="hp_container_cards">
                 <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
-                    <img src="../../assets/home.png" alt="home.png" />
+                    <img src={home} alt="home.png" />
                     <p>+1 acre</p>
                 </div>
                 <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
-                    <img src="../../assets/home.png" alt="home.png" />
+                    <img src={home} alt="home.png" />
                     <p>-1 acre</p>
                 </div>
                 <div className="hp_card" onClick={() => handleClickGoSearch("small yard")}>
-                    <img src="../../assets/home.png" alt="home.png" />
+                    <img src={home} alt="home.png" />
                     <p>small yard</p>
                 </div>
                 <div className="hp_card" onClick={() => handleClickGoSearch("search")}>
-                    <img src="../../assets/marcador-de-posicion.png" alt="marcador.png" />
+                    <img src={marcador} alt="marcador.png" />
                     <p>use my address</p>
                 </div>
             </div>

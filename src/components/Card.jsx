@@ -1,5 +1,7 @@
 import React from 'react'
 
+import carta from '../assets/carta.png'
+
 export const Card = ({ prices=[],features=[],shortDescription="",name="",category="",pcId="" }) => {
     
     return (
@@ -8,7 +10,7 @@ export const Card = ({ prices=[],features=[],shortDescription="",name="",categor
             {
                 (features?.length !== 0) 
                     ? <img src={`${features[0].imageProcessUrl}`}  alt={`${features[0].imageProcessUrl}`}/> 
-                    : <img src="./assets/carta.png" alt="./assets/carta.png" />
+                    : <img src={carta} alt="./assets/carta.png" />
             }
             
             <div className="text_content">

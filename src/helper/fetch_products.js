@@ -14,8 +14,8 @@ import { getPathImages, getProducts } from "../redux/actions/actionProducts";
 
 const env = "rc";
 const arboUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
-// const variantsUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
-// const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
+const variantsUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/variants`;
+const registrationUrl = `http://us04-webapps-${env}.vs-networks.com:9001/api/product-registration/search`;
 
 
 let filesjpg = []
@@ -71,20 +71,26 @@ export const useFetchproducts = () => {
         
         try {
             
-
             if (file.path === 'products/protective-work-wear.json') {
                 const res = await fetch(file.url);
                 const data = await res.json();
+                console.log(data)
                 dispatch(getProducts(data));                
                 
             }else{
-                //Guarda el path de las img en un array
+                // Guarda el path de las img en un array
                 if(file.path.split('.')[1] === "jpg" && contador <= 10){
                     filesjpg.push(file.url);
                     // console.log(filesjpg)
                     dispatch(getPathImages(filesjpg));
                     contador++
                 }
+
+                // if(file.path.indexOf('json')!== -1){
+                //     const res = await fetch(file.url);
+                //     const data = await res.json();
+                //     console.log(data)
+                // }
             }
             
             // else{

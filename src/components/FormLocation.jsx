@@ -4,6 +4,8 @@ import { useHistory } from 'react-router';
 import { usePlaceAutocomplete } from '../hook/usePlaceAutocomplete';
 import { locationSelected } from '../redux/actions/actionLocation';
 
+import placeHolder from '../assets/placeholder.png'
+
 export const FormLocation = () => {
 
     const { place, placeInputRef } = usePlaceAutocomplete()
@@ -37,7 +39,7 @@ export const FormLocation = () => {
 
             <div className="sp_form">
                 <div className="sp_container_input">
-                    <img src="../../assets/placeholder.png" alt="placeholder.png" />
+                    <img src={placeHolder} alt="placeholder.png" />
 
                     <input
                         autoFocus
