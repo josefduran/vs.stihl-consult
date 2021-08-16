@@ -13,10 +13,11 @@ export const HomePage = () => {
     const { mainScript } =  useFetchproducts();
     
     useEffect(() => {
-        if(products.length === 0){
+        //TODO: volver a colocar el if
+        // if(products.length === 0){
             mainScript();
-            console.log('render fetch') 
-        }
+            console.log('render fetch para demostración') 
+        // }
 
     }, [mainScript,products])
 

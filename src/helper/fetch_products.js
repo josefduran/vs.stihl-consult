@@ -86,11 +86,17 @@ export const useFetchproducts = () => {
                     contador++
                 }
 
-                // if(file.path.indexOf('json')!== -1){
-                //     const res = await fetch(file.url);
-                //     const data = await res.json();
-                //     console.log(data)
-                // }
+                if(file.path.indexOf('json')!== -1){
+                    const res = await fetch(file.url);
+                    const data = await res.json();
+                    console.log(data)
+                }
+               
+                if(file.path.indexOf('jpg')!== -1){
+                    const res = await fetch(file.url);
+                    const data = await res.json();
+                    console.log(data)
+                }
             }
             
             // else{
@@ -115,37 +121,37 @@ export const useFetchproducts = () => {
 
     // Main script starts here.
 
-    // fetch(registrationUrl, fetchData)
-    //     .then(res => res.json())
-    //     .then((json) => {
-    //         // console.log(`Retrieved registration manifest`);
-    //         // console.log(json.files);
-    //         const files = json.files.map(entry => {
-    //             return { url: entry.url,  path: entry.name };
-    //         });
-    //         // console.log(`Found ${files.length} entries in registrations`);
-    //         download(files, "./arbo-data", "webapps");
-    //     })
-    //     .catch(err => {
-    //         // console.log('error 3')
-    //         // console.error(err)
-    //     })
+    fetch(registrationUrl, fetchData)
+        .then(res => res.json())
+        .then((json) => {
+            // console.log(`Retrieved registration manifest`);
+            // console.log(json.files);
+            const files = json.files.map(entry => {
+                return { url: entry.url,  path: entry.name };
+            });
+            // console.log(`Found ${files.length} entries in registrations`);
+            download(files, "./arbo-data", "webapps");
+        })
+        .catch(err => {
+            // console.log('error 3')
+            // console.error(err)
+        })
 
 
-    // fetch(variantsUrl, { headers: { "Accept": "application/json" }})
-    //     .then(res => res.json())
-    //     .then((json) => {
-    //         // console.log("Retrieved variants manifest");
-    //         const files = json.files.map(entry => {
-    //             return { url: entry.url,  path: entry.name };
-    //         });
-    //         // console.log(`Found ${files.length} entries in variants`);
-    //         download(files, "./arbo-data/data/product-registration", "variants");
-    //     })
-    //     .catch(err=>{
-    //         // console.log('error 4')
-    //         // console.error(err)
-    //     });
+    fetch(variantsUrl, { headers: { "Accept": "application/json" }})
+        .then(res => res.json())
+        .then((json) => {
+            // console.log("Retrieved variants manifest");
+            const files = json.files.map(entry => {
+                return { url: entry.url,  path: entry.name };
+            });
+            // console.log(`Found ${files.length} entries in variants`);
+            download(files, "./arbo-data/data/product-registration", "variants");
+        })
+        .catch(err=>{
+            // console.log('error 4')
+            // console.error(err)
+        });
 
 
     // Main script starts here.
