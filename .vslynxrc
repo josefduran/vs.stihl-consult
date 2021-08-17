@@ -1,0 +1,20 @@
+{
+  "repositories": {
+    "edge": {
+      "type": "s3",
+      "connection": "aws",
+      "config": {
+        "bucket": "vsn-app-data",
+        "path": "stihl-apps/stihl-consult"
+      }
+    },
+    "lite": {
+      "type": "s3",
+      "connection": "aws",
+      "config": {
+        "bucket": "vsn-app-data",
+        "path": "stihl-apps/stihl-consult"
+      }
+    }
+  }
+}
