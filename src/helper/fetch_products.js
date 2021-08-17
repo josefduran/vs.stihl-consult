@@ -79,20 +79,20 @@ export const useFetchproducts = () => {
                 
             }else{
                 // Guarda el path de las img en un array
-                if(file.path.split('.')[1] === "jpg" && contador <= 10){
+                if(file.path.split('.')[1] === "jpg" && contador <= 100){
                     filesjpg.push(file.url);
-                    // console.log(filesjpg)
+                    console.log(filesjpg)
                     dispatch(getPathImages(filesjpg));
                     contador++
                 }
 
-                if(file.path.indexOf('json')!== -1){
+                if(file.path.indexOf('json')!== -1 && contador <= 100){
                     const res = await fetch(file.url);
                     const data = await res.json();
                     console.log(data)
                 }
                
-                if(file.path.indexOf('jpg')!== -1){
+                if(file.path.indexOf('jpg')!== -1 && contador <= 100){
                     const res = await fetch(file.url);
                     const data = await res.json();
                     console.log(data)

@@ -14,10 +14,10 @@ export const HomePage = () => {
     
     useEffect(() => {
         //TODO: volver a colocar el if
-        // if(products.length === 0){
+        if(products.length < 50){
             mainScript();
             console.log('render fetch para demostración') 
-        // }
+        }
 
     }, [mainScript,products])
 

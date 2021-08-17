@@ -11,7 +11,9 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.1.1"
   },
+  "license": "LicenseRef-LICENSE",
   "devDependencies": {
+    "@spectrio/vslynx-devtools": "^0.7.5-rc1",
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
