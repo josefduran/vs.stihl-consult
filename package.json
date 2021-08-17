@@ -32,7 +32,8 @@
   },
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
-    "start": "webpack serve --config config/webpack.dev.js"
+    "start": "webpack serve --config config/webpack.dev.js",
+    "upload-stihl-consult": "vslynx upload ./stihl-consult stihl-consult"
   },
   "keywords": [],
   "author": "",
