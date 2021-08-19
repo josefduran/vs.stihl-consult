@@ -149,9 +149,9 @@ export const useFetchproducts = () => {
                             
                             if(power === "others"){
                                 
-                                if( category.toLowerCase().indexOf("battery") === -1 && 
-                                    category.toLowerCase().indexOf("electric") === -1 && 
-                                    category.toLowerCase().indexOf("gas")=== -1){
+                                if( category.indexOf("battery") === -1 && 
+                                    category.indexOf("electric") === -1 && 
+                                    category.indexOf("gas")=== -1){
                                     
                                         arrJSON.push(item)
                                 }
