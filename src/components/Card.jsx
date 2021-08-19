@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import guante from '../assets/guantes.jpg'
+import guante from '../assets/images.png'
 
 export const Card = ({ prices=[],features=[],shortDescription="",name="",category="",pcId="" }) => {
     const { pathImg } = useSelector(state => state.products);
@@ -21,29 +21,27 @@ export const Card = ({ prices=[],features=[],shortDescription="",name="",categor
         }
     }
     return (
-        <div>
+        <div className="card">
 
             {
                 (imgpath !== '') 
-                    ? 
-                    <div className="card">
-                        <img src={imgpath} />
-                        <div className="text_content">
-                            <h5>{name}</h5>
-                            <p className="card_desc">{shortDescription}</p>
-                            <p className="card_desc"> <b>Price: ${ (prices?.length !== 0) ? prices[0].amount: '0.0' }</b></p>
-                            <p className="card_desc">Category: <u>{category}</u></p>
-                            <p className="" style={{color:'red'}}>PcID: <b>{pcId}</b></p>
-                            <p className="" style={{color:'blue'}}>SKU: <b>{prices[0].sku}</b></p>
-                        </div>
-
-                        <div className="container_btn">
-                            <button>More details</button>
-                            <button>Other options</button>
-                        </div>
-                    </div> 
-                    : null
+                    ? <img src={imgpath}/> 
+                    : <img src={guante} alt="./assets/loading.gif" />
             } 
+            <div className="text_content">
+                <h5>{name}</h5>
+                <p className="card_desc">{shortDescription}</p>
+                <p className="card_desc"> <b>Price: ${ (prices?.length !== 0) ? prices[0].amount: '0.0' }</b></p>
+                <p className="card_desc">Category: <u>{category}</u></p>
+                <p className="" style={{color:'red'}}>PcID: <b>{pcId}</b></p>
+                <p className="" style={{color:'blue'}}>SKU: <b>{prices[0].sku}</b></p>
+            </div>
+
+            <div className="container_btn">
+                <button>More details</button>
+                <button>Other options</button>
+            </div>
+
         </div>
     )
 }

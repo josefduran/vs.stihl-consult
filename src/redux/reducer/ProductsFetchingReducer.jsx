@@ -5,7 +5,8 @@ const images =  JSON.parse(localStorage.getItem('images'));
 
 const initialState = {
     data: products ? products : [],
-    pathImg: images ? images : []
+    pathImg: images ? images : [],
+    loading: null,
 }
 
 export const productsFetchingReducer = (state = initialState, action) => {
@@ -22,6 +23,18 @@ export const productsFetchingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pathImg: action.payload.imgpath
+            }
+
+        case type.starLoading:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case type.endLoading:
+            return {
+                ...state,
+                loading: false
             }
 
         default:

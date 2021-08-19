@@ -15,7 +15,7 @@ export const OptionsTwo = () => {
                             <img src={`${pathImg}`} alt={`${pathImg}`} />
                         </div>
                         <div className="url">
-                            <p>{pathImg}</p>
+                            <p>{pathImg.substr(-50,50)}</p>
                         </div>
 
                     </div>

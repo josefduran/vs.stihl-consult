@@ -1,6 +1,6 @@
 import { type } from "../types/types";
 
-const filteredStorage = JSON.parse(sessionStorage.getItem("location"));
+const filteredStorage = JSON.parse(sessionStorage.getItem("filter"));
 
 const initialState = {
     power: filteredStorage?.power,
