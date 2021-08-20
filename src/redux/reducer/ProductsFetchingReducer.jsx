@@ -1,11 +1,18 @@
 import { type } from "../types/types";
 
-const products =  JSON.parse(localStorage.getItem('products'));
-const images =  JSON.parse(localStorage.getItem('images'));
+const product =  JSON.parse(localStorage.getItem('product'));
+const error =  JSON.parse(localStorage.getItem('error'));
 
 const initialState = {
-    data: products ? products : [],
-    pathImg: images ? images : []
+    data: {
+        battery:[],
+        electric:[],
+        gas:[],
+        others:[]
+    },
+    productSelected: product ? product : {},
+    loading: null,
+    error
 }
 
 export const productsFetchingReducer = (state = initialState, action) => {
@@ -17,11 +24,29 @@ export const productsFetchingReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload.data
             }
-
-        case type.getPathUrlImages:
+            
+        case type.starLoading:
             return {
                 ...state,
-                pathImg: action.payload.imgpath
+                loading: true
+            }
+
+        case type.endLoading:
+            return {
+                ...state,
+                loading: false
+            }
+
+        case type.productSelectect:
+            return {
+                ...state,
+                productSelected: action.payload.product
+            }
+
+        case type.errorInServer:
+            return {
+                ...state,
+                error: action.payload.error
             }
 
         default:
