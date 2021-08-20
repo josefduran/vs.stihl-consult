@@ -1,5 +1,12 @@
 import React from 'react'
 import { useHistory } from 'react-router';
+
+import house from "../assets/house.png"
+import arrow  from "../assets/arrows.png"
+import lupa from "../assets/lupa_.png"
+import card from "../assets/card.png"
+
+
 export const LateralMenu = () => {
     const history = useHistory();
 
@@ -9,10 +16,10 @@ export const LateralMenu = () => {
     return (
         <div className="lm_container_menu">
             <div className="lm_container_items">
-                <img src="../../assets/house.png"  alt="house.png" onClick={ ()=> handleClick("index")}/>
-                <img src="../../assets/arrows.png"  alt="arrows.png" onClick={ ()=> handleClick("index")} />
-                <img src="../../assets/card.png"  alt="card.png" onClick={ ()=> handleClick("options2")}/>
-                <img src="../../assets/lupa_.png"  alt="lupa_.png" onClick={ ()=> handleClick("search")}/>
+                <img src={house}  alt="house.png" onClick={ ()=> handleClick("index")}/>
+                <img src={arrow}  alt="arrows.png" onClick={ ()=> handleClick("index")} />
+                <img src={card}  alt="card.png" onClick={ ()=> handleClick("options2")}/>
+                <img src={lupa}  alt="lupa_.png" onClick={ ()=> handleClick("search")}/>
             </div>
         </div>
     )
