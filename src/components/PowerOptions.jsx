@@ -1,9 +1,11 @@
 import { useFiltered } from "../hook/useFiltered"
 import marcador from '../assets/marcador-de-posicion.png'
+import { useSelector } from "react-redux";
 
 export const PowerOptions = () => {
 
-    const { handleChange, opt_filtered } = useFiltered()
+    const { handleChange } = useFiltered();
+    const opt_filtered = useSelector(state => state.filter);
 
     return (
         <div className="rp_container_item_radio" >
@@ -62,11 +64,11 @@ export const PowerOptions = () => {
                             <input
                                 type="radio"
                                 name={"power"}
-                                id={"others"}
+                                id={"none"}
                                 onChange={handleChange}
-                                checked={([opt_filtered.power].includes("others")) && true}
+                                checked={([opt_filtered.power].includes("none")) && true}
                             />
-                            <label htmlFor={"others"} className={`cp_none cp_label_circle`} />
+                            <label htmlFor={"none"} className={`cp_none cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
                             <img src={marcador} alt="img_path" />

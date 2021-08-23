@@ -25,7 +25,7 @@ export const useRoutebyHome = () => {
             switch (option) {
                 case "+1 acre":
                     data = {
-                        power: "battery",
+                        power: "electric",
                         frequent: "constant",
                         vegetation: "heavy",
                     }
@@ -33,7 +33,7 @@ export const useRoutebyHome = () => {
 
                 case "-1 acre":
                     data = {
-                        power: "battery",
+                        power: "electric",
                         frequent: "infrequent",
                         vegetation: "medium",
                     }
@@ -41,7 +41,7 @@ export const useRoutebyHome = () => {
 
                 case "small yard":
                     data = {
-                        power: "battery",
+                        power: "electric",
                         frequent: "frequent",
                         vegetation: "light",
                     }

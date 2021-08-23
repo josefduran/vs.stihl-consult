@@ -1,25 +1,33 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useFetchproducts } from '../../helper/fetch_products';
+
 import { useRoutebyHome } from '../../hook/useRoutebyHome';
 
-import home from '../../assets/home.png' 
-import marcador from "../../assets/marcador-de-posicion.png" 
+import home from '../../assets/home.png'
+import marcador from "../../assets/marcador-de-posicion.png"
+import { useFetchproducts } from '../../helper/fetch_products';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from '../../redux/actions/actionProducts';
+import { Loader } from '../Loader';
+import { useEffect } from 'react';
+import { type } from '../../redux/types/types';
 
 export const HomePage = () => {
 
     const { handleClickGoSearch } = useRoutebyHome();
-    const { data:products } = useSelector(state => state.products)
-    const { mainScript } =  useFetchproducts();
-    
+    //start fetching data 
+    const { data: products, loading, error } = useSelector(state => state.products)
+    const dispatch = useDispatch();
+    const { mainScript } = useFetchproducts();
+
     useEffect(() => {
-        //TODO: volver a colocar el if
-        if(products.length < 50){
-            mainScript();
-            console.log('render fetch para demostración') 
+        const executeMainScript = async () => {
+            dispatch(setLoading(type.starLoading));
+            await mainScript();
+        }
+        if( Object.keys(products).length === 0){
+            executeMainScript();
         }
 
-    }, [mainScript,products])
+    }, [])
 
     return (
         <div className="hp_background">
@@ -30,22 +38,30 @@ export const HomePage = () => {
             </div>
 
             <div className="hp_container_cards">
-                <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
-                    <img src={home} alt="home.png" />
-                    <p>+1 acre</p>
-                </div>
-                <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
-                    <img src={home} alt="home.png" />
-                    <p>-1 acre</p>
-                </div>
-                <div className="hp_card" onClick={() => handleClickGoSearch("small yard")}>
-                    <img src={home} alt="home.png" />
-                    <p>small yard</p>
-                </div>
-                <div className="hp_card" onClick={() => handleClickGoSearch("search")}>
-                    <img src={marcador} alt="marcador.png" />
-                    <p>use my address</p>
-                </div>
+            {
+                    (loading)
+                        ? <><Loader /></>
+                        : (error)
+                            ? <b className="no_products" style={{ color: 'white' }}>Error en el servidor</b>
+                            : <>
+                                <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
+                                    <img src={home} alt="home.png" />
+                                    <p>+1 acre</p>
+                                </div>
+                                <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
+                                    <img src={home} alt="home.png" />
+                                    <p>-1 acre</p>
+                                </div>
+                                <div className="hp_card" onClick={() => handleClickGoSearch("small yard")}>
+                                    <img src={home} alt="home.png" />
+                                    <p>small yard</p>
+                                </div>
+                                <div className="hp_card" onClick={() => handleClickGoSearch("search")}>
+                                    <img src={marcador} alt="marcador.png" />
+                                    <p>use my address</p>
+                                </div>
+                            </>
+                }
             </div>
 
             <div className="hp_logo logo media_logo">

@@ -1,8 +1,9 @@
 
-import { useDispatch, useSelector } from "react-redux";
-import { getPathImages, getProducts, setLoading } from "../redux/actions/actionProducts";
+import { useDispatch } from "react-redux";
+import {  getProducts, setError, setLoading } from "../redux/actions/actionProducts";
 import { type } from "../redux/types/types";
-
+import dataJSON from '../assets/data.json'
+    
 
 const env = "rc";
 const arboUrl = `http://us04-arbo-${env}.vs-networks.com:8000/api/manifest/dealer-catalog`;
@@ -50,7 +51,7 @@ const fetchData = {
 export const useFetchproducts = () => {
 
     const dispatch = useDispatch();
-    const option_filter = useSelector(state => state.filter);
+    // const option_filter = useSelector(state => state.filter);
 
     async function download(files = [], basePath = "", prefix = "") {
 
@@ -65,12 +66,12 @@ export const useFetchproducts = () => {
 
     const mainScript = async () => {
         try {
-            await arboFetch();
+            // await arboFetch();
             // await variantsFetch();
             // await webappsFetch();
-
-        } catch (error) {
-            console.log(error)
+            failedFetching("error")
+        } catch (err) {
+            failedFetching(err)
         }
 
     };
@@ -84,9 +85,11 @@ export const useFetchproducts = () => {
                     return { url: entry.url, path: entry.name };
                 });
                 // console.log(`Found ${files.length} entries in arbo`);
+                dispatch(setError(false));
                 download(files, "./arbo-data/data/product-catalog", "arbo");
+
             })
-            .catch(() => { });
+            .catch((err) => {failedFetching(err) });
     };
 
     const variantsFetch = async () => {
@@ -98,11 +101,13 @@ export const useFetchproducts = () => {
                     return { url: entry.url, path: entry.name };
                 });
                 // console.log(`Found ${files.length} entries in variants`);
+                dispatch(setError(false));
                 download(files, "./arbo-data/data/product-registration", "variants");
             })
             .catch(err => {
                 // console.log('error 4')
                 // console.error(err)
+                failedFetching(err)
             });
     };
 
@@ -116,22 +121,28 @@ export const useFetchproducts = () => {
                     return { url: entry.url, path: entry.name };
                 });
                 // console.log(`Found ${files.length} entries in registrations`);
+                dispatch(setError(false));
                 download(files, "./arbo-data", "webapps");
             })
             .catch(err => {
                 // console.log('error 3')
                 // console.error(err)
+                failedFetching(err)
             })
     };
 
     async function arboResolveFetchin(arr = []) {
-        
-        let arrJSON = [];//525 productos
-        let arrImages = [];//525 productos
+        //ORIGINAL
+        let arrImages = [];
 
-        let i = 0;
+        let dataWhitoutImage = {
+            battery: [],
+            electric: [],
+            gas: [],
+            others: []
+        };
 
-        dispatch(getPathImages([]))
+        //reseteo el redux
         dispatch(getProducts([]))
 
         while (arr.length !== 0) {
@@ -143,69 +154,66 @@ export const useFetchproducts = () => {
 
                     data.forEach(item => {
                         if(item?.category){
-
-                            let power= option_filter.power;
                             let category = item.category;
                             
-                            if(power === "others"){
-                                
-                                if( category.indexOf("battery") === -1 && 
-                                    category.indexOf("electric") === -1 && 
-                                    category.indexOf("gas")=== -1){
-                                    
-                                        arrJSON.push(item)
-                                }
-                                
-                            }else{
-                                
-                                let isExist = category.toLowerCase().indexOf(power.toLowerCase())  
-                                if ( isExist !== -1 ) { 
-                                    arrJSON.push(item)
-                                }
-                            }
-
-
+                            if(category.toLowerCase().indexOf("battery") !== -1) dataWhitoutImage.battery.push(item);
+                            if(category.toLowerCase().indexOf("electric") !== -1) dataWhitoutImage.electric.push(item);
+                            if(category.toLowerCase().indexOf("gas") !== -1) dataWhitoutImage.gas.push(item);
+                            if(category.toLowerCase().indexOf("battery") === -1 && 
+                            category.toLowerCase().indexOf("electric") === -1 && 
+                            category.toLowerCase().indexOf("gas")=== -1) dataWhitoutImage.others.push(item)
                         }
                     });
                 }
             }
             else {
-                
                 arrImages.push(arr[arr.length - 1].url);
             }
 
             arr.pop();
-            i++
         }
 
-        let newArrImg = [];
+        let newDataWhitImage = {
+            battery: [],
+            electric: [],
+            gas: [],
+            others: []
+        };
+        
+        let claves = Object.keys(newDataWhitImage);
 
-        arrJSON.forEach(data=>{
-            if(data.sku){
-                let pathImg = existImageFilter(arrImages, data.sku);
-                (pathImg !== "") && newArrImg.push(pathImg)
-            }
+        claves.forEach(clave=>{
+
+            dataWhitoutImage[clave].forEach(product=>{
+
+                if(product?.sku){
+                    const isImageExist = matchImageProduct(product, arrImages);
+                    (isImageExist?.urlImage !== "") && newDataWhitImage[clave].push(isImageExist) 
+                }
+            })
         })
 
-        dispatch(getPathImages(newArrImg))
-        dispatch(getProducts(arrJSON))
-        dispatch(setLoading(type.endLoading)); 
+        dispatch(getProducts(newDataWhitImage));
+        dispatch(setLoading(type.endLoading));
+
+       
     };
 
-    const existImageFilter = (arrImages=[], sku="") => {
-        
-        let pathimg = ""
-
-        arrImages.forEach((img)=>{
-            
-            let partUrl= new RegExp(`${sku}-1000-800.jpg`);
-
+    const matchImageProduct = (product={},images=[]) => {
+        // ORIGINAL
+        let arr = {};
+        images.forEach(img=>{
+            let partUrl= new RegExp(`${product.sku}-1000-800.jpg`);
             if(partUrl.test(img) ){
-                pathimg=img
+                
+                arr={
+                    ...product,
+                    urlImage: img
+                }
+
             }
         })
-
-       return pathimg;
+        return arr;
     };
 
     async function variantsResolveFetchin(arrVariants) {
@@ -223,6 +231,13 @@ export const useFetchproducts = () => {
             console.log(data)
             arrWebApps.pop();
         }
+    };
+
+    const failedFetching = async(error) => { 
+        console.log(error)
+        dispatch(getProducts(dataJSON))
+        dispatch(setLoading(type.endLoading));
+        dispatch(setError(false));
     };
 
     return {
