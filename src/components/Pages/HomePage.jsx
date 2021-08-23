@@ -5,7 +5,7 @@ import home from '../../assets/home.png'
 import marcador from "../../assets/marcador-de-posicion.png"
 import { useFetchproducts } from '../../helper/fetch_products';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoading } from '../../redux/actions/actionProducts';
+import { selectProduct, setLoading } from '../../redux/actions/actionProducts';
 import { Loader } from '../Loader';
 import { useEffect } from 'react';
 import { type } from '../../redux/types/types';
@@ -19,6 +19,9 @@ export const HomePage = () => {
     const { mainScript } = useFetchproducts();
 
     useEffect(() => {
+        dispatch(selectProduct({}))
+        localStorage.removeItem("product");
+
         const executeMainScript = async () => {
             dispatch(setLoading(type.starLoading));
             await mainScript();

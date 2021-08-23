@@ -36,15 +36,15 @@ export const RecommendedProducts = () => {
 
                 let vegetation = (option_filter.vegetation === "light") ? "small" : option_filter.vegetation;
 
-                // const newArr = products.filter(product =>
-                //     product.power === option_filter.power &&
-                //     product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
-                //     product.lawnSize === size
-                // );
-                let newArr=[];
-                products.forEach(element => {
-                    (element?.power) && newArr.push(element)
-                });
+                const newArr = products.filter(product =>
+                    product.power === option_filter.power &&
+                    product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
+                    product.lawnSize === size
+                );
+                // let newArr=[];
+                // products.forEach(element => {
+                //     (element?.power) && newArr.push(element)
+                // });
 
                 setCards(newArr);
                 dispatch(setLoading(type.endLoading))
