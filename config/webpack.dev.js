@@ -12,7 +12,7 @@ const dotenv = require('dotenv')
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 3006,
+    port: 3000,
     contentBase: path.join(__dirname, "public"),
     open: true,
     hot: true,
@@ -36,7 +36,8 @@ const devConfig = {
     }),
     new DefinePlugin({
     'process.env': JSON.stringify(dotenv.config().parsed)
-  })],
+  })
+],
   devtool: "eval-source-map",
 };
 
