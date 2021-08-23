@@ -15,7 +15,7 @@ const prodConfig = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-      },
+      }
     ],
   },
   optimization: {

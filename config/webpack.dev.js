@@ -1,15 +1,18 @@
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const { HotModuleReplacementPlugin } = require("webpack");
+const { HotModuleReplacementPlugin, DefinePlugin } = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 const path = require("path");
+const dotenv = require('dotenv')
 
 
 /** @type {import('webpack').Configuration} */
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 3000,
+    port: 3006,
     contentBase: path.join(__dirname, "public"),
     open: true,
     hot: true,
@@ -24,7 +27,16 @@ const devConfig = {
     ],
   },
   target: "web",
-  plugins: [new HotModuleReplacementPlugin(), new ReactRefreshWebpackPlugin()],
+  plugins: [
+    new HotModuleReplacementPlugin(), 
+    new ReactRefreshWebpackPlugin(),    
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+    new DefinePlugin({
+    'process.env': JSON.stringify(dotenv.config().parsed)
+  })],
   devtool: "eval-source-map",
 };
 

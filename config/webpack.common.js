@@ -1,6 +1,8 @@
+const { DefinePlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const dotenv = require('dotenv')
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
@@ -25,6 +27,10 @@ module.exports = {
         type: "asset",
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -35,5 +41,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    })
   ],
 };
