@@ -12,7 +12,7 @@ const dotenv = require('dotenv')
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 3006,
+    port: 3007,
     contentBase: path.join(__dirname, "public"),
     open: true,
     hot: true,
