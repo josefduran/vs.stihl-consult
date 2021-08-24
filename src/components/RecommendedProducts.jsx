@@ -26,6 +26,11 @@ export const RecommendedProducts = () => {
         if (Object.keys(products).length !== 0 && !error) {
             dispatch(setLoading(type.starLoading))
             setTimeout(() => {
+                
+                if(!option_filter?.frequent || !option_filter?.vegetation || !option_filter?.power){
+                    dispatch(setLoading(type.endLoading));
+                    return
+                };
 
                 let size = "";
                 switch (option_filter.frequent) {
@@ -35,18 +40,22 @@ export const RecommendedProducts = () => {
                 }
 
                 let vegetation = (option_filter.vegetation === "light") ? "small" : option_filter.vegetation;
-
-                const newArr = products.filter(product =>
-                    product.power === option_filter.power &&
-                    product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
-                    product.lawnSize === size
-                );
-                // let newArr=[];
-                // products.forEach(element => {
-                //     (element?.power) && newArr.push(element)
-                // });
-
-                setCards(newArr);
+                let newArr=[];
+                products.forEach(element => {
+                    (element?.power) && newArr.push(element)
+                });
+                    
+                    const newArrFiltered = products.filter(product =>
+                        product.power === option_filter.power &&
+                        product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
+                        product.lawnSize === size
+                    );
+                    
+    
+                    setCards(newArrFiltered);
+                
+                  
+                
                 dispatch(setLoading(type.endLoading))
             }, 200);
         }else{
@@ -67,7 +76,7 @@ export const RecommendedProducts = () => {
                 (error)
                     ? <b className="error_center">Error en el server, no hay data</b>
                     : (Object.keys(productSelected).length !== 0)
-                        ? <ProductSelected {...productSelected} />
+                        ? <ProductSelected productSelected={productSelected} />
                         : <>
                             <h2 className="rp_subtitle">You're an outdoor boss</h2>
 
@@ -82,7 +91,7 @@ export const RecommendedProducts = () => {
                                     (loading)
                                         ? <Loader />
                                         : (cards.length === 0)
-                                            ? <b className="no_products">No products</b>
+                                            ? <b className="no_products">No products, select another filter</b>
                                             : cards.map((product, index) => (
                                                 (product?.power) && <Card key={index} productOnly={product} />
                                             ))

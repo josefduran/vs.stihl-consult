@@ -1,8 +1,8 @@
 import { useFiltered } from "../hook/useFiltered"
-import marcador from '../assets/marcador-de-posicion.png'
 import { useSelector } from "react-redux";
 
 export const PowerOptions = () => {
+    const marcador  = 'https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png'
 
     const { handleChange } = useFiltered();
     const opt_filtered = useSelector(state => state.filter);

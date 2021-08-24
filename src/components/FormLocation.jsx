@@ -4,9 +4,9 @@ import { useHistory } from 'react-router';
 import { usePlaceAutocomplete } from '../hook/usePlaceAutocomplete';
 import { locationSelected } from '../redux/actions/actionLocation';
 
-import placeHolder from '../assets/placeholder.png'
 
 export const FormLocation = () => {
+    const placeHolder = 'https://i.ibb.co/vD2F9GC/placeholder.png'
 
     const { place, placeInputRef } = usePlaceAutocomplete()
     const dispatch = useDispatch();

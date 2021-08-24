@@ -1,4 +1,4 @@
-const KEY = process.env.REACT_APP_KEY;
+const KEY = process.env.REACT_APP_KEY_PROD;
 
 export const loadGoogleMapScript = (callback) => {
     if (typeof window.google === 'object' && typeof window.google.maps === 'object') {

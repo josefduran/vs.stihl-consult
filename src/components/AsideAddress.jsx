@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
-import home from '../assets/home.png'
-import carta from '../assets/carta.png'
+
 
 let location = "";
 
 
 
 export const AsideAddress = () => {
-
+    const home = 'https://i.ibb.co/h1y2BH4/home.png'
+    const carta = 'https://i.ibb.co/TMxMRc7/carta.png'
     const dataLocation = useSelector(state => state.location);
 
     if (dataLocation.address === "+1 acre" ||
