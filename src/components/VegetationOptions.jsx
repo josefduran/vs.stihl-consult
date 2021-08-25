@@ -11,6 +11,7 @@ export const VegetationOptions = () => {
             <div className="rp_container_item_radio" >
                 <span className="cp_question">How heavy is the vegetation on your property</span>
                 <div className="cp_grid">
+                <div className="line_point_large_three"></div>
                     <div> 
                         <div className="cp_radio_circle">
                             <input

@@ -2,9 +2,11 @@
 import { getImageProduct } from '../../helper/getImageProduct'
 import { CounterStart } from './CounterStart'
 
+import { BtnAddToCar } from '../BtnAddToCar'
+
 export const CardAsideRigth = ({ productSelected }) => {
 
-    const { relativeUrl, name, ratings } =productSelected
+    const { relativeUrl, name, ratings,shortDescription,prices } =productSelected
     const noFound = 'https://i.ibb.co/71sL6cC/images.png'
 
     return (
@@ -23,8 +25,13 @@ export const CardAsideRigth = ({ productSelected }) => {
                     <CounterStart isCardRigth={false} rating={ratings.rating} />
                 </div>
 
-                <p className="desc_other_product">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, corrupti corporis quos hic dolore quaerat?</p>
-                <p className="price_other_product">24 min  - <b>$1500</b></p>
+                <p className="desc_other_product">{shortDescription}</p>
+                <p className="price_other_product">24 min  - <b>${prices[0].amount}</b></p>
+
+
+                    <BtnAddToCar productSelected={productSelected}/>
+
+
             </div>
         </div>
     )

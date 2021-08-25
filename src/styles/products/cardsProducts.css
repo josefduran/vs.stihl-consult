@@ -65,3 +65,9 @@
     margin-top: 3em;
     font-size: 2em;
   }
+
+@media screen and (min-width:1612px) {
+  .card > img {
+    height: 200px;
+  }
+}

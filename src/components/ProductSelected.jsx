@@ -4,12 +4,12 @@ import { getImageProduct } from "../helper/getImageProduct"
 import { InfoProduct } from "./productSelected/InfoProduct"
 import { NavSection } from "./productSelected/NavSection";
 
-import { CardAsideRigth } from "./productSelected/CardAsideRigth";
+import { BtnAddToCar } from "./BtnAddToCar";
 
 export const ProductSelected = ({ productSelected }) => {
     const noFound = 'https://i.ibb.co/71sL6cC/images.png'
 
-    const { ongDescription = "", name = "", relativeUrl, ratings } = productSelected
+    const {name = "", relativeUrl } = productSelected
 
     const [sectionSelect, setSectionSelect] = useState("1");
 
@@ -33,7 +33,7 @@ export const ProductSelected = ({ productSelected }) => {
 
                 <div className="subgrid product">
                     <h5 className="title_ps">{name}</h5>
-                    <div>
+                    <div className="content_image_ps">
                         {
                             (relativeUrl)
                                 ? getImageProduct(relativeUrl[0])
@@ -48,20 +48,16 @@ export const ProductSelected = ({ productSelected }) => {
 
                     <div className="section_selected_ps">
                         {showInfo()}
+
+                        <BtnAddToCar isOtherProduct={true} productSelected={productSelected} />
+
+
                     </div>
 
                 </div>
             </div>
 
-            <div className="item_grid other_options_ps">
-
-                <CardAsideRigth productSelected={productSelected}  />
-                <CardAsideRigth productSelected={productSelected}  />
-                <CardAsideRigth productSelected={productSelected}  />
-                <CardAsideRigth productSelected={productSelected}  />
-                <CardAsideRigth productSelected={productSelected}  />
-
-            </div>
+            
 
         </div>
     )

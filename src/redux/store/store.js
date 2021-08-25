@@ -1,5 +1,6 @@
 import { combineReducers, createStore } from "redux";
 import { locationReducer } from "../reducer/AppReducer";
+import { carReducer } from "../reducer/CarReducer";
 import { filteredReducer } from "../reducer/FilteredReducer";
 import { productsFetchingReducer } from "../reducer/ProductsFetchingReducer";
 
@@ -7,7 +8,8 @@ import { productsFetchingReducer } from "../reducer/ProductsFetchingReducer";
 const reducers = combineReducers({
     location: locationReducer,
     filter:filteredReducer,
-    products: productsFetchingReducer
+    products: productsFetchingReducer,
+    car: carReducer
 })
 
 

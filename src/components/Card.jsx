@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch} from 'react-redux';
-import { selectProduct } from '../redux/actions/actionProducts';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectProduct, setOtherProducts } from '../redux/actions/actionProducts';
 import { getImageProduct } from '../helper/getImageProduct';
 
 
@@ -8,16 +8,32 @@ export const Card = ({productOnly }) => {
     
     const noFound  = 'https://i.ibb.co/71sL6cC/images.png'
 
-    const {shortDescription="",name="",urlImage, relativeUrl } = productOnly;
+    const {shortDescription="",name="",urlImage, relativeUrl,pcId,category } = productOnly;
     const dispatch = useDispatch();
-    
-    const handleMoreDetails = (productOnly) => dispatch(selectProduct(productOnly));
-    
+    const { data: products } = useSelector(state => state.products)
+
+    const handleMoreDetails = () => dispatch(selectProduct(productOnly));
+
+    const handleOtherOptions = () => {
+        console.log({ pcId, category })
+
+        let newArr = [];
+        products.forEach(element => {
+            (element?.power) && newArr.push(element)
+        });
+
+        let othersProducts = newArr.filter( product => product.category === category && product.pcId !== pcId);
+        console.log(othersProducts)
+
+        if(othersProducts.length !== 0) dispatch(setOtherProducts(othersProducts ));
+        else alert("There are no related products.")
+    };
+
     return (
         <div className="card">
 
-             {
-                (relativeUrl) 
+            {
+                (relativeUrl)
                     ? getImageProduct(relativeUrl[0])
                     : <img src={noFound} alt={noFound} />
             }
@@ -27,8 +43,8 @@ export const Card = ({productOnly }) => {
             </div>
 
             <div className="container_btn">
-                <button onClick={()=>{handleMoreDetails(productOnly)}}>More details</button>
-                <button>Other options</button>
+                <button onClick={() => { handleMoreDetails() }}>More details</button>
+                <button onClick={() => { handleOtherOptions() }}>Other options</button>
             </div>
 
         </div>

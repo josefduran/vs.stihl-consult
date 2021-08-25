@@ -7,5 +7,7 @@ export const type = {
     starLoading:'[init Loading state for fetching]',
     endLoading:'[finish Loading state for fetching]',
     productSelectect:'[Selected Product]',
-    errorInServer: '[error server no data]'
+    otherOptionsProducts: '[Selected other products whit relation]',
+    errorInServer: '[error server no data]',
+    addToCar: '[Add product to car]'
 }

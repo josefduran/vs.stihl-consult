@@ -4,7 +4,7 @@ import { useRoutebyHome } from '../../hook/useRoutebyHome';
 
 import { useFetchproducts } from '../../helper/fetch_products';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProduct, setLoading } from '../../redux/actions/actionProducts';
+import { selectProduct, setLoading, setOtherProducts } from '../../redux/actions/actionProducts';
 import { Loader } from '../Loader';
 import { useEffect } from 'react';
 import { type } from '../../redux/types/types';
@@ -14,7 +14,7 @@ export const HomePage = () => {
     const marcador =  "https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png"
     const { handleClickGoSearch } = useRoutebyHome();
     //start fetching data 
-    const { data: products, loading, error } = useSelector(state => state.products)
+    const { data: products, loading, error,otherOptions } = useSelector(state => state.products)
     const dispatch = useDispatch();
     const { mainScript } = useFetchproducts();
 
@@ -29,6 +29,7 @@ export const HomePage = () => {
         if( Object.keys(products).length === 0){
             executeMainScript();
         }
+        if(otherOptions.length !== 0) dispatch(setOtherProducts([]));
 
     }, [])
 

@@ -12,13 +12,14 @@ import { useFetchproducts } from '../helper/fetch_products'
 import { setLoading } from '../redux/actions/actionProducts'
 import { type } from '../redux/types/types'
 import { ProductSelected } from './ProductSelected'
+import { OtherOptions } from './otherOptions/otherOptions'
 
 export const RecommendedProducts = () => {
 
     const dispatch = useDispatch();
 
     const [cards, setCards] = useState([]);
-    const { data: products, loading, productSelected, error } = useSelector(state => state.products)
+    const { data: products, loading, productSelected, error, otherOptions } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
     const { mainScript } = useFetchproducts();
 
@@ -26,8 +27,8 @@ export const RecommendedProducts = () => {
         if (Object.keys(products).length !== 0 && !error) {
             dispatch(setLoading(type.starLoading))
             setTimeout(() => {
-                
-                if(!option_filter?.frequent || !option_filter?.vegetation || !option_filter?.power){
+
+                if (!option_filter?.frequent || !option_filter?.vegetation || !option_filter?.power) {
                     dispatch(setLoading(type.endLoading));
                     return
                 };
@@ -40,25 +41,25 @@ export const RecommendedProducts = () => {
                 }
 
                 let vegetation = (option_filter.vegetation === "light") ? "small" : option_filter.vegetation;
-                let newArr=[];
+                let newArr = [];
                 products.forEach(element => {
                     (element?.power) && newArr.push(element)
                 });
-                    
-                    const newArrFiltered = products.filter(product =>
-                        product.power === option_filter.power &&
-                        product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
-                        product.lawnSize === size
-                    );
-                    
-    
-                    setCards(newArrFiltered);
-                
-                  
-                
+
+                const newArrFiltered = products.filter(product =>
+                    product.power === option_filter.power &&
+                    product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
+                    product.lawnSize === size
+                );
+
+
+                setCards(newArrFiltered);
+
+
+
                 dispatch(setLoading(type.endLoading))
             }, 200);
-        }else{
+        } else {
 
             const executeMainScript = async () => {
                 dispatch(setLoading(type.starLoading));
@@ -77,27 +78,28 @@ export const RecommendedProducts = () => {
                     ? <b className="error_center">Error en el server, no hay data</b>
                     : (Object.keys(productSelected).length !== 0)
                         ? <ProductSelected productSelected={productSelected} />
-                        : <>
-                            <h2 className="rp_subtitle">You're an outdoor boss</h2>
+                        : (otherOptions?.length !== 0) ? <OtherOptions />
+                            : <>
+                                <h2 className="rp_subtitle">You're an outdoor boss</h2>
 
-                            <div className="">
-                                <PowerOptions />
-                                <FrecuentOptions />
-                                <VegetationOptions />
-                            </div>
+                                <div className="">
+                                    <PowerOptions />
+                                    <FrecuentOptions />
+                                    <VegetationOptions />
+                                </div>
 
-                            <div className="container_cards">
-                                {
-                                    (loading)
-                                        ? <Loader />
-                                        : (cards.length === 0)
-                                            ? <b className="no_products">No products, select another filter</b>
-                                            : cards.map((product, index) => (
-                                                (product?.power) && <Card key={index} productOnly={product} />
-                                            ))
-                                }
-                            </div>
-                        </>
+                                <div className="container_cards">
+                                    {
+                                        (loading)
+                                            ? <Loader />
+                                            : (cards.length === 0)
+                                                ? <b className="no_products">No products, select another filter</b>
+                                                : cards.map((product, index) => (
+                                                    (product?.power) && <Card key={index} productOnly={product} />
+                                                ))
+                                    }
+                                </div>
+                            </>
             }
 
         </div>

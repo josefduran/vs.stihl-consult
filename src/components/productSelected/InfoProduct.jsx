@@ -4,7 +4,7 @@ import { CounterStart } from './CounterStart';
 
 export const InfoProduct = ({ productSelected }) => {
 
-    const { name, longDescription, ratings } = productSelected;
+    const { name, longDescription, ratings, prices } = productSelected;
    
     return (
         <>
@@ -23,7 +23,7 @@ export const InfoProduct = ({ productSelected }) => {
             <div className="content_text_ps">
                 <p className="long_desc_ps">{longDescription}</p>
             </div>
-            <p className="price_ps"><b>$15000</b></p>
+            <p className="price_ps"><b>$ {prices[0].amount}</b></p>
         </>
     )
 }

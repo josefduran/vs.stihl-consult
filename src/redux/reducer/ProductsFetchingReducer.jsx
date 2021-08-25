@@ -7,7 +7,8 @@ const initialState = {
     data: {},
     productSelected: product ? product : {},
     loading: null,
-    error
+    error,
+    otherOptions:[]
 }
 
 export const productsFetchingReducer = (state = initialState, action) => {
@@ -42,6 +43,12 @@ export const productsFetchingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload.error
+            }
+
+        case type.otherOptionsProducts:
+            return {
+                ...state,
+                otherOptions: action.payload.data
             }
 
         default:

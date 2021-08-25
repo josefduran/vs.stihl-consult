@@ -35,3 +35,13 @@ export const setError = (error) => {
         }
      }
 };
+
+export const setOtherProducts = (data=[]) => {
+
+     return {
+         type: type.otherOptionsProducts,
+         payload: {
+            data
+        }
+     }
+};

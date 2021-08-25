@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterSelected } from '../redux/actions/actionFilter';
-import { selectProduct } from '../redux/actions/actionProducts';
+import { selectProduct, setOtherProducts } from '../redux/actions/actionProducts';
 
 
 export const LateralMenu = () => {
@@ -12,7 +12,7 @@ export const LateralMenu = () => {
     const card =  "https://i.ibb.co/D84rLpW/card.png"
     const history = useHistory();
     const dispatch = useDispatch();
-    const { productSelected } = useSelector(state => state.products)
+    const { productSelected,otherOptions } = useSelector(state => state.products)
     const { address } = useSelector(state => state.location);
     const { power, frequent, vegetation } = useSelector(state => state.filter);
 
@@ -27,7 +27,9 @@ export const LateralMenu = () => {
             case "-1 acre": doDispatch(productSelected, "electric", "infrequent", "medium"); break;
             case "small yard": doDispatch(productSelected, "electric", "frequent", "light"); break;
             default:
-                if (Object.keys(productSelected).length !== 0) {
+                
+                if (Object.keys(productSelected).length !== 0 || otherOptions.length !== 0) {
+                    dispatch(setOtherProducts([]));
                     dispatch(selectProduct({}))
                     localStorage.removeItem("product");
                 } else {
@@ -38,8 +40,9 @@ export const LateralMenu = () => {
 
     const doDispatch = (productSelected, typePower = "", typeSize = "", typeVegetation = "") => {
 
-        if (Object.keys(productSelected).length !== 0) {
+        if (Object.keys(productSelected).length !== 0 || otherOptions.length !== 0) {
             dispatch(selectProduct({}))
+            dispatch(setOtherProducts([]));
             localStorage.removeItem("product");
         } else {
             if (typePower !== power || typeSize !== frequent || vegetation !== typeVegetation) {
