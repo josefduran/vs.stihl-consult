@@ -12,7 +12,7 @@ export const NavSection = ({sectionSelect, handleChangeSelectNav}) => {
                 className={`item_nav_ps ${(sectionSelect == 2) && 'selected_item_nav_ps'}`}
                 onClick={handleChangeSelectNav}
                 id="2"
-            >option 2</p>
+            >Specs</p>
             <p
                 className={`item_nav_ps ${(sectionSelect == 3) && 'selected_item_nav_ps'}`}
                 onClick={handleChangeSelectNav}

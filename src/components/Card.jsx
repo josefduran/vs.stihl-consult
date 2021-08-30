@@ -12,10 +12,12 @@ export const Card = ({productOnly }) => {
     const dispatch = useDispatch();
     const { data: products } = useSelector(state => state.products)
 
-    const handleMoreDetails = () => dispatch(selectProduct(productOnly));
+    const handleMoreDetails = () => {
+        document.querySelector('.rp_container').scrollTop = 0;
+        dispatch(selectProduct(productOnly));
+    }
 
     const handleOtherOptions = () => {
-        console.log({ pcId, category })
 
         let newArr = [];
         products.forEach(element => {
@@ -25,7 +27,10 @@ export const Card = ({productOnly }) => {
         let othersProducts = newArr.filter( product => product.category === category && product.pcId !== pcId);
         console.log(othersProducts)
 
-        if(othersProducts.length !== 0) dispatch(setOtherProducts(othersProducts ));
+        if(othersProducts.length !== 0) {
+            document.querySelector('.rp_container').scrollTop = 0;
+            dispatch(setOtherProducts(othersProducts ));
+        }
         else alert("There are no related products.")
     };
 

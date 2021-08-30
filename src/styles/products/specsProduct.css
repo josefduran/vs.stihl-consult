@@ -1,0 +1,15 @@
+.product_speacs{
+    border: 1px solid black;
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+.name_specs{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.808);
+}
+.value_specs{
+    color: rgb(207, 144, 8);
+    font-weight: bold;
+}

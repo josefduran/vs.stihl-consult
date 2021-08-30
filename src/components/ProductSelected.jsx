@@ -5,6 +5,9 @@ import { InfoProduct } from "./productSelected/InfoProduct"
 import { NavSection } from "./productSelected/NavSection";
 
 import { BtnAddToCar } from "./BtnAddToCar";
+import { FeaturesProduct } from "./productSelected/FeaturesProduct";
+import { SpecsProduct } from "./productSelected/SpecsProduct";
+import { AccesoriesProduct } from "./productSelected/AccesoriesProduct";
 
 export const ProductSelected = ({ productSelected }) => {
     const noFound = 'https://i.ibb.co/71sL6cC/images.png'
@@ -19,9 +22,9 @@ export const ProductSelected = ({ productSelected }) => {
 
         switch (sectionSelect) {
             case "1": return <InfoProduct productSelected={productSelected} />
-            case "2": return <p className="title_ps">seccion {`${sectionSelect}`}</p>
-            case "3": return <p className="title_ps">seccion {`${sectionSelect}`}</p>
-            case "4": return <p className="title_ps">seccion {`${sectionSelect}`}</p>
+            case "2": return <SpecsProduct productSelected={productSelected}/>  //specifications
+            case "3": return <FeaturesProduct productSelected={productSelected}/>  //features
+            case "4": return <AccesoriesProduct productSelected={productSelected}/> //accesories
             default: break;
         }
     };

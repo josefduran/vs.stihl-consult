@@ -46,11 +46,17 @@ export const RecommendedProducts = () => {
                     (element?.power) && newArr.push(element)
                 });
 
-                const newArrFiltered = products.filter(product =>
-                    product.power === option_filter.power &&
-                    product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
-                    product.lawnSize === size
-                );
+                let newArrFiltered = []
+
+                if(option_filter.power === "none"){
+                    newArrFiltered=newArr
+                } else{
+                    newArrFiltered = products.filter(product =>
+                        product.power === option_filter.power &&
+                        product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
+                        product.lawnSize === size
+                    );
+                }
 
 
                 setCards(newArrFiltered);

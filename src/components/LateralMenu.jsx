@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterSelected } from '../redux/actions/actionFilter';
 import { selectProduct, setOtherProducts } from '../redux/actions/actionProducts';
+import { Modal } from './Modal';
 
+const house =  "https://i.ibb.co/zQP9kqy/house.png"
+const arrow =  "https://i.ibb.co/T2ws4YV/arrows.png"
+const lupa =  "https://i.ibb.co/MkVR51R/lupa.png"
+const card =  "https://i.ibb.co/D84rLpW/card.png"
 
 export const LateralMenu = () => {
-    const house =  "https://i.ibb.co/zQP9kqy/house.png"
-    const arrow =  "https://i.ibb.co/T2ws4YV/arrows.png"
-    const lupa =  "https://i.ibb.co/MkVR51R/lupa.png"
-    const card =  "https://i.ibb.co/D84rLpW/card.png"
+   
+    const [openModal, setOpenModal] = useState(false);
+
     const history = useHistory();
     const dispatch = useDispatch();
     const { productSelected,otherOptions } = useSelector(state => state.products)
     const { address } = useSelector(state => state.location);
     const { power, frequent, vegetation } = useSelector(state => state.filter);
+    
 
     const handleClick = (optionRoute, isGoBack = false) => {
         if (isGoBack && history.location.pathname === "/options") backLocation(address, optionRoute);
@@ -53,12 +58,19 @@ export const LateralMenu = () => {
         }
     };
 
+    const handleCarShop = () => {
+        setOpenModal(!openModal)
+    };
+
     return (
         <div className="lm_container_menu">
+            {
+                (openModal) && <Modal setOpenModal={setOpenModal} />
+            }
             <div className="lm_container_items">
                 <img src={house} alt="house.png" onClick={() => handleClick("index")} />
                 <img src={arrow} alt="arrows.png" onClick={() => handleClick("index", true)} />
-                <img src={card} alt="card.png" onClick={() => handleClick("options2")} />
+                <img src={card} alt="card.png" onClick={handleCarShop} />
                 <img src={lupa} alt="lupa_.png" onClick={() => handleClick("search")} />
             </div>
         </div>

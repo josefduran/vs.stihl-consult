@@ -1,0 +1,12 @@
+.product_feature{
+    border: 1px solid black;
+    margin: 1em 0;
+    padding: 1em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.808);
+}
+
+.img_feature{
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.966);
+}

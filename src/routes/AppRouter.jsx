@@ -21,7 +21,6 @@ export const AppRouter = () => {
 
                     <Route path="/search" component={SearchPage} />
                     <Route path="/options" component={OptionsPage} />
-                    <Route path="/options2" component={OptionsPage} />
                     <Route path="/" component={LayoutHome} />
                     <Redirect to="/" />
 
