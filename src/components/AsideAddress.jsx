@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { useSelector } from 'react-redux'
 import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
+import { Modal } from './Modal';
 
 
 let location = "";
@@ -11,6 +12,7 @@ export const AsideAddress = () => {
     const home = 'https://i.ibb.co/h1y2BH4/home.png'
     const carta = 'https://i.ibb.co/TMxMRc7/carta.png'
     const dataLocation = useSelector(state => state.location);
+    const [openModal, setOpenModal] = useState(false);
 
     if (dataLocation.address === "+1 acre" ||
         dataLocation.address === "-1 acre" ||
@@ -45,11 +47,16 @@ export const AsideAddress = () => {
     }, [dataLocation]);
 
     const handleSendEmail = () => {
-        console.log('mail to')
+        console.log('mail to');
+        setOpenModal(!openModal)
     };
 
 
     return (
+            <>
+{
+                (openModal) && <Modal setOpenModal={setOpenModal} />
+            }
         <div className="aa_container">
             <div>
                 <header className="aa_header">
@@ -89,5 +96,6 @@ export const AsideAddress = () => {
                 </footer>
             </div>
         </div>
+            </>
     )
 }

@@ -57,12 +57,7 @@ export const RecommendedProducts = () => {
                         product.lawnSize === size
                     );
                 }
-
-
                 setCards(newArrFiltered);
-
-
-
                 dispatch(setLoading(type.endLoading))
             }, 200);
         } else {

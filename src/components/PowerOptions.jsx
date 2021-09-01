@@ -73,7 +73,7 @@ export const PowerOptions = () => {
                         </div>
                         <div className={`cp_icon_item_container`}>
                             <img src={marcador} alt="img_path" />
-                            <p className={""}><b>Others</b> </p>
+                            <p className={""}><b>All</b> </p>
                         </div>
                     </div>
                 </div>

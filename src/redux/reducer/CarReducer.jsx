@@ -1,9 +1,9 @@
 import { type } from "../types/types";
 
-const carStorage = JSON.parse(sessionStorage.getItem("car"));
+const carStorage = JSON.parse(localStorage.getItem("car"));
 
 const initialState = {
-    car: (carStorage?.length !== 0) ? carStorage : []
+    car: (carStorage) ? carStorage : []
 }
 
 export const carReducer = (state = initialState, action) => {

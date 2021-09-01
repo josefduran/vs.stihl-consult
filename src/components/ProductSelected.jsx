@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { getImageProduct } from "../helper/getImageProduct"
 
 import { InfoProduct } from "./productSelected/InfoProduct"
 import { NavSection } from "./productSelected/NavSection";
@@ -39,8 +38,8 @@ export const ProductSelected = ({ productSelected }) => {
                     <div className="content_image_ps">
                         {
                             (relativeUrl)
-                                ? getImageProduct(relativeUrl[0])
-                                : <img src={noFound} alt="loading.gif" />
+                                ? <img src={relativeUrl[0]} alt={relativeUrl[0]} />
+                                : <img src={noFound} alt={noFound} />
                         }
                     </div>
                     <p className="sub_ps">View product</p>

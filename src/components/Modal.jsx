@@ -5,7 +5,7 @@ import remove from '../assets/remove.png'
 import vacio from '../assets/vacio.png'
 import close from '../assets/close.png'
 
-export const Modal = ({setOpenModal}) => {
+export const Modal = ({ setOpenModal }) => {
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0)
     const { car } = useSelector(state => state.car);
@@ -40,36 +40,36 @@ export const Modal = ({setOpenModal}) => {
         <>
             <div className="overlay">
                 <div className="container_modal">
-                    <img className="close_modal_btn" src={close} alt={close} onClick={()=>setOpenModal((modal)=>!modal)}/>
+                    <img className="close_modal_btn" src={close} alt={close} onClick={() => setOpenModal((modal) => !modal)} />
                     <h2 className="title_car">Shopping cart</h2>
 
                     <div className="container_items_car">
                         {
-                            (totalAmount === 0) 
-                            ? 
-                            <div className="empty_shopingCar">
-                                <p className="">There are no products in the cart.</p>
-                                <img src={vacio} alt={vacio} />
-                            </div>
-                            :(car) && car.map((item, index) => (
-                                <div className="item_car">
-                                    <p key={index}>{item.name}</p>
-                                    <div className="mount_delete">
-                                        <p>$ {item.prices[0].amount}</p>
-                                        <img className="btn_remove" src={remove} alt={remove} onClick={() => handleDeleteItemCar(item.pcId)} />
-                                    </div>
+                            (totalAmount === 0)
+                                ?
+                                <div className="empty_shopingCar">
+                                    <p className="">Empty shopping cart</p>
+                                    <img src={vacio} alt={vacio} />
                                 </div>
-                            ))
+                                : (car) && car.map((item, index) => (
+                                    <div className="item_car" key={item.pcId}>
+                                        <p key={index}>{item.name}</p>
+                                        <div className="mount_delete">
+                                            <p>$ {item.prices[0].amount}</p>
+                                            <img className="btn_remove" src={remove} alt={remove} onClick={() => handleDeleteItemCar(item.pcId)} />
+                                        </div>
+                                    </div>
+                                ))
                         }
                     </div>
 
                     <div className="container_btn_card">
-                        <p className="amount_total">Total to pay: <b>$ {totalAmount}</b></p>
-                        <button 
-                            className="btn_buy" 
+                        <p className="amount_total">Total price: <b>$ {totalAmount}</b></p>
+                        <button
+                            className="btn_buy"
                             onClick={handleBuyProducts}
-                            disabled={ (totalAmount === 0) ? true : false }
-                        >Make a purchase</button>
+                            disabled={(totalAmount === 0) ? true : false}
+                        >Pay now</button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCar } from '../redux/actions/actionCar';
 import carBtn from '../assets/carrito.png'
-import { useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 
 export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
 
@@ -10,15 +10,13 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
     const [disabledBtn, setDisabledBtn] = useState(false);
 
     const handleAddToCar = () => {
-    
+        setDisabledBtn(true)
         let newCar = (car) ? car : []
         let isAProductEqual = false 
-        setDisabledBtn(true);
         if(car){
             car.forEach( product => {
                 if(productSelected.pcId === product.pcId){
                     isAProductEqual=true;
-                    deshabilitarBtn();
                 }
             });
         }
@@ -28,8 +26,18 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
             dispatch(addProductToCar(newCar))
         }
         else alert(`The - ${productSelected.name} - product is already in the car`)
-        console.log(car)
     };
+
+    useEffect(() => {
+        if(car){
+            car.forEach( product => {
+                if(productSelected.pcId === product.pcId){
+                    setDisabledBtn(true)
+                }
+            });
+        }
+
+    }, [])
 
 
     return (

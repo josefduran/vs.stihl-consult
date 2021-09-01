@@ -11,8 +11,6 @@ const lupa =  "https://i.ibb.co/MkVR51R/lupa.png"
 const card =  "https://i.ibb.co/D84rLpW/card.png"
 
 export const LateralMenu = () => {
-   
-    const [openModal, setOpenModal] = useState(false);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -58,19 +56,14 @@ export const LateralMenu = () => {
         }
     };
 
-    const handleCarShop = () => {
-        setOpenModal(!openModal)
-    };
-
+    
     return (
         <div className="lm_container_menu">
-            {
-                (openModal) && <Modal setOpenModal={setOpenModal} />
-            }
+            
             <div className="lm_container_items">
                 <img src={house} alt="house.png" onClick={() => handleClick("index")} />
                 <img src={arrow} alt="arrows.png" onClick={() => handleClick("index", true)} />
-                <img src={card} alt="card.png" onClick={handleCarShop} />
+                <img src={card} alt="card.png" />
                 <img src={lupa} alt="lupa_.png" onClick={() => handleClick("search")} />
             </div>
         </div>
