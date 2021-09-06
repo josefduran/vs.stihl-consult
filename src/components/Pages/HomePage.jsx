@@ -9,9 +9,11 @@ import { Loader } from '../Loader';
 import { useEffect } from 'react';
 import { type } from '../../redux/types/types';
 
+const home = 'https://i.ibb.co/h1y2BH4/home.png'
+const marcador =  "https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png"
+const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
+
 export const HomePage = () => {
-    const home = 'https://i.ibb.co/h1y2BH4/home.png'
-    const marcador =  "https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png"
     const { handleClickGoSearch } = useRoutebyHome();
     //start fetching data 
     const { data: products, loading, error,otherOptions } = useSelector(state => state.products)
@@ -35,7 +37,7 @@ export const HomePage = () => {
 
     return (
         <div className="hp_background">
-            <label className="hp_label">Lorem</label>
+            <label className="hp_label">NEW!</label>
             <div className="hp_container_text">
                 <h1 className="hp_title">Build your lawn care bundle</h1>
                 <p className="hp_subtitle">Use our simple tool to find the perfect set of yard tools for your yard</p>
@@ -68,8 +70,9 @@ export const HomePage = () => {
                 }
             </div>
 
-            <div className="hp_logo logo media_logo">
-                <p>EDGE</p>
+            <div className="hp_logo media_logo">
+                {/* <p>EDGE</p> */}
+                <img src={logo} alt={logo} />
             </div>
         </div>
     )

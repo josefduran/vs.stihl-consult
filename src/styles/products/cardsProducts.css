@@ -71,3 +71,27 @@
     height: 200px;
   }
 }
+
+@media screen and (max-width:1024px) {
+  .container_cards {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .card_desc {
+    font-size: 1em;
+  }
+  .text_content>h5{
+    font-size: 1.1em;
+  } 
+}
+
+@media screen and (max-width:768px) {
+  .container_cards {
+    position: relative;
+  }
+  .no_products{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
+

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCar } from "../redux/actions/actionCar";
+import { addProductToCar, changeStateModal } from "../redux/actions/actionCar";
 import remove from '../assets/remove.png'
 import vacio from '../assets/vacio.png'
 import close from '../assets/close.png'
@@ -30,8 +30,12 @@ export const Modal = ({ setOpenModal }) => {
     };
 
     const handleBuyProducts = () => {
-        if (totalAmount === 0) alert('Selecciona productos para comprar')
-        else alert(`Total a pagar ${totalAmount}`)
+        if(window.navigator.onLine){
+            if (totalAmount === 0) alert('Selecciona productos para comprar')
+            else alert(`Total a pagar ${totalAmount}`)
+        }else{
+            alert("Internet is required to make this purchase")
+        }
         // vaciar carrito
         // dispatch(addProductToCar([]))  
     };
@@ -40,7 +44,7 @@ export const Modal = ({ setOpenModal }) => {
         <>
             <div className="overlay">
                 <div className="container_modal">
-                    <img className="close_modal_btn" src={close} alt={close} onClick={() => setOpenModal((modal) => !modal)} />
+                    <img className="close_modal_btn" src={close} alt={close} onClick={() => dispatch(changeStateModal())} />
                     <h2 className="title_car">Shopping cart</h2>
 
                     <div className="container_items_car">

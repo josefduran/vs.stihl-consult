@@ -1,18 +1,20 @@
-import { useEffect,useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
+import { changeStateModal } from '../redux/actions/actionCar';
 import { Modal } from './Modal';
 
 
 let location = "";
+const home = 'https://i.ibb.co/h1y2BH4/home.png'
+const carta = 'https://i.ibb.co/TMxMRc7/carta.png'
 
-
+const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
 
 export const AsideAddress = () => {
-    const home = 'https://i.ibb.co/h1y2BH4/home.png'
-    const carta = 'https://i.ibb.co/TMxMRc7/carta.png'
     const dataLocation = useSelector(state => state.location);
-    const [openModal, setOpenModal] = useState(false);
+    const {modal} = useSelector(state => state.car);
+    const dispatch = useDispatch();
 
     if (dataLocation.address === "+1 acre" ||
         dataLocation.address === "-1 acre" ||
@@ -25,8 +27,8 @@ export const AsideAddress = () => {
 
     useEffect(() => {
         loadGoogleMapScript(() => {
-            
-            if(dataLocation.lat || dataLocation.lng){
+
+            if (dataLocation.lat || dataLocation.lng) {
 
                 function initMap() {
                     new window.google.maps.Map(document.getElementById("map"), {
@@ -40,62 +42,61 @@ export const AsideAddress = () => {
                         zoomControl: false
                     });
                 }
-        
+
                 initMap();
             }
         });
     }, [dataLocation]);
 
     const handleSendEmail = () => {
-        console.log('mail to');
-        setOpenModal(!openModal)
+        dispatch(changeStateModal())
     };
 
 
     return (
-            <>
-{
-                (openModal) && <Modal setOpenModal={setOpenModal} />
+        <>
+            {
+                (modal) && <Modal/>
             }
-        <div className="aa_container">
-            <div>
-                <header className="aa_header">
-                    <h3><b>Your address</b></h3>
-                    <hr />
-                    <h4>{location}</h4>
-                    <hr />
-                    <h2>ACREAGE: 33</h2>
-                </header>
+            <div className="aa_container">
+                <div>
+                    <header className="aa_header">
+                        <h3><b>Your address</b></h3>
+                        <hr />
+                        <h4>{location}</h4>
+                        <hr />
+                        <h2>ACREAGE: 33</h2>
+                    </header>
 
 
-                <div className="aa_container_img">
-                    {
-                        (dataLocation.lat || dataLocation.lng)
-                            ? (
+                    <div className="aa_container_img">
+                        {
+                            (dataLocation.lat || dataLocation.lng)
+                                ? (
 
-                                <div id="map" className="aa_map"></div>
-                            )
-                            : (
-                                <>
-                                    <img src={home} alt="ubication_img" />
-                                    <p className="aa_location">{ dataLocation.address }</p>
-                                </>
-                            )
-                    }
+                                    <div id="map" className="aa_map"></div>
+                                )
+                                : (
+                                    <>
+                                        <img src={home} alt="ubication_img" />
+                                        <p className="aa_location">{dataLocation.address}</p>
+                                    </>
+                                )
+                        }
+                    </div>
+                </div>
+                <div>
+                    <footer className="aa_footer">
+                        <div className="logo aa_logo">
+                            <img src={logo} alt={logo} />
+                        </div>
+                        <button className="aa_btn_sendKit" onClick={handleSendEmail}>
+                            <img src={carta} alt="" />
+                            <p>Send me my kit</p>
+                        </button>
+                    </footer>
                 </div>
             </div>
-            <div>
-                <footer className="aa_footer">
-                    <div className="logo aa_logo">
-                        <p>EDGE</p>
-                    </div>
-                    <button className="aa_btn_sendKit" onClick={handleSendEmail}>
-                        <img src={carta} alt="" />
-                        <p>Send me my kit</p>
-                    </button>
-                </footer>
-            </div>
-        </div>
-            </>
+        </>
     )
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
+const startFill = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630704635/star_fill_sfuq9n.png'
 
 
 export const CounterStart = ({ rating, isCardRigth = true }) => {
-    const startFill = 'https://i.ibb.co/6PvCdjz/star-fill.png'
     const startClean = 'https://i.ibb.co/RyqFHVH/star-clean.png'
     const [starts, setStarts] = useState([])
     const [noStarts, setNoStarts] = useState([])

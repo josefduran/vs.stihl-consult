@@ -74,6 +74,7 @@ export const RecommendedProducts = () => {
 
     return (
         <div className="rp_container">
+            
             {
                 (error)
                     ? <b className="error_center">Error en el server, no hay data</b>

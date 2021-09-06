@@ -3,7 +3,8 @@ import { type } from "../types/types";
 const carStorage = JSON.parse(localStorage.getItem("car"));
 
 const initialState = {
-    car: (carStorage) ? carStorage : []
+    car: (carStorage) ? carStorage : [],
+    modal: false
 }
 
 export const carReducer = (state = initialState, action) => {
@@ -14,6 +15,12 @@ export const carReducer = (state = initialState, action) => {
             return {
                 ...state,
                 car: action.payload.carToAdd
+            }
+
+        case type.changeStateModal:
+            return {
+                ...state,
+                modal: !state.modal
             }
 
         default:

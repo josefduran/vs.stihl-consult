@@ -14,15 +14,17 @@
   background-color: #fff;
 }
 
-.logo {
-  background-color: rgb(248, 99, 0);
-  color: white;
-}
 .error_center{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
+}
+
+@media screen and (max-width:1024px) {
+  .container_menu {
+    grid-template-columns: 7% 93%;
+  }
 }
 
 /* =========== = =======================*/

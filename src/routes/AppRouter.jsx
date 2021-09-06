@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,9 +11,6 @@ import { SearchPage } from "../components/Pages/SearchPage";
 
 
 export const AppRouter = () => {
-
-    const { error } = useSelector(state => state.products)
-
     return (
         <Router>
             <div>
