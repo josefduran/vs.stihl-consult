@@ -26,7 +26,7 @@ export const FormLocation = () => {
         }
     };
 
-    var vslynxKey = require("@spectrio/vslynx-key");
+    // var vslynxKey = require("@spectrio/vslynx-key");
 
 
     return (

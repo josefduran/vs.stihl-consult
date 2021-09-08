@@ -1,0 +1,29 @@
+<div class="email-product-info-modal">
+    <div class="email-product-info-modal-form">
+        {{^media.thumbnail}}
+            <div class="email-page-thumbnail stihl-edge-logo">
+                <img src="img/stihl-edge-logo.png" />
+            </div>
+        {{/media.thumbnail}}
+        {{#media.thumbnail}}
+            <div class="email-page-thumbnail">
+                <img src="{{media.thumbnail}}" />
+            </div>
+        {{/media.thumbnail}}
+        {{^title}}
+            <label for="email-address">Enter your email address to receive information about STIHL Products and other STIHL news.</label>
+        {{/title}}
+        {{#title}}
+            <label for="email-address">Enter your email address to receive information about <span>{{title}}</span> and other STIHL news and product information.</label>
+        {{/title}}
+        <div>
+            <input readonly="readonly" id="email-address" name="email-address" type="text" />
+            <div class="email-product-info-errors"></div>
+        </div>
+
+        <div>
+            <span class="email-address-submit btn btn-inverse Qt-clickable">Submit</span>
+        </div>
+    </div>
+    <div class="email-keyboard"></div>
+</div>
