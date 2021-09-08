@@ -9,5 +9,6 @@ export const type = {
     productSelectect:'[Selected Product]',
     otherOptionsProducts: '[Selected other products whit relation]',
     errorInServer: '[error server no data]',
-    addToCar: '[Add product to car]'
+    addToCar: '[Add product to car]',
+    changeStateModal: '[Open or close modal]'
 }

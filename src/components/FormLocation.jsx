@@ -4,9 +4,10 @@ import { useHistory } from 'react-router';
 import { usePlaceAutocomplete } from '../hook/usePlaceAutocomplete';
 import { locationSelected } from '../redux/actions/actionLocation';
 
+const placeHolder = 'https://i.ibb.co/vD2F9GC/placeholder.png'
+const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
 
 export const FormLocation = () => {
-    const placeHolder = 'https://i.ibb.co/vD2F9GC/placeholder.png'
 
     const { place, placeInputRef } = usePlaceAutocomplete()
     const dispatch = useDispatch();
@@ -33,8 +34,8 @@ export const FormLocation = () => {
             <div className="sh_backgorund_page"></div>
             <div className="sh_overlay_page"></div>
 
-            <div className="sh_logo logo media_logo">
-                <p>EDGE</p>
+            <div className="sh_logo logo">
+            <img src={logo} alt={logo} />
             </div>
 
             <p className="sp_text">Let's get started</p>

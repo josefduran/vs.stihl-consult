@@ -63,6 +63,10 @@
     text-align: center;
     width: 25%;
 }
+.aa_logo>img{
+    width: 100%;
+    vertical-align: top;
+}
 
 .aa_btn_sendKit{
     border: none;

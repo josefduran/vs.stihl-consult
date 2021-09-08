@@ -69,6 +69,11 @@
 }
 .sh_logo {
   margin: 1.5em auto 1.5em auto;
+  width: 8%;
+}
+.sh_logo>img{
+  width: 100%;
+  vertical-align: top;
 }
 .pac-container {
   width: 53.5%!important;
@@ -81,4 +86,10 @@
   background-color: red;
   width: 100%;
   
+}
+
+@media screen and (max-width:1024px) {
+  .sp_form {
+    width: 90%;
+  }
 }

@@ -11,3 +11,10 @@ export const addProductToCar = (data=[]) => {
         }
     }
 };
+
+export const changeStateModal = () => {
+
+    return {
+        type: type.changeStateModal
+    }
+};

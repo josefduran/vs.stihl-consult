@@ -4,7 +4,7 @@
     right: 0;
     width: 94.4vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.747);
+    background-color: rgba(0, 0, 0, 0.842);
     z-index: 10;
     transition: all .3s ease;
     animation: showBack .3s 1;
@@ -165,3 +165,11 @@
 .container_items_car::-webkit-scrollbar-track {
     border-radius: 10px;  
 }
+
+
+@media screen and (max-width:1024px) {
+    .overlay{
+        width: 92.95vw;
+    }
+  }
+  
