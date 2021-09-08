@@ -1,0 +1,43 @@
+/* Copyright 2021 VS Networks LLC, All Rights Reserved. */
+/* VS Networks CONFIDENTIAL */
+
+.email-pane {
+    .email-keyboard {
+        height: 550px;
+        margin-top: 100px;
+        position: relative;
+    }
+
+    .keyboard-container {
+        background-color: #d1d3d4;
+        padding: 25px;
+    }
+
+    .email-product-info-modal .keyboard-button {
+        font-size: 1.5em;
+        font-family: "Univers-Bold";
+        color: #F37A1F;
+        background-color: #f2f2f2;
+        border: none;
+        box-shadow: none;
+        height: 100px;
+    }
+
+    .email-product-info-modal .keyboard-button:active {
+        color: white;
+        background-color: #aaa;
+    }
+
+    .email-product-info-modal .email-domain-button {
+        height: 60px;
+    }
+
+    .email-product-info-modal .keyboard-space {
+        width: 344px;
+    }
+
+    .email-product-info-modal .keyboard-left,
+    .email-product-info-modal .keyboard-right {
+        padding: 10px;
+    }
+}

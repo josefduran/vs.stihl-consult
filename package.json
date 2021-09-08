@@ -10,7 +10,11 @@
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "redux": "^4.1.1"
+    "redux": "^4.1.1",
+    "@spectrio/vs.lynx-rpt": "^0.2.3",
+		"@spectrio/vs.vip65": "0.3.0",
+		"@spectrio/vs.vslynx-es6": "^1.6.11-rc1",
+    "@spectrio/vslynx-key": "0.7.3"
   },
   "license": "LicenseRef-LICENSE",
   "devDependencies": {

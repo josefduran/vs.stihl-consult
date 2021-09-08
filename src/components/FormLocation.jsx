@@ -25,6 +25,8 @@ export const FormLocation = () => {
         }
     };
 
+    var vslynxKey = require("@spectrio/vslynx-key");
+
 
     return (
         <>
@@ -49,6 +51,7 @@ export const FormLocation = () => {
                     />
                 </div>
                 <button onClick={handleClick}>show my fd</button>
+                <div class="email-keyboard"></div>
             </div>
 
         </>
