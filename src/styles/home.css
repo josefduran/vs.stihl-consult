@@ -24,7 +24,7 @@
 
 .hp_title {
   color: white;
-  text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.493);
+  text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.493);
   font-size: 4.5em;
   font-weight: bold;
   text-align: center;
@@ -33,7 +33,7 @@
 }
 .hp_subtitle {
   color: white;
-  text-shadow: 7px 5px 5px rgba(0, 0, 0, 0.493);
+  text-shadow: 7px 1px 5px rgba(0, 0, 0, 0.671);
   font-size: 2em;
   letter-spacing: 1px;
   margin: 0.5em auto auto auto;

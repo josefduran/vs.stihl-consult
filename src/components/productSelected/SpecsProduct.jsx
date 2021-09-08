@@ -14,7 +14,7 @@ export const SpecsProduct = ({productSelected}) => {
                             <p className="value_specs">{product.value}</p>
                         </div>
                     ))
-                    : <p className="empty_options">No hay specifications</p>
+                    : <p className="empty_options">No specs</p>
             }
         </div>
     )

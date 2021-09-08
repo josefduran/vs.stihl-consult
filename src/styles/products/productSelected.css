@@ -17,8 +17,10 @@
 .title_ps,
 .title_ps_info_nav {
   text-align: end;
-  font-size: 1.5em;
-  color: rebeccapurple;
+  font-size: 1.9em;
+  color: rgb(231, 160, 28);
+  text-shadow: 2px 2px 1px rgba(165, 162, 162, 0.212);
+  letter-spacing: 1px;
 }
 .title_otheroptions {
   text-align: start;

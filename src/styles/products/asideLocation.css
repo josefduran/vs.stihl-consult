@@ -12,6 +12,7 @@
 /* =========== = =======================*/
 /* 		 Header aside 
 /* =========== = =======================*/
+
 .aa_header > h4 {
   font-size: 1em;
   font-weight: 100;
@@ -28,6 +29,20 @@
   border-color: rgba(0, 0, 0, 0.466);
   margin: 0.3em 0;
 }
+
+
+.aa_title_type_acre{
+  letter-spacing: 1px;
+  margin-bottom: .3em;
+}
+.subtitle_type_acre{
+  letter-spacing: 1px;
+  font-weight: lighter;
+}
+.separator_titles{
+  margin-bottom: 1.5em!important;
+}
+
 /* =========== = =======================*/
 /* 		 Main aside 
 /* =========== = =======================*/
@@ -48,7 +63,7 @@
 }
 .aa_container_img > img {
   filter: invert();
-  width: 70%;
+  width: 60%;
 }
 /* =========== = =======================*/
 /* 		 Footer aside 
@@ -93,7 +108,33 @@
   width: 100%;
   height: 320px;
 }
+.aa_parrafo{
+  text-transform: initial;
+  font-size: .9em;
+  margin: 1em 0;
+}
+.aa_btn_search{
+  display: block;
+  text-align: center;
+  font-weight: normal;
+  margin-top: 1em;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(255, 94, 0);
+  padding: .7em 0;
+  width: 100%;
+  text-transform: uppercase;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aa_btn_search>img{
+  margin-right: 5px;
+  filter: grayscale(1);
+  height: 20px;
+  width: 20px;
+}
 
 @media screen and (max-width:768px) {
 

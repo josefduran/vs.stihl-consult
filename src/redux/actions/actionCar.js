@@ -12,9 +12,12 @@ export const addProductToCar = (data=[]) => {
     }
 };
 
-export const changeStateModal = () => {
+export const changeStateModal = (modal=false) => {
 
     return {
-        type: type.changeStateModal
+        type: type.changeStateModal,
+        payload: {
+            modal
+        }
     }
 };

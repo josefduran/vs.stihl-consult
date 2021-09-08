@@ -14,7 +14,7 @@ export const FeaturesProduct = ({productSelected}) => {
                     <p className="img_feature">{product.imageProcessUrl}</p>
                   </div>
                 ))
-                :<p className="empty_options">No hay features</p>
+                :<p className="empty_options">No features</p>
             }
         </div>
     )

@@ -3,7 +3,7 @@ import { useFiltered } from '../hook/useFiltered'
 
 export const FrecuentOptions = () => {
 
-    const { handleChange, opt_filtered } = useFiltered()
+    const { handleChange, opt_filtered} = useFiltered();
 
     return (
         <div className="rp_container_item_radio" >
@@ -18,8 +18,10 @@ export const FrecuentOptions = () => {
                         id={"infrequent"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("infrequent")) ? true : false}
+                        disabled={(opt_filtered.power)==="none"?true:false}
                     />
-                    <label htmlFor={"infrequent"} className={`cp_line cp_label_circle`} />
+                    <label htmlFor={"infrequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
+                    
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
                     <p><b>infrequent</b> </p>
@@ -34,8 +36,9 @@ export const FrecuentOptions = () => {
                         id={"frequent"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("frequent")) ? true : false}
+                        disabled={(opt_filtered.power)==="none"?true:false}
                     />
-                    <label htmlFor={"frequent"} className={`cp_line cp_label_circle`} />
+                    <label htmlFor={"frequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
                     <p className={""}><b>frequent</b> </p>
@@ -50,8 +53,9 @@ export const FrecuentOptions = () => {
                         id={"constant"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("constant")) ? true : false}
+                        disabled={(opt_filtered.power)==="none"?true:false}
                     />
-                    <label htmlFor={"constant"} className={`cp_none cp_label_circle`} />
+                    <label htmlFor={"constant"} className={`cp_none ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
                     <p className={""}><b>constant</b> </p>

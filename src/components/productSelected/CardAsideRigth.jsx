@@ -30,7 +30,7 @@ export const CardAsideRigth = ({ productSelected }) => {
                 <p className="price_other_product">24 min  - <b>${prices[0].amount}</b></p>
 
 
-                    <BtnAddToCar productSelected={productSelected}/>
+                <BtnAddToCar productSelected={productSelected}/>
 
 
             </div>

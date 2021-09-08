@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCar, changeStateModal } from "../redux/actions/actionCar";
-import remove from '../assets/remove.png'
-import vacio from '../assets/vacio.png'
-import close from '../assets/close.png'
 
-export const Modal = ({ setOpenModal }) => {
+
+const remove = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116779/remove_ekiwtc.png'
+const vacio = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116733/vacio_te0n0p.png'
+const close = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116761/close_el9gjl.png'
+
+export const Modal = () => {
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0)
     const { car } = useSelector(state => state.car);

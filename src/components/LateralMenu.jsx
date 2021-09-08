@@ -15,7 +15,6 @@ export const LateralMenu = () => {
     const dispatch = useDispatch();
 
     const handleClickHouse = () => {
-        console.log('object')
         dispatch(changeStateModal())
         handleClick("index")
     };
@@ -30,7 +29,7 @@ export const LateralMenu = () => {
                 <div className="lm_container_items">
                     <img src={house} alt="house.png" onClick={() => handleClickHouse()} />
                     <img src={arrow} alt="arrows.png" onClick={() => handleClick("index", true)} />
-                    <img src={card} alt="card.png" onClick={()=> dispatch(changeStateModal())} />
+                    <img src={card} alt="card.png" onClick={()=> dispatch(changeStateModal(!modal))} />
                     <img src={lupa} alt="lupa_.png" onClick={() => handleClick("search")} />
                 </div>
             </div>

@@ -20,7 +20,7 @@ export const carReducer = (state = initialState, action) => {
         case type.changeStateModal:
             return {
                 ...state,
-                modal: !state.modal
+                modal: action.payload.modal
             }
 
         default:

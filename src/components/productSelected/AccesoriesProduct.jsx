@@ -10,11 +10,10 @@ export const AccesoriesProduct = ({ productSelected }) => {
                 ? accessories.map((product, index) => (
                     <div className="name_accesorie" key={index}>
                         <p >{product.name} </p>
-                        <u className="sku_accesorie">{product.sku}</u>
                     </div>
                 ))
                 :
-                <p className="empty_options">No hay accesorios</p>
+                <p className="empty_options">No accessories</p>
             }
         </div>
     )

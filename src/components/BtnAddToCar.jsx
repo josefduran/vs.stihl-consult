@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCar } from '../redux/actions/actionCar';
-import carBtn from '../assets/carrito.png'
 import {  useEffect, useState } from 'react';
+const carBtn = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116832/carrito_ovdq33.png'
 
 export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
 
@@ -29,15 +29,16 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
     };
 
     useEffect(() => {
-        if(car){
+        if(car.length !== 0 && car){
             car.forEach( product => {
                 if(productSelected.pcId === product.pcId){
                     setDisabledBtn(true)
                 }
             });
+        }else{
+            setDisabledBtn(false)
         }
-
-    }, [])
+    }, [car.length])
 
 
     return (
@@ -48,7 +49,7 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
                 disabled={(disabledBtn)? true: false}
             >
                 {
-                    (disabledBtn) ? 'Added to car': 'Add to car'
+                    (disabledBtn) ? 'Added to cart': 'Add to cart'
                 }
                 <img src={carBtn} alt={carBtn} />
             </button>

@@ -20,8 +20,9 @@ export const VegetationOptions = () => {
                                 id={"light"}
                                 onChange={handleChange}
                                 checked={([opt_filtered.vegetation].includes("light")) ? true : false}
+                                disabled={(opt_filtered.power)==="none"?true:false}
                             />
-                            <label htmlFor={"light"} className={`cp_line cp_label_circle`} />
+                            <label htmlFor={"light"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                         </div>
                         <div className={`cp_icon_item_container cp_column`}>
                             <p><b>light</b> </p>
@@ -36,8 +37,9 @@ export const VegetationOptions = () => {
                                 id={"medium"}
                                 onChange={handleChange}
                                 checked={([opt_filtered.vegetation].includes("medium")) ? true : false}
+                                disabled={(opt_filtered.power)==="none"?true:false}
                             />
-                            <label htmlFor={"medium"} className={`cp_line cp_label_circle`} />
+                            <label htmlFor={"medium"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                         </div>
                         <div className={`cp_icon_item_container cp_column`}>
                             <p className={""}><b>medium</b> </p>
@@ -52,8 +54,9 @@ export const VegetationOptions = () => {
                                 id={"heavy"}
                                 onChange={handleChange}
                                 checked={([opt_filtered.vegetation].includes("heavy")) ? true : false}
+                                disabled={(opt_filtered.power)==="none"?true:false}
                             />
-                            <label htmlFor={"heavy"} className={`cp_none cp_label_circle`} />
+                            <label htmlFor={"heavy"} className={`cp_none ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                         </div>
                         <div className={`cp_icon_item_container cp_column`}>
                             <p className={""}><b>heavy</b> </p>
