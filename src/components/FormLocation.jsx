@@ -51,7 +51,7 @@ export const FormLocation = () => {
                         ref={placeInputRef}
                     />
                 </div>
-                <button onClick={handleClick}>show my fd</button>
+                <button onClick={handleClick}>show mi fit</button>
                 <div class="email-keyboard"></div>
             </div>
 
