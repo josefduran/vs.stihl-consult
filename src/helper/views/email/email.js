@@ -10,9 +10,7 @@ define(function(require) {
 
     var BaseView = require("common/js/views/base");
     var mediaLibrary = require("common/js/app/media-library");
-    var ProductCatalogUserEvent = require("product-catalog/js/models/user-event");
-
-    var template = require("product-catalog/templates/email/email.html");
+    var template = require("src/templates/email/email.html");
 
     var EmailPane = BaseView.extend({
         events: {
