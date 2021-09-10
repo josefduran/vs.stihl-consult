@@ -3,12 +3,14 @@ import { type } from "../types/types";
 const product =  JSON.parse(localStorage.getItem('product'));
 const error =  JSON.parse(localStorage.getItem('error'));
 
+const otherproducts =  JSON.parse(localStorage.getItem('optionProducts'));
+
 const initialState = {
     data: {},
     productSelected: product ? product : {},
     loading: null,
     error,
-    otherOptions:[]
+    otherOptions: otherproducts ? otherproducts : []
 }
 
 export const productsFetchingReducer = (state = initialState, action) => {

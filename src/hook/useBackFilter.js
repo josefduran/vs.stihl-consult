@@ -30,6 +30,7 @@ export const useBackFilter = () => {
                     dispatch(setOtherProducts([]));
                     dispatch(selectProduct({}))
                     localStorage.removeItem("product");
+                    localStorage.removeItem("optionProducts");
                 } else {
                     history.push(`/${optionRoute}`);
                 }
@@ -42,6 +43,7 @@ export const useBackFilter = () => {
             dispatch(selectProduct({}))
             dispatch(setOtherProducts([]));
             localStorage.removeItem("product");
+            localStorage.removeItem("optionProducts");
         } else {
             if (typePower !== power || typeSize !== frequent || vegetation !== typeVegetation) {
                 dispatch(filterSelected(typePower, typeSize, typeVegetation))

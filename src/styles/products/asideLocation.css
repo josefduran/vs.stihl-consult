@@ -52,10 +52,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 1em 0;
   margin: auto;
 }
-
+.py{
+  padding: 1em 0;
+}
 .aa_location {
   color: white;
   font-size: 1.3em;
@@ -106,7 +107,7 @@
 }
 .aa_map{
   width: 100%;
-  height: 320px;
+  height: 300px;
 }
 .aa_parrafo{
   text-transform: initial;

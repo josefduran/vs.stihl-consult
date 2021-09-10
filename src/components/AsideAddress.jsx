@@ -66,7 +66,7 @@ export const AsideAddress = () => {
 
         const fetchingAcrees = async () => {
             const host = "https://app.regrid.com/api/v1/search.json"
-            const key = process.env.REACT_APP_KEY_LANDGRID;
+            const key = "U13ypYG7ytkvt2pqSy7JVgsk-4pBm3Ny-qF4tVNDGUvAUxef3ksygnYTyWimY3Qb";
             const nearest = '1';
             const radius = '263.19306619490214'
             const limit = '1'
