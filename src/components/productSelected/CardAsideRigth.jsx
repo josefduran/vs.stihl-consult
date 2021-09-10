@@ -2,15 +2,19 @@
 import { CounterStart } from './CounterStart'
 
 import { BtnAddToCar } from '../BtnAddToCar'
+import { useSelector } from 'react-redux';
 
 const noFound = 'https://i.ibb.co/71sL6cC/images.png'
 
 export const CardAsideRigth = ({ productSelected }) => {
 
-    const { relativeUrl, name, ratings,shortDescription,prices,category } =productSelected
+    const { relativeUrl, name, ratings,shortDescription,prices,category } =productSelected;
+
+    const { productSelected: pSelected } = useSelector(state => state.products)
+    const isProductSelected = (Object.keys(pSelected).length !== 0)
 
     return (
-        <div className="card_container">
+        <div className={`card_container ${ (!isProductSelected) && 'card_container_m-auto' }`} >
             <div className="container_img_card">
                 {
                     (relativeUrl)
@@ -27,7 +31,7 @@ export const CardAsideRigth = ({ productSelected }) => {
 
                 <p className="desc_other_product"><b>{category.split(" ").join(" - ")}</b></p>
                 <p className="desc_other_product">{shortDescription}</p>
-                <p className="price_other_product">24 min  - <b>${prices[0].amount}</b></p>
+                <p className="price_other_product"> <b>${prices[0].amount}</b></p>
 
 
                 <BtnAddToCar productSelected={productSelected}/>

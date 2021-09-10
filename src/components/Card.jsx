@@ -14,6 +14,7 @@ export const Card = ({productOnly }) => {
     const handleMoreDetails = () => {
         document.querySelector('.rp_container').scrollTop = 0;
         dispatch(selectProduct(productOnly));
+        handleOtherOptions()
     }
 
     const handleOtherOptions = () => {
@@ -43,6 +44,8 @@ export const Card = ({productOnly }) => {
         if(othersProducts.length !== 0) {
             document.querySelector('.rp_container').scrollTop = 0;
             dispatch(setOtherProducts(othersProducts));
+
+            localStorage.setItem('optionProducts',JSON.stringify(othersProducts))
         }
         else alert("There are no related products whit: "+category)
     };

@@ -23,6 +23,7 @@ export const HomePage = () => {
     useEffect(() => {
         dispatch(selectProduct({}))
         localStorage.removeItem("product");
+        localStorage.removeItem("optionProducts");
 
         const executeMainScript = async () => {
             dispatch(setLoading(type.starLoading));

@@ -31,10 +31,11 @@ export const ProductSelected = ({ productSelected }) => {
     return (
         <div className="grid_container_ps">
             <div className="item_grid info_product_ps">
-
                 <div className="subgrid product">
                     <h5 className="title_ps">{name}</h5>
+                
                     <div className="content_image_ps">
+                        <span className="tag_bestMatch">BEST MATCH</span>
                         {
                             (relativeUrl)
                                 ? <img className="img" src={relativeUrl[0]} alt={relativeUrl[0]} />
@@ -53,7 +54,6 @@ export const ProductSelected = ({ productSelected }) => {
                         {showInfo()}
 
                         <BtnAddToCar isOtherProduct={true} productSelected={productSelected} />
-
 
                     </div>
 

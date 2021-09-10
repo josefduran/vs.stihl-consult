@@ -11,7 +11,6 @@ import { Loader } from './Loader'
 import { useFetchproducts } from '../helper/fetch_products'
 import { setLoading } from '../redux/actions/actionProducts'
 import { type } from '../redux/types/types'
-import { ProductSelected } from './ProductSelected'
 import { OtherOptions } from './otherOptions/otherOptions'
 
 export const RecommendedProducts = () => {
@@ -19,7 +18,7 @@ export const RecommendedProducts = () => {
     const dispatch = useDispatch();
 
     const [cards, setCards] = useState([]);
-    const { data: products, loading, productSelected, error, otherOptions } = useSelector(state => state.products)
+    const { data: products, loading, error, otherOptions } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
     const { mainScript } = useFetchproducts();
 
@@ -48,9 +47,9 @@ export const RecommendedProducts = () => {
 
                 let newArrFiltered = []
 
-                if(option_filter.power === "none"){
-                    newArrFiltered=newArr
-                } else{
+                if (option_filter.power === "none") {
+                    newArrFiltered = newArr
+                } else {
                     newArrFiltered = products.filter(product =>
                         product.power === option_filter.power &&
                         product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
@@ -74,34 +73,33 @@ export const RecommendedProducts = () => {
 
     return (
         <div className="rp_container">
-            
+
             {
                 (error)
                     ? <b className="error_center">Error en el server, no hay data</b>
-                    : (Object.keys(productSelected).length !== 0)
-                        ? <ProductSelected productSelected={productSelected} />
-                        : (otherOptions?.length !== 0) ? <OtherOptions />
-                            : <>
-                                <h2 className="rp_subtitle">You're an outdoor boss</h2>
+                    : (otherOptions?.length !== 0)
+                        ? <OtherOptions />
+                        : <>
+                            <h2 className="rp_subtitle">You're an outdoor boss</h2>
 
-                                <div className="">
-                                    <PowerOptions />
-                                    <FrecuentOptions />
-                                    <VegetationOptions />
-                                </div>
+                            <div className="">
+                                <PowerOptions />
+                                <FrecuentOptions />
+                                <VegetationOptions />
+                            </div>
 
-                                <div className="container_cards">
-                                    {
-                                        (loading)
-                                            ? <Loader />
-                                            : (cards.length === 0)
-                                                ? <b className="no_products">No products, select another filter</b>
-                                                : cards.map((product, index) => (
-                                                    (product?.power) && <Card key={index} productOnly={product} />
-                                                ))
-                                    }
-                                </div>
-                            </>
+                            <div className="container_cards">
+                                {
+                                    (loading)
+                                        ? <Loader />
+                                        : (cards.length === 0)
+                                            ? <b className="no_products">No products, select another filter</b>
+                                            : cards.map((product, index) => (
+                                                (product?.power) && <Card key={index} productOnly={product} />
+                                            ))
+                                }
+                            </div>
+                        </>
             }
 
         </div>

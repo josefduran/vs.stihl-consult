@@ -10,8 +10,6 @@ export const InfoProduct = ({ productSelected }) => {
    
     const handleSeeType = () => {
         setTypeDescription(!typeDescription);
-        const div = document.querySelector('.rp_container');
-        div.scrollTop = div.scrollHeight;
     };
 
     return (

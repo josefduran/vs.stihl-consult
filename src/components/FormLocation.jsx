@@ -12,15 +12,16 @@ export const FormLocation = () => {
     const { place, placeInputRef } = usePlaceAutocomplete()
     const dispatch = useDispatch();
     const history = useHistory();
-
+    
     const handleClick = () => {
-
+        
         if (placeInputRef.current.value !== "") {
-            (place)
-                ? dispatch(locationSelected(place.address, place.lat, place.lng))
-                : dispatch(locationSelected(placeInputRef.current.value));
-
-            history.push(`/options`)
+                if(place){
+                    dispatch(locationSelected(place.address, place.lat, place.lng))
+                    history.push(`/options`)
+                }else{
+                    alert('Select an option for the address')
+                }
         } else {
             alert("Enter your address")
         }
@@ -52,7 +53,7 @@ export const FormLocation = () => {
                     />
                 </div>
                 <button onClick={handleClick}>show mi fit</button>
-                <div class="email-keyboard"></div>
+                <div className="email-keyboard"></div>
             </div>
 
         </>
