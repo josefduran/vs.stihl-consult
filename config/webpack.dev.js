@@ -12,7 +12,7 @@ const dotenv = require('dotenv')
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 3000,
+    port: 3007,
     contentBase: path.join(__dirname, "public"),
     open: true,
     hot: true,
@@ -21,7 +21,7 @@ const devConfig = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico|otf|woff|woff2|ttf)$/i,
         type: 'asset/resource',
       }
     ],
@@ -36,8 +36,7 @@ const devConfig = {
     }),
     new DefinePlugin({
     'process.env': JSON.stringify(dotenv.config().parsed)
-  })
-],
+  })],
   devtool: "eval-source-map",
 };
 

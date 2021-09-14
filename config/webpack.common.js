@@ -25,10 +25,10 @@ module.exports = {
       },
       {
         type: "asset",
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico|otf|woff|woff2|ttf)$/i,
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico|otf|woff|woff2|ttf)$/i,
         type: 'asset/resource',
       },
     ],
@@ -40,6 +40,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      // favicon: "./public/favicon.ico"
     }),
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed)
