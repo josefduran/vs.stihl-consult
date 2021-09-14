@@ -31,7 +31,7 @@
     font-weight: bold;
 }
 .header_product_selected>p{
-    color: rgb(194, 116, 27);
+    color: var(--primary);
     text-align: center;
     font-size: 1.3em;
 }
@@ -40,7 +40,7 @@
 }
 
 .tag_bestMatch{
-    background-color: rgb(226, 152, 15);
+    background-color: var(--primary);
     position: absolute;
     top: 1% ;
     left: 0;
@@ -65,7 +65,7 @@
 }
 
 .tag_bestMatch::after{
-    background-color: rgb(226, 152, 15);
+    background-color: var(--primary);
     width: 30px;
     height: 101%;
     top: -1%;

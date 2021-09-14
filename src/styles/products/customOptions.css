@@ -56,6 +56,8 @@
   }
   .cp_subtitle {
     font-size: 0.8em;
+    font-weight: bold;
+    color: rgb(59, 59, 59);
   } 
   .cp_icon_item_container > img {
     filter: grayscale(1);
@@ -81,7 +83,7 @@
   }
   
   input[type="radio"]:checked ~ .cp_label_circle {
-    background-color: rgb(255, 115, 0);
+    background-color: var(--primary);
   }
   
   .cp_radio_circle > label:hover {

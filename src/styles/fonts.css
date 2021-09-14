@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'STIHL';
+    src: url('../assets/fonts/STIHL_Contraface_Desktop_OTF/STIHLContrafaceText.otf') format("opentype"),
+    url('../assets/fonts/STIHL_Contraface_Desktop_TTF/STIHLContrafaceText.ttf') format("truetype"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceText.woff') format("woff"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceText.woff2') format("woff2");
+    font-weight: 200;
+  }
+  
+  @font-face {
+    font-family: 'STIHL';
+    src: url('../assets/fonts/STIHL_Contraface_Desktop_OTF/STIHLContrafaceText-Bold.otf') format("opentype"),
+    url('../assets/fonts/STIHL_Contraface_Desktop_TTF/STIHLContrafaceText-Bold.ttf') format("truetype"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceText-Bold.woff') format("woff"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceText-Bold.woff2') format("woff");
+    font-weight: 700;
+  }
+  
+  @font-face {
+    font-family: 'STIHL';
+    src: url('../assets/fonts/STIHL_Contraface_Desktop_OTF/STIHLContrafaceTextLight.otf') format("opentype"),
+    url('../assets/fonts/STIHL_Contraface_Desktop_TTF/STIHLContrafaceTextLight.ttf') format("truetype"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceTextLight.woff') format("woff"),
+    url('../assets/fonts/STIHL_Contraface_Webfonts/STIHLContrafaceTextLight.woff2') format("woff");
+    font-weight: lighter;
+  }

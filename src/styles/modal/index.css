@@ -43,11 +43,12 @@
 
 .title_car{
     text-align: center;
-    padding: 0em 0em .7em 0em;
+    padding: 0em 0em .3em 0em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.664);
     width: 70%;
     margin: auto;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: 2em;
 }
 
 .container_btn_card{
@@ -59,18 +60,20 @@
     align-items: center;
 }
 .btn_buy{
-    background-color: rgb(224, 147, 4);
+    border-radius: 5px;
+    background-color: var(--primary);
     padding: .5em;
     color: white;
     border: 1px solid orangered;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.3em;
+    font-weight: bold;
     width: 20%;
     margin-left: 2em;   
 }
 
 .btn_buy:hover{
-    background-color: rgb(223, 149, 13); 
+    background-color: var(--primary);
 }
 
 .btn_buy:active{
@@ -116,6 +119,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 .container_items_car{
     overflow-y:scroll;
@@ -134,9 +139,10 @@
     height: 30px;
     cursor: pointer;
     margin-left: 2em;
+    
 }
 .amount_total{
-    font-size: 1.2em;
+    font-size: 1.6em;
 }
 
 /* estilos al scrool */

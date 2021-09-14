@@ -8,9 +8,8 @@ import { Modal } from './Modal';
 
 
 let location = "";
-const home = 'https://i.ibb.co/h1y2BH4/home.png'
 const carta = 'https://i.ibb.co/TMxMRc7/carta.png'
-const marcador = 'https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png'
+const marcador = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631573984/marcador-de-posicion_eonhln.png'
 const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
 
 
@@ -20,15 +19,17 @@ export const AsideAddress = () => {
     const dataLocation = useSelector(state => state.location);
     const { modal } = useSelector(state => state.car);
     const dispatch = useDispatch();
-
+    
+    
     const isMonted = useRef(true);
+    let home= "";
 
     switch (dataLocation.address) {
-        case "+1 acre": location = "Large"
+        case "+1 acre": location = "Large"; home = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631557732/house_pbysbx.png'
             break;
-        case "-1 acre": location = "Medium"
+        case "-1 acre": location = "Medium"; home ="https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small_ozrsqf.png"
             break;
-        case "small yard": location = "Small"
+        case "small yard": location = "Small"; home ="https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small-s_g3b68i.png"
             break;
         default: location = dataLocation.address
             break;
@@ -43,7 +44,7 @@ export const AsideAddress = () => {
                 function initMap() {
                     new window.google.maps.Map(document.getElementById("map"), {
                         center: { lat: dataLocation.lat, lng: dataLocation.lng },
-                        zoom: 22,
+                        zoom: 18,
                         mapTypeId: "satellite",
                         heading: 90,
                         tilt: 45,

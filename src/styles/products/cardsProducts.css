@@ -16,12 +16,11 @@
     justify-content: space-between;
     align-items: center;
   }
-  
-  .card_title {
-    font-size: 1em;
-  }
+  .text_content>h5{
+    font-size: 1.1em;
+  } 
   .card_desc {
-    font-size: 0.8em;
+    font-size: 1em;
     text-transform: initial;
     font-weight: normal;
   }
@@ -43,11 +42,12 @@
     color: white;
     cursor: pointer;
     font-weight: bold;
-    padding: 0.5em;
+    padding: 0.7em 0.5em;
     width: 48%;
+    border-radius: 5px;
   }
   .container_btn > button:nth-child(1) {
-    background-color: rgb(216, 98, 1);
+    background-color: var(--primary);
   }
   .container_btn > button:nth-child(2) {
     background-color: rgb(34, 34, 34);

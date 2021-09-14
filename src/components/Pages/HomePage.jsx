@@ -9,8 +9,11 @@ import { Loader } from '../Loader';
 import { useEffect } from 'react';
 import { type } from '../../redux/types/types';
 
-const home = 'https://i.ibb.co/h1y2BH4/home.png'
-const marcador =  "https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png"
+// const home = 'https://i.ibb.co/h1y2BH4/home.png'
+const home = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631557732/house_pbysbx.png'
+const home_less = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small_ozrsqf.png'
+const home_small = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small-s_g3b68i.png'
+const marcador =  "https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/place_uywov3.png"
 const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
 
 export const HomePage = () => {
@@ -51,21 +54,21 @@ export const HomePage = () => {
                         : (error)
                             ? <b className="no_products" style={{ color: 'white' }}>Error en el servidor</b>
                             : <>
+                                <div className="hp_card card_address" onClick={() => handleClickGoSearch("search")}>
+                                    <img src={marcador} alt="marcador.png" />
+                                    <p>use my address</p>
+                                </div>
                                 <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
                                     <img src={home} alt="home.png" />
                                     <p>+1 acre</p>
                                 </div>
                                 <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
-                                    <img src={home} alt="home.png" />
+                                    <img src={home_less} alt="home.png" />
                                     <p>-1 acre</p>
                                 </div>
                                 <div className="hp_card" onClick={() => handleClickGoSearch("small yard")}>
-                                    <img src={home} alt="home.png" />
+                                    <img src={home_small} alt="home.png" />
                                     <p>small yard</p>
-                                </div>
-                                <div className="hp_card" onClick={() => handleClickGoSearch("search")}>
-                                    <img src={marcador} alt="marcador.png" />
-                                    <p>use my address</p>
                                 </div>
                             </>
                 }

@@ -43,7 +43,7 @@ export const CounterStart = ({ rating, isCardRigth = true }) => {
                 ))
             }
             <div className={`${(isCardRigth) ? 'text_star' : 'text_star_other_product'}`}>
-                <p> <b>{rating}/5 </b> <span>(16.1)</span></p>
+                <p> <b>{rating}/5 </b> </p>
             </div>
         </div>
     )

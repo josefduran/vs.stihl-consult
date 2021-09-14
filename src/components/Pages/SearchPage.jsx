@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { loadGoogleMapScript } from '../../helper/loadGoogleMapScript';
 import { FormLocation } from '../FormLocation';
+import { Loader } from '../Loader';
 
 
 
@@ -17,7 +18,10 @@ export const SearchPage = () => {
 
     return (
         <>
-            {!loadMap ? <div>Loading...</div> : <FormLocation />}
+            {
+                (!loadMap) 
+                    ? <Loader/>  
+                    : <FormLocation />}
         </>
     )
 }

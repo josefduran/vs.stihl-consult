@@ -48,14 +48,15 @@
 /* =========== = =======================*/
 .aa_container_img {
   align-items: center;
-  background-color: rgb(255, 94, 0);
+  background-color: var(--primary);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin: auto;
+  min-height: 240px;
 }
 .py{
-  padding: 1em 0;
+  padding: 1em .5em;
 }
 .aa_location {
   color: white;
@@ -63,8 +64,8 @@
   font-weight: bold;
 }
 .aa_container_img > img {
-  filter: invert();
-  width: 60%;
+
+  width: 100%;
 }
 /* =========== = =======================*/
 /* 		 Footer aside 
@@ -84,8 +85,9 @@
   vertical-align: top;
 }
 .aa_btn_sendKit {
+  border-radius: 5px;
   align-items: center;
-  background-color: rgb(46, 45, 45);
+  background-color: rgb(75, 74, 74);
   border: none;
   color: white;
   cursor: pointer;
@@ -111,7 +113,8 @@
 }
 .aa_parrafo{
   text-transform: initial;
-  font-size: .9em;
+  font-size: 1.1em;
+  text-align: justify;
   margin: 1em 0;
 }
 .aa_btn_search{
@@ -121,18 +124,21 @@
   margin-top: 1em;
   text-decoration: none;
   color: white;
-  background-color: rgb(255, 94, 0);
+  background-color: var(--btn-color);
   padding: .7em 0;
   width: 100%;
   text-transform: uppercase;
-
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.aa_btn_search:hover{
+  background-color: var(--primary);
+}
 .aa_btn_search>img{
   margin-right: 5px;
-  filter: grayscale(1);
+  filter: invert();
   height: 20px;
   width: 20px;
 }

@@ -1,6 +1,6 @@
 .hp_background {
   background-color: rgb(53, 53, 53);
-  background-image: url("https://i.ibb.co/ZTbjVZY/mount.jpg");
+  background-image: url("https://res.cloudinary.com/ddeguj0jq/image/upload/v1631557345/search_back-min_reyes2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,7 +9,8 @@
 
 .hp_label,
 .hp_card {
-  background-color: rgb(248, 99, 0);
+  /* background-color: rgb(248, 99, 0); */
+  background-color: var(--primary);
   color: white;
 }
 .hp_label {
@@ -26,6 +27,7 @@
   color: white;
   text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.493);
   font-size: 4.5em;
+  font-family: 'STIHL';
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -40,14 +42,16 @@
   text-align: center;
   text-transform: uppercase;
   width: 85%;
+  font-weight: 200;
 }
 
 .hp_container_cards {
   align-items: center;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 4em auto auto auto;
   width: 90vw;
+  gap: 2.5em;
 }
 
 .hp_card {
@@ -55,32 +59,35 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
-  height: 210px;
+  min-height: 240px;
+  height: 240px;
+  width: 240px;
+  max-height: 250px;
   justify-content: space-evenly;
   padding: 1em;
   text-transform: uppercase;
-  width: 210px;
-}
-.hp_card:hover {
-  background-color: rgb(223, 90, 1);
-}
-.hp_card > img {
-  filter: invert();
-  width: 40%;
+  border-radius: 5px;
+  transition: all .3s ease;
 }
 
-.hp_card:nth-child(4) {
+.hp_card > img {
+  /* filter: invert();s */
+  width: 100%;
+  object-fit: cover;
+}
+.hp_card:hover{
+  transform: translateY(-10px);
+}
+.hp_card.card_address{
   background-color: white;
   color: black;
 }
-.hp_card:nth-child(4):hover {
-  background-color: rgb(238, 236, 236);
-}
-.hp_card:nth-child(4) > img {
+.hp_card.card_address > img {
   filter: none;
-  width: 35%;
+  width: 50%;
+  transform: scale(1.7);
 }
 
 
@@ -100,10 +107,14 @@
     gap: 1em;
   }
   .hp_card {
-    height: 150px;
+    
+    min-height: 160px;
+    height: 160px;
+    max-height: 210px;
+    width: 160px;
+
     justify-content: space-evenly;
     padding: 1em;
     text-transform: uppercase;
-    width: 210px;
   }
 }

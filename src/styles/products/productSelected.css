@@ -17,14 +17,14 @@
 .title_ps_info_nav {
   text-align: end;
   font-size: 1.9em;
-  color: rgb(231, 160, 28);
+  color: var(--primary);
   text-shadow: 2px 2px 1px rgba(165, 162, 162, 0.212);
   letter-spacing: 1px;
 }
 .title_otheroptions {
   text-align: start;
   font-size: 1.5em;
-  color: rgb(218, 124, 18);
+  color: var(--primary);
   margin: 1em 0;
 }
 .mt-title{
@@ -60,7 +60,7 @@
 }
 .sub_ps {
   text-align: center;
-  color: orange;
+  color: var(--primary);
   font-size: 1.5em;
   font-weight: bold;
   padding-top: 1em;
@@ -77,7 +77,7 @@
 }
 .item_nav_ps {
   text-align: center;
-  background-color: rgb(70, 65, 65);
+  background-color: rgba(0, 0, 0, 0.712);
   color: orange;
   cursor: pointer;
   padding: 0.5em 0;
@@ -86,7 +86,7 @@
 .selected_item_nav_ps {
   font-weight: bold;
   background-color: rgb(255, 255, 255);
-  color: rgb(202, 142, 11);
+  color: var(--primary);
 }
 .section_selected_ps {
   background-color: #fff;
@@ -125,13 +125,14 @@
   align-items: center;
 }
 .btn_seeFull {
-  background-color: rgb(226, 133, 10);
+  background-color: var(--primary);
   border: none;
   padding: 0.8em 0.5em;
   cursor: pointer;
   color: white;
   font-weight: bold;
   font-size: 1em;
+  border-radius: 5px;
 }
 .btn_seeFull:hover {
   background-color: rgb(197, 115, 7);
@@ -145,6 +146,8 @@
 .long_desc_ps {
   text-align: justify;
   line-height: 1.6em;
+  font-size: 1.3em;
+  
 }
 .price_ps {
   text-align: end;
@@ -186,8 +189,8 @@
   font-weight: bold;
 }
 .desc_other_product {
-  font-size: 1em;
-  margin-top: 1em;
+  font-size: 1.1em;
+  margin-top: .5em;
 }
 .price_other_product {
   text-align: end;
@@ -225,7 +228,7 @@
 }
 
 .text_star > p > span {
-  color: rgb(226, 133, 10);
+  color: var(--primary);
   font-weight: normal;
   padding-left: 0.2em;
 }
@@ -239,13 +242,14 @@
   align-items: center;
 }
 .btn {
+  border-radius: 5px;
   border: 1px solid black;
   padding: 0.5em 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
-  background-color: rgb(255, 115, 1);
+  background-color: var(--primary);
   color: white;
   font-size: 1em;
   font-weight: bold;
@@ -321,7 +325,7 @@
   cursor: pointer;
 }
 .header_other_options > p {
-  color: orange;
+  color: var(--primary);
   text-align: center;
 }
 

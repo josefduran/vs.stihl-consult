@@ -9,7 +9,7 @@
 }
 .sh_backgorund_page {
   background-color: rgb(77, 76, 76);
-  background-image: url("../assets/person1.jpg");
+  background-image: url("https://res.cloudinary.com/ddeguj0jq/image/upload/v1631557359/back-min_mwrzld.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,6 +23,7 @@
   text-align: center;
   text-transform: uppercase;
   color: white;
+  text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.493);
 }
 
 .sp_form {
@@ -33,14 +34,15 @@
   position: relative;
 }
 .sp_form > button {
-  background-color: rgb(248, 99, 0);
+  background-color: var(--primary);
   border: none;
   color: white;
   cursor: pointer;
   font-size: 1em;
   font-weight: bold;
-  padding: 1em;
+  padding: 1.1em;
   text-transform: uppercase;
+  border-radius: 5px;
 }
 .sp_form > button:hover {
   background-color: rgb(230, 94, 3);
