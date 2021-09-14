@@ -52,7 +52,7 @@ export const FormLocation = () => {
                         ref={placeInputRef}
                     />
                 </div>
-                <button onClick={handleClick}>show mi kit</button>
+                <button onClick={handleClick}>show my kit</button>
                 <div className="email-keyboard"></div>
             </div>
 
