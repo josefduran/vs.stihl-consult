@@ -6,7 +6,7 @@ export const loadGoogleMapScript = (callback) => {
     } else {
         const googleMapScript = document.createElement("script");
         const key = process.env.REACT_APP_KEY_PROD;
-        googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`;
+        googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCma9AOkQsV2onO_O27HCNKhN0Y8wxH_-A&libraries=places`;
         window.document.body.appendChild(googleMapScript);
         googleMapScript.addEventListener("load", callback);
     }
