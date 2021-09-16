@@ -12,6 +12,9 @@ module.exports = {
     filename: "[name].[contenthash].js",
     publicPath: "",
   },
+  externals: {
+    platform: "vsn_platform",
+  },
   module: {
     rules: [
       {

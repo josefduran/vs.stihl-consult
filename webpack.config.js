@@ -19,6 +19,9 @@ module.exports = {
         "product-registration": "./src/product-registration/js/main",
         "video-gallery": "./src/video-gallery/js/main"
     },
+    externals: {
+    platform: "vsn_platform",
+    },
     module: {
         loaders: [
             {
@@ -42,9 +45,6 @@ module.exports = {
                 loader: "json-loader"
             }
         ]
-    },
-    externals: {
-        platform: "vsn_platform"
     },
     output: {
         path: assetsPath,

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { loadGoogleMapScript } from '../../helper/loadGoogleMapScript';
 import { FormLocation } from '../FormLocation';
+import { EmailPage } from '../../helper/views/email/page'
 import { Loader } from '../Loader';
 
 
@@ -21,7 +22,10 @@ export const SearchPage = () => {
             {
                 (!loadMap) 
                     ? <Loader/>  
-                    : <FormLocation />}
+                    : <div>
+                        <FormLocation />
+                        {/* <EmailPage /> */}
+                        </div>}
         </>
     )
 }

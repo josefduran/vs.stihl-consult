@@ -12,7 +12,7 @@ define(function(require) {
     var mediaLibrary = require("common/js/app/media-library");
     var template = require("src/templates/email/email.html");
 
-    var EmailPane = BaseView.extend({
+    var EmailPanel = BaseView.extend({
         events: {
             "click .email-address-submit": "submitEmailAddress"
         },
