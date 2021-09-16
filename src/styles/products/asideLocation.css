@@ -8,6 +8,7 @@
   position: fixed;
   text-transform: uppercase;
   width: 29%;
+  z-index: 5;
 }
 /* =========== = =======================*/
 /* 		 Header aside 
@@ -55,6 +56,28 @@
   margin: auto;
   min-height: 240px;
 }
+.full-screen{
+  content: "Your address";
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.875);
+  z-index: 1;
+}
+.map-full{
+  width: 95vw;
+  height: 85vh;
+  border-radius: 4px;
+  background-color: white;
+  margin: .5em auto;
+}
+
 .py{
   padding: 1em .5em;
 }

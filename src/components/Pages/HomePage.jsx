@@ -58,18 +58,21 @@ export const HomePage = () => {
                                     <img src={marcador} alt="marcador.png" />
                                     <p>use my address</p>
                                 </div>
-                                <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
-                                    <img src={home} alt="home.png" />
-                                    <p>+1 acre</p>
-                                </div>
-                                <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
-                                    <img src={home_less} alt="home.png" />
-                                    <p>-1 acre</p>
-                                </div>
+
                                 <div className="hp_card" onClick={() => handleClickGoSearch("small yard")}>
                                     <img src={home_small} alt="home.png" />
                                     <p>small yard</p>
                                 </div>
+                                
+                                <div className="hp_card" onClick={() => handleClickGoSearch("-1 acre")}>
+                                    <img src={home_less} alt="home.png" />
+                                    <p>-1 acre</p>
+                                </div>
+                                <div className="hp_card" onClick={() => handleClickGoSearch("+1 acre")}>
+                                    <img src={home} alt="home.png" />
+                                    <p>+1 acre</p>
+                                </div>
+                                
                             </>
                 }
             </div>

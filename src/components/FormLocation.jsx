@@ -17,6 +17,7 @@ export const FormLocation = () => {
         
         if (placeInputRef.current.value !== "") {
                 if(place){
+                    sessionStorage.removeItem('full');
                     dispatch(locationSelected(place.address, place.lat, place.lng))
                     history.push(`/options`)
                 }else{
@@ -52,7 +53,7 @@ export const FormLocation = () => {
                         ref={placeInputRef}
                     />
                 </div>
-                <button onClick={handleClick}>SHOW MY KIT</button>
+                <button onClick={handleClick}>show mi kit</button>
                 <div className="email-keyboard"></div>
             </div>
 
