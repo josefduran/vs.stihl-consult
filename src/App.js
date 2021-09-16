@@ -4,6 +4,7 @@ import { AppRouter } from './routes/AppRouter';
 import { store } from './redux/store/store';
 
 import './styles/index.css';
+import 'animate.css';
 
 const App = () => {
 

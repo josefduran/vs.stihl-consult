@@ -11,7 +11,9 @@ const card = "https://i.ibb.co/D84rLpW/card.png"
 export const LateralMenu = () => {
 
     const { modal } = useSelector(state => state.car);
+    
     const { handleClick } = useBackFilter();
+
     const dispatch = useDispatch();
 
     const handleClickHouse = () => {

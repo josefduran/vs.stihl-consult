@@ -18,7 +18,7 @@ export const Modal = () => {
             car.forEach(product => {
                 total = product.prices[0].amount + total
             });
-            setTotalAmount(total)
+            setTotalAmount(total.toFixed(2))
         }
     }, [car]);
 

@@ -7,7 +7,7 @@ const noFound  = 'https://i.ibb.co/71sL6cC/images.png'
 export const Card = ({productOnly }) => {
     
 
-    const {shortDescription="",name="",urlImage, relativeUrl,pcId,category } = productOnly;
+    const {shortDescription="",name="",urlImage, relativeUrl,pcId,category,power } = productOnly;
     const dispatch = useDispatch();
     const { data: products } = useSelector(state => state.products)
 
@@ -51,7 +51,7 @@ export const Card = ({productOnly }) => {
     };
 
     return (
-        <div className="card">
+        <div className="card animate__animated animate__backInUp">
 
             {
                 (relativeUrl)
@@ -61,7 +61,7 @@ export const Card = ({productOnly }) => {
             <div className="text_content">
                 <h5>{name}</h5>
                 <p className="card_desc">{shortDescription}</p>
-                {/* <p className="card_desc">{category.split(" ").join(" -- ")}</p> */}
+                <p className="card_desc"><b>{power}</b></p>
             </div>
 
             <div className="container_btn">

@@ -50,11 +50,16 @@ export const RecommendedProducts = () => {
                 if (option_filter.power === "none") {
                     newArrFiltered = newArr
                 } else {
-                    newArrFiltered = products.filter(product =>
-                        product.power === option_filter.power &&
+
+                    const powerNone = products.filter(product => product.power === "none");
+
+                    const arrFiltered = products.filter(product =>
+                        product.power === option_filter.power  &&
                         product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
                         product.lawnSize === size
                     );
+
+                    newArrFiltered = [...powerNone,...arrFiltered]
                 }
                 setCards(newArrFiltered);
                 dispatch(setLoading(type.endLoading))
