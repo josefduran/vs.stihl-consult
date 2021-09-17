@@ -59,7 +59,7 @@ export const RecommendedProducts = () => {
                         product.lawnSize === size
                     );
 
-                    newArrFiltered = [...powerNone,...arrFiltered]
+                    newArrFiltered = [...arrFiltered,...powerNone]
                 }
                 setCards(newArrFiltered);
                 dispatch(setLoading(type.endLoading))
