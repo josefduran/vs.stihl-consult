@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { loadGoogleMapScript } from '../../helper/loadGoogleMapScript';
 import { FormLocation } from '../FormLocation';
-import { EmailPage } from '../../helper/views/email/page'
+// import { EmailPage } from '../../helper/views/email/page'
 import { Loader } from '../Loader';
 
 
