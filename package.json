@@ -41,7 +41,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
     "start": "webpack serve --config config/webpack.dev.js",
-    "upload-stihl-consult": "vslynx upload ./dist lite"
+    "upload": "vslynx upload ./dist lite"
   },
   "keywords": [],
   "author": "",
