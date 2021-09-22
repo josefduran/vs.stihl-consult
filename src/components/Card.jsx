@@ -7,7 +7,7 @@ const noFound  = 'https://i.ibb.co/71sL6cC/images.png'
 export const Card = ({productOnly }) => {
     
 
-    const {shortDescription="",name="",urlImage, relativeUrl,pcId,category,power } = productOnly;
+    const {shortDescription="",name="",urlImage, relativeUrl,pcId,category,power,tags } = productOnly;
     const dispatch = useDispatch();
     const { data: products } = useSelector(state => state.products)
 
@@ -62,6 +62,7 @@ export const Card = ({productOnly }) => {
                 <h5>{name}</h5>
                 <p className="card_desc">{shortDescription}</p>
                 <p className="card_desc"><b>{power}</b></p>
+                <p className="card_desc"><u>{tags}</u></p>
             </div>
 
             <div className="container_btn">

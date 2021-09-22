@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addProductToCar } from "../redux/actions/actionCar";
 import { filterSelected } from "../redux/actions/actionFilter";
 
 
 export const useFiltered = () => {
+
     const dispatch = useDispatch();
     const opt_filtered = useSelector(state => state.filter);
 
@@ -16,7 +18,12 @@ export const useFiltered = () => {
     }))
 
     const handleChange = ({ target }) => {
+
+        dispatch(addProductToCar([])); //vaciar el carrito cada que se cambien el filtro
+        sessionStorage.removeItem('trash')
+
         const filter = JSON.parse(sessionStorage.getItem("filter")) || "";
+
         const newData = {
             power: filter.power,
             frequent: filter.frequent,
@@ -26,17 +33,16 @@ export const useFiltered = () => {
             ...newData,
             [target.name]: target.id
         })
-        
+
     };
 
     useEffect(() => {
-        
-        sessionStorage.setItem("filter", JSON.stringify(value))
-        dispatch(filterSelected(value.power, value.frequent, value.vegetation))
 
+        sessionStorage.setItem("filter", JSON.stringify(value))
+        dispatch(filterSelected(value.power, value.frequent, value.vegetation));
 
     }, [value, dispatch])
-    
+
     return {
         handleChange,
         opt_filtered,

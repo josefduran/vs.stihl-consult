@@ -167,9 +167,12 @@
 }
 
 @media screen and (max-width:768px) {
-
+    
   .aa_container {
     padding: 1em;
+  }
+  .aa_container_img{
+    min-height: 200px;
   }
   
 }
@@ -180,7 +183,7 @@
     align-items: flex-end;
   }
   .aa_logo {
-    width: 55%;
+    width: 45%;
     padding: 0;
   }
   

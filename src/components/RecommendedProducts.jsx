@@ -12,6 +12,7 @@ import { useFetchproducts } from '../helper/fetch_products'
 import { setLoading } from '../redux/actions/actionProducts'
 import { type } from '../redux/types/types'
 import { OtherOptions } from './otherOptions/otherOptions'
+import { addProductToCar } from '../redux/actions/actionCar'
 
 export const RecommendedProducts = () => {
 
@@ -20,6 +21,8 @@ export const RecommendedProducts = () => {
     const [cards, setCards] = useState([]);
     const { data: products, loading, error, otherOptions } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
+    const { car } = useSelector(state => state.car);
+
     const { mainScript } = useFetchproducts();
 
     useEffect(() => {
@@ -39,8 +42,10 @@ export const RecommendedProducts = () => {
                     case "constant": size = ">1"; break;
                 }
 
-                let vegetation = (option_filter.vegetation === "light") ? "small" : option_filter.vegetation;
+                let vegetation = option_filter.vegetation;
+
                 let newArr = [];
+
                 products.forEach(element => {
                     (element?.power) && newArr.push(element)
                 });
@@ -49,17 +54,61 @@ export const RecommendedProducts = () => {
 
                 if (option_filter.power === "none") {
                     newArrFiltered = newArr
+
                 } else {
 
-                    const powerNone = products.filter(product => product.power === "none");
+                    const powerNone = newArr.filter(product => product.power === "none");
 
-                    const arrFiltered = products.filter(product =>
-                        product.power === option_filter.power  &&
-                        product.tags.toLocaleLowerCase().includes(vegetation.toLocaleLowerCase()) &&
-                        product.lawnSize === size
-                    );
+                    let arrFiltered = []
 
-                    newArrFiltered = [...arrFiltered,...powerNone]
+                    if (Array.isArray(vegetation) && vegetation?.length !== 0) {
+
+                        let vegArr = []
+                        //or
+                        vegetation.forEach( arr => {
+                            newArr.forEach( product => {
+                                if( product.tags.includes(arr) ) { vegArr.push(product) }
+                            });
+                        })
+
+                        //and
+                        // newArr.forEach( product => {
+                            
+                        //     let c = 0;
+                        //     for (let i = 0; i < vegetation.length; i++) {
+                        //         if( product.tags.includes(vegetation[i]) ) { c = c + 1; }
+                        //     }
+                        //     if( c === vegetation.length){ vegArr.push(product); }
+                        //     c = 0; 
+                        // });
+
+                        let arrTest = []
+
+                        vegArr.forEach( arr => {
+
+                            if(arr.power === option_filter.power && arr.lawnSize === size){
+                                arrTest.push(arr)
+                            }
+                        })
+
+                        // arrFiltered = newArr.filter(product =>
+                        //     product.power === option_filter.power &&
+                        //     product.tags.includes(...vegetation) &&
+                        //     product.lawnSize === size
+                        // );
+
+                        arrFiltered = arrTest
+
+                    } else {
+
+                        arrFiltered = newArr.filter(product =>
+                            product.power === option_filter.power &&
+                            product.lawnSize === size
+                        );
+                    }
+
+                    newArrFiltered = [...new Set([...arrFiltered, ...powerNone])]
+
                 }
                 setCards(newArrFiltered);
                 dispatch(setLoading(type.endLoading))
@@ -74,6 +123,14 @@ export const RecommendedProducts = () => {
         }
 
     }, [products, option_filter])
+
+    useEffect(() => {
+        if (cards.length !== 0) {
+            if (car.length === 0) {
+                dispatch(addProductToCar(cards))
+            }
+        }
+    }, [cards])
 
 
     return (
