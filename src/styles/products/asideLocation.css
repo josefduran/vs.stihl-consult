@@ -196,3 +196,40 @@
     width: 15%;
   }
 }
+
+.grid_sizes{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  place-items: center;
+  gap: 1em;
+
+  margin-top: 1em;
+}
+.container_typeSize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+
+  background-color: var(--primary);
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  
+  
+  filter: grayscale(1);
+  cursor: pointer;
+}
+.container_typeSize > .img_size {
+  width: 100%;
+}
+.container_typeSize > p{ 
+  margin-top: .5em;
+  font-size: .8em;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+.typeSize_radio:checked ~ .container_typeSize {
+  filter: grayscale(0);
+}

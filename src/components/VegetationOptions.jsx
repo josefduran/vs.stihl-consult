@@ -1,111 +1,12 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { tags } from "../data";
 import { useFiltered } from "../hook/useFiltered";
 import { addProductToCar } from "../redux/actions/actionCar";
 import { filterSelected } from "../redux/actions/actionFilter";
 
-const battery = [
-    "Small Property",
-    "Flower beds and Patios",
-    "Flower beds",
-    "Small trees",
-    "Small shrubs",
-    "Small bushes",
-    "Occasional usage",
-    "Medium Property",
-    "Long fences",
-    "Patio",
-    "Long Driveway",
-    "Medium trees",
-    "Medium shrubs",
-    "Medium bushes",
-    "Moderate usage",
-    "Large Property",
-    "Multiple flower beds",
-    "Deck",
-    "Mature trees",
-    "Mature shrubs",
-    "Mature bushes",
-    "Heavy usage",
-]
 
-const electric = [
-    "Small Property",
-    "Flower beds and Patios",
-    "Small trees",
-    "Small shrubs",
-    "Small bushes",
-    "Occasional usage",
-    "Medium Property",
-    "Long fences",
-    "Patio",
-    "Long Driveway",
-    "Medium trees",
-    "Medium shrubs",
-    "Medium bushes",
-    "Moderate usage",
-    "Large Property",
-    "Mature trees",
-    "Mature shrubs",
-    "Mature bushes",
-    "Heavy usage"
-]
-
-const gas = [
-    "Small Property",
-    "Flower beds and Patios",
-    "Small trees",
-    "Small shrubs",
-    "Small bushes",
-    "Occasional usage",
-    "Medium Property",
-    "Long fences",
-    "Patio",
-    "Long Driveway",
-    "Medium trees",
-    "Medium shrubs",
-    "Medium bushes",
-    "Moderate usage",
-    "Large Property",
-    "Multiple flower beds",
-    "Deck",
-    "Mature trees",
-    "Mature shrubs",
-    "Mature bushes",
-    "Heavy usage"
-]
-
-const none = [
-    "Small Property",
-    "Small trees",
-    "Small shrubs",
-    "Small bushes",
-    "Occasional usage",
-    "Medium Property",
-    "Medium trees",
-    "Medium shrubs",
-    "Medium bushes",
-    "Moderate usage",
-    "Large Property",
-    "Mature trees",
-    "Mature shrubs",
-    "Mature bushes",
-    "Heavy usage",
-    "Multiple flower beds",
-    "Flower beds and Patios",
-    "Long fences",
-    "Patio",
-    "Long Driveway",
-    "Deck",
-]
-
-const tags = {
-    battery,
-    electric,
-    gas,
-    none
-}
 
 export const VegetationOptions = () => {
 
@@ -117,25 +18,77 @@ export const VegetationOptions = () => {
     let typePower = opt_filtered.power;
     // tags[typePower].length = 12;
     useEffect(() => {
+
         setTagsState([])
 
-        tags[typePower].forEach( tag => {
-            document.querySelector(`#${tag.split(' ').join('-')}`).checked = false;
+        tags[typePower].forEach(tag => {
+            if (!tag.includes("Property") && !tag.includes("usage")) {
+                document.querySelector(`#${tag.split(' ').join('-')}`).checked = false;
+            }
+        });
+
+        const $icons = document.querySelectorAll('.tag_x');
+        $icons.forEach(icon => {
+            if (icon.classList.contains('open')) {
+                icon.classList.remove('open')
+                icon.classList.add('close');
+                icon.textContent = '➖';
+            }
         });
 
     }, [typePower]);
 
 
-    const onChange = ({ target }) => {
-        
+    const onChange = (e) => {
+        const target = e.target
+        const icon = e.target.labels[0].children[1];
+        let isRemove = true;
+
+        if (icon.classList.contains('close')) {
+            icon.textContent = '➕';
+            icon.classList.add('open')
+            icon.classList.remove('close')
+
+        } else {
+            icon.textContent = '➖'
+            icon.classList.add('close')
+            icon.classList.remove('open')
+            isRemove = false
+        }
+
+        removeTagList(target, isRemove);
+    };
+
+    const removeTagList = (target, isRemove) => {
+
         let tagName = target.id.split('-').join(' ');
 
-        let tagStorage = tags[typePower].filter(tag => tag !== tagName );
+        const tagsList = []
+
+        tags[typePower].forEach(tag => {
+            if (!tag.includes("Property") && !tag.includes("usage")) tagsList.push(tag)
+        });
+
+        let tagStorage = []
         
-        if(tagsState.length !== 0) { tagStorage = tagStorage.filter(arr => tagsState.includes(arr)) }
+        if (!isRemove) {
+            let arr = tagsState.filter( tag => tag !== "none");
+
+            arr.push(tagName);
+            
+            tagStorage = arr
+
+        } else {
+
+            tagStorage = tagsList.filter(tag => tag !== tagName);
+
+            if (tagsState.length !== 0) { tagStorage = tagStorage.filter(arr => tagsState.includes(arr)) }
+
+            if (tagStorage.length === 0) { tagStorage.push("none") }
+
+        }
 
         setTagsState(tagStorage);
-
         const value = {
             power: opt_filtered.power,
             frequent: opt_filtered.frequent,
@@ -146,7 +99,9 @@ export const VegetationOptions = () => {
         sessionStorage.removeItem('trash')
         dispatch(filterSelected(opt_filtered.power, opt_filtered.frequent, tagStorage));
         sessionStorage.setItem("filter", JSON.stringify(value))
+
     };
+
 
     return (
         <>
@@ -155,7 +110,8 @@ export const VegetationOptions = () => {
                 <span className="cp_question">How heavy is the vegetation on your property</span>
                 <div className="cp_grid_tags">
                     {
-                        tags[typePower].map(tag => (
+                        (tags[typePower]) && tags[typePower].map(tag => (
+                            (!tag.includes("Property") && !tag.includes("usage")) &&
                             <div key={tag}>
                                 <input
                                     className="tag_cp"
@@ -166,64 +122,13 @@ export const VegetationOptions = () => {
                                 />
                                 <label className="tag_cp_label" htmlFor={tag.split(' ').join('-')}>
                                     <span>{tag}</span>
-                                    <span className="tag_x">❌</span>
+                                    <span className="tag_x close">➖</span>
                                 </label>
                             </div>
                         ))
                     }
 
-                    {/* <div className="line_point_large_three"></div> */}
-                    {/* <div>
-                        <div className="cp_radio_circle">
-                            <input
-                                type="radio"
-                                name={"vegetation"}
-                                id={"light"}
-                                onChange={handleChange}
-                                checked={([opt_filtered.vegetation].includes("light")) ? true : false}
-                                disabled={(opt_filtered.power) === "none" ? true : false}
-                            />
-                            <label htmlFor={"light"} className={`cp_line ${(opt_filtered.power) !== "none" && 'cp_label_circle'} `} />
-                        </div>
-                        <div className={`cp_icon_item_container cp_column`}>
-                            <p><b>light</b> </p>
-                            <p className="cp_subtitle">once or Twice/month</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="cp_radio_circle">
-                            <input
-                                type="radio"
-                                name={"vegetation"}
-                                id={"medium"}
-                                onChange={handleChange}
-                                checked={([opt_filtered.vegetation].includes("medium")) ? true : false}
-                                disabled={(opt_filtered.power) === "none" ? true : false}
-                            />
-                            <label htmlFor={"medium"} className={`cp_line ${(opt_filtered.power) !== "none" && 'cp_label_circle'} `} />
-                        </div>
-                        <div className={`cp_icon_item_container cp_column`}>
-                            <p className={""}><b>medium</b> </p>
-                            <p className="cp_subtitle">weekly</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="cp_radio_circle">
-                            <input
-                                type="radio"
-                                name={"vegetation"}
-                                id={"heavy"}
-                                onChange={handleChange}
-                                checked={([opt_filtered.vegetation].includes("heavy")) ? true : false}
-                                disabled={(opt_filtered.power) === "none" ? true : false}
-                            />
-                            <label htmlFor={"heavy"} className={`cp_none ${(opt_filtered.power) !== "none" && 'cp_label_circle'} `} />
-                        </div>
-                        <div className={`cp_icon_item_container cp_column`}>
-                            <p className={""}><b>heavy</b> </p>
-                            <p className="cp_subtitle">daily</p>
-                        </div>
-                    </div> */}
+
                 </div>
             </div>
 

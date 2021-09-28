@@ -8,13 +8,9 @@ import { selectProduct, setLoading, setOtherProducts } from '../../redux/actions
 import { Loader } from '../Loader';
 import { useEffect } from 'react';
 import { type } from '../../redux/types/types';
+import { img_paths } from '../../data/img';
 
-// const home = 'https://i.ibb.co/h1y2BH4/home.png'
-const home = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631557732/house_pbysbx.png'
-const home_less = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small_ozrsqf.png'
-const home_small = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small-s_g3b68i.png'
-const marcador =  "https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/place_uywov3.png"
-const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
+const { home, home_less, home_small, marcador, logo } = img_paths
 
 export const HomePage = () => {
     const { handleClickGoSearch } = useRoutebyHome();

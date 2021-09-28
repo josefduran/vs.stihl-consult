@@ -60,7 +60,7 @@ export const RecommendedProducts = () => {
                     const powerNone = newArr.filter(product => product.power === "none");
 
                     let arrFiltered = []
-
+                    
                     if (Array.isArray(vegetation) && vegetation?.length !== 0) {
 
                         let vegArr = []

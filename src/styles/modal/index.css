@@ -136,46 +136,6 @@
     padding: 0 1em;
     background-color: rgba(0, 0, 0, 0.1);
 }
-.container_items_car_full{
-    position: relative;
-    overflow-y:scroll;
-    max-height: 60vh;
-    /* padding: 0 0 0 1em; */
-    padding: 0 1em;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.container_trash{
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 0 1em;
-    overflow-y: scroll;
-    height: 110px;
-    overflow-x: hidden;
-}
-.title{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 1);
-    top: 0;
-    width: 100%;
-}
-
-.mount_delete{
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-
-
-.btn_remove{
-    height: 30px;
-    cursor: pointer;
-    margin-left: 2em;
-    
-}
-.amount_total{
-    font-size: 1.6em;
-}
 
 /* estilos al scrool */
 .container_items_car::-webkit-scrollbar,.container_trash::-webkit-scrollbar  {
@@ -204,11 +164,56 @@
 .container_items_car::-webkit-scrollbar-track,.container_trash::-webkit-scrollbar-track {
     border-radius: 10px;  
 }
+.container_items_car_full{
+    position: relative;
+    overflow-y:scroll;
+    max-height: 60vh;
+    padding: 0 1em;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container_trash{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0 1em;
+    overflow-y: scroll;
+    min-height: 110px;
+    max-height: 110px;
+    overflow-x: hidden;
+}
+.title{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 1);
+    top: 0;
+    width: 100%;
+}
+
+.mount_delete{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+
+.btn_remove{
+    height: 30px;
+    cursor: pointer;
+    margin-left: 2em;
+    
+}
+.amount_total{
+    font-size: 1.6em;
+}
+
 
 
 @media screen and (max-width:1024px) {
     .overlay{
         width: 92.95vw;
+    }
+    .container_trash{
+        min-height: 150px;
+        max-height: 150px;
     }
   }
   

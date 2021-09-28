@@ -11,14 +11,14 @@ export const FrecuentOptions = () => {
         <div className="cp_grid">
         <div className="line_point_large_three"></div>
             <div> 
-                <div className="cp_radio_circle">
+                <div className="frecuent_option">
                     <input
                         type="radio"
                         name={"frequent"}
                         id={"infrequent"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("infrequent")) ? true : false}
-                        disabled={(opt_filtered.power)==="none"?true:false}
+                        disabled={true}
                     />
                     <label htmlFor={"infrequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                     
@@ -29,14 +29,14 @@ export const FrecuentOptions = () => {
                 </div>
             </div>
             <div>
-                <div className="cp_radio_circle">
+                <div className="frecuent_option">
                     <input
                         type="radio"
                         name={"frequent"}
                         id={"frequent"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("frequent")) ? true : false}
-                        disabled={(opt_filtered.power)==="none"?true:false}
+                        disabled={true}
                     />
                     <label htmlFor={"frequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
@@ -46,14 +46,14 @@ export const FrecuentOptions = () => {
                 </div>
             </div>
             <div>
-                <div className="cp_radio_circle">
+                <div className="frecuent_option">
                     <input
                         type="radio"
                         name={"frequent"}
                         id={"constant"}
                         onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("constant")) ? true : false}
-                        disabled={(opt_filtered.power)==="none"?true:false}
+                        disabled={true}
                     />
                     <label htmlFor={"constant"} className={`cp_none ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>

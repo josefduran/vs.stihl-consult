@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { tags } from "../data";
 import { addProductToCar } from "../redux/actions/actionCar";
 import { filterSelected } from "../redux/actions/actionFilter";
+
 
 
 export const useFiltered = () => {
@@ -24,10 +26,11 @@ export const useFiltered = () => {
 
         const filter = JSON.parse(sessionStorage.getItem("filter")) || "";
 
+
         const newData = {
             power: filter.power,
             frequent: filter.frequent,
-            vegetation: filter.vegetation,
+            vegetation: [],
         }
         setValue({
             ...newData,
@@ -37,9 +40,14 @@ export const useFiltered = () => {
     };
 
     useEffect(() => {
+        const tagsList = [];
+
+        tags[value.power].forEach(tag => {
+            if (!tag.includes("Property") && !tag.includes("usage")) tagsList.push(tag)
+        });
 
         sessionStorage.setItem("filter", JSON.stringify(value))
-        dispatch(filterSelected(value.power, value.frequent, value.vegetation));
+        dispatch(filterSelected(value.power, value.frequent, tagsList));
 
     }, [value, dispatch])
 
