@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { img_paths } from '../data/img';
 import { usePlaceAutocomplete } from '../hook/usePlaceAutocomplete';
 import { locationSelected } from '../redux/actions/actionLocation';
 
-const placeHolder = 'https://i.ibb.co/vD2F9GC/placeholder.png'
-const logo = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png';
+const { logo, marcador_option } = img_paths
 
 export const FormLocation = () => {
 
@@ -44,7 +44,7 @@ export const FormLocation = () => {
 
             <div className="sp_form">
                 <div className="sp_container_input">
-                    <img src={placeHolder} alt="placeholder.png" />
+                    <img src={marcador_option} alt="placeholder.png" />
 
                     <input
                         autoFocus

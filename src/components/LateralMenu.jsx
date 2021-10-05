@@ -2,11 +2,12 @@ import { Modal } from './Modal';
 import { changeStateModal } from '../redux/actions/actionCar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useBackFilter } from '../hook/useBackFilter';
+import { img_paths } from '../data/img';
 
-const house = "https://i.ibb.co/zQP9kqy/house.png"
-const arrow = "https://i.ibb.co/T2ws4YV/arrows.png"
-const lupa = "https://i.ibb.co/MkVR51R/lupa.png"
-const card = "https://i.ibb.co/D84rLpW/card.png"
+const { house, arrow, card, lupa }=img_paths
+
+
+
 
 export const LateralMenu = () => {
 

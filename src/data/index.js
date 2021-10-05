@@ -93,9 +93,20 @@ const none = [
     "Deck",
 ]
 
+
+
+const lessThanOne = [
+    'Medium Property', 'Long fences', 'Patio', 'Long Driveway', 'Medium trees', 'Medium shrubs', 'Medium bushes', 'Moderate usage'
+]
+const moreThanOne = [
+    'Large Property', 'Multiple flower beds', 'Patio', 'Long Driveway', 'Deck', 'Mature trees', 'Mature shrubs', 'Mature bushes', 'Heavy usage'
+]
+const smallYard = [
+    'Small Property', 'Flower beds and Patios', 'Small trees', 'Small shrubs', 'Small bushes', 'Occasional usage '
+]
+
 export const tags = {
-    battery,
-    electric,
-    gas,
-    none
+    lessThanOne,
+    moreThanOne,
+    smallYard
 }

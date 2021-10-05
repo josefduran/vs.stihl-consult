@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { img_paths } from '../data/img';
-import { loadGoogleMapScript } from '../helper/loadGoogleMapScript';
 import { useMapFullScreen } from '../hook/useMapFullScreen';
 import { useRoutebyHome } from '../hook/useRoutebyHome';
 import { changeStateModal } from '../redux/actions/actionCar';
-import { filterSelected } from '../redux/actions/actionFilter';
+import { locationSelected } from '../redux/actions/actionLocation';
 import { Modal } from './Modal';
 
 
@@ -17,8 +16,11 @@ let subtitle = ""
 const { logo, carta, marcador_card_orange, home, home_less, home_small } = img_paths;
 
 export const AsideAddress = () => {
-    const initialState = sessionStorage.getItem('gisacre')
-    const [gisacre, setGisacre] = useState((initialState) ? initialState : '')
+
+    const initialState = sessionStorage.getItem('gisacre');
+    const [gisacre, setGisacre] = useState((initialState) ? initialState : '');
+    const [checkedAcre, setCheckedAcre] = useState("none");
+    
     const dataLocation = useSelector(state => state.location);
     const { modal } = useSelector(state => state.car);
     const dispatch = useDispatch();
@@ -98,10 +100,10 @@ export const AsideAddress = () => {
     };
 
     useEffect(() => {
-
         return () => {
             isMonted.current = false;
             sessionStorage.removeItem('gisacre');
+            dispatch(locationSelected(""));
         }
     }, [])
 
@@ -135,8 +137,8 @@ export const AsideAddress = () => {
                         {
                             (dataLocation.lat || dataLocation.lng)
                                 ? <>
-                                    {/* {mapFullScreen()} */}
-                                    <div id="map" className="aa_map"></div>
+                                    {mapFullScreen()}
+                                    <div className="aa_map"></div>
                                 </>
 
                                 : <>
@@ -160,24 +162,30 @@ export const AsideAddress = () => {
                             : (!gisacre || gisacre === "No results") &&
                             <div className="grid_sizes">
                                 <div>
-                                    <input type="radio" id="small" name="typeSize" className="typeSize_radio" />
-                                    <label htmlFor="small" className="container_typeSize" onClick={() => handleClickGoSearch("small yard", false)} >
+                                    <input type="radio" id="small" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Small")}
+                                        
+                                    />
+                                    <label htmlFor="small" className="container_typeSize" onClick={() => {handleClickGoSearch("small yard", false); setCheckedAcre("Small") }} >
                                         <img className="img_size" src={home_small} alt={home_small} />
                                         <p>small yard</p>
                                     </label>
                                 </div>
 
                                 <div>
-                                    <input type="radio" id="less" name="typeSize" className="typeSize_radio" />
-                                    <label htmlFor="less" className="container_typeSize" onClick={() => handleClickGoSearch("-1 acre", false)} >
+                                    <input type="radio" id="less" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Medium")}
+                                    
+                                    />
+                                    <label htmlFor="less" className="container_typeSize" onClick={() => {handleClickGoSearch("-1 acre", false); setCheckedAcre("Medium") }} >
                                         <img className="img_size" src={home_less} alt={home_less} />
                                         <p>-1 acre</p>
                                     </label>
                                 </div>
 
                                 <div>
-                                    <input type="radio" id="home" name="typeSize" className="typeSize_radio" />
-                                    <label htmlFor="home" className="container_typeSize" onClick={() => handleClickGoSearch("+1 acre", false)} >
+                                    <input type="radio" id="home" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Large")} 
+                                    
+                                    />
+                                    <label htmlFor="home" className="container_typeSize" onClick={() => {handleClickGoSearch("+1 acre", false); setCheckedAcre("Large") }} >
                                         <img className="img_size" src={home} alt={home} />
                                         <p>+1 acre</p>
                                     </label>

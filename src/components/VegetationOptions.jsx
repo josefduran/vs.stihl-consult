@@ -10,33 +10,41 @@ import { filterSelected } from "../redux/actions/actionFilter";
 
 export const VegetationOptions = () => {
 
-    const { opt_filtered } = useFiltered();
+    const { opt_filtered, getTags } = useFiltered();
     const dispatch = useDispatch();
 
     const [tagsState, setTagsState] = useState([])
 
-    let typePower = opt_filtered.power;
-    // tags[typePower].length = 12;
+    let typeSize = opt_filtered.frequent;
+    
     useEffect(() => {
+        if(opt_filtered.power !== 'none'){
 
-        setTagsState([])
-
-        tags[typePower].forEach(tag => {
-            if (!tag.includes("Property") && !tag.includes("usage")) {
-                document.querySelector(`#${tag.split(' ').join('-')}`).checked = false;
+            setTagsState([])
+    
+            const tags_selection =  getTags(typeSize)
+    
+            if(tags_selection !== ''){
+                tags_selection.forEach(tag => {
+                    if (!tag.includes("Property") && !tag.includes("usage")) {
+                        document.querySelector(`#${tag.split(' ').join('-')}`).checked = false;
+                    }
+                });
             }
-        });
-
-        const $icons = document.querySelectorAll('.tag_x');
-        $icons.forEach(icon => {
-            if (icon.classList.contains('open')) {
-                icon.classList.remove('open')
-                icon.classList.add('close');
-                icon.textContent = '➖';
+    
+            const $icons = document.querySelectorAll('.tag_x');
+            if($icons){
+                $icons.forEach(icon => {
+                    if (icon.classList.contains('open')) {
+                        icon.classList.remove('open')
+                        icon.classList.add('close');
+                        icon.textContent = '➖';
+                    }
+                });
             }
-        });
+        }
 
-    }, [typePower]);
+    }, [opt_filtered.power]);
 
 
     const onChange = (e) => {
@@ -62,14 +70,9 @@ export const VegetationOptions = () => {
     const removeTagList = (target, isRemove) => {
 
         let tagName = target.id.split('-').join(' ');
-
-        const tagsList = []
-
-        tags[typePower].forEach(tag => {
-            if (!tag.includes("Property") && !tag.includes("usage")) tagsList.push(tag)
-        });
-
+        
         let tagStorage = []
+        const tagsList = getTags(typeSize); //puede ser '
         
         if (!isRemove) {
             let arr = tagsState.filter( tag => tag !== "none");
@@ -81,7 +84,7 @@ export const VegetationOptions = () => {
         } else {
 
             tagStorage = tagsList.filter(tag => tag !== tagName);
-
+            
             if (tagsState.length !== 0) { tagStorage = tagStorage.filter(arr => tagsState.includes(arr)) }
 
             if (tagStorage.length === 0) { tagStorage.push("none") }
@@ -103,6 +106,7 @@ export const VegetationOptions = () => {
     };
 
 
+
     return (
         <>
 
@@ -110,7 +114,7 @@ export const VegetationOptions = () => {
                 <span className="cp_question">How heavy is the vegetation on your property</span>
                 <div className="cp_grid_tags">
                     {
-                        (tags[typePower]) && tags[typePower].map(tag => (
+                        (getTags(typeSize) && opt_filtered.power !== 'none') && getTags(typeSize).map(tag => (
                             (!tag.includes("Property") && !tag.includes("usage")) &&
                             <div key={tag}>
                                 <input

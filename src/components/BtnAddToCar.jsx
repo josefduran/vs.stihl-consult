@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCar } from '../redux/actions/actionCar';
 import {  useEffect, useState } from 'react';
 import { useBackFilter } from '../hook/useBackFilter';
-const carBtn = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116832/carrito_ovdq33.png'
+import { img_paths } from '../data/img';
+
+const { carBtn } = img_paths;
 
 export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
 

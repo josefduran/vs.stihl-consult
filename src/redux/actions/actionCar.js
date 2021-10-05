@@ -12,6 +12,20 @@ export const addProductToCar = (data=[]) => {
     }
 };
 
+export const addProductToTrash = (data=[]) => {
+
+    localStorage.setItem("trash",JSON.stringify(data))
+
+    return {
+        type: type.addToTrash,
+        payload: {
+            trashToAdd: data
+        }
+    }
+};
+
+
+
 export const changeStateModal = (modal=false) => {
 
     return {

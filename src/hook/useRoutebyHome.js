@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { tags } from "../data";
+import { addProductToCar, addProductToTrash } from "../redux/actions/actionCar";
 import { filterSelected } from "../redux/actions/actionFilter";
 import { locationSelected } from "../redux/actions/actionLocation";
 
@@ -22,15 +23,16 @@ export const useRoutebyHome = () => {
         if (option === "search") {
             route = "search"
         } else {
-            if(!address || address === ''){
-                dispatch(locationSelected(option));  
+            if(!address || address === ''){  
+                dispatch(locationSelected(option));
             }    
+
             switch (option) {
                 case "+1 acre":
                     data = {
                         power: option_filter?.power ? option_filter.power : "electric",
                         frequent: "constant",
-                        vegetation: tags[option_filter?.power ? option_filter.power : "electric"],
+                        vegetation: tags["moreThanOne"],
                     }
                     break;
 
@@ -38,7 +40,7 @@ export const useRoutebyHome = () => {
                     data = {
                         power: option_filter?.power ? option_filter.power : "electric",
                         frequent: "frequent",
-                        vegetation: tags[option_filter?.power ? option_filter.power : "electric"],
+                        vegetation: tags["lessThanOne"],
                     }
                     break;
 
@@ -46,7 +48,7 @@ export const useRoutebyHome = () => {
                     data = {
                         power: option_filter?.power ? option_filter.power : "electric",
                         frequent: "infrequent",
-                        vegetation: tags[option_filter?.power ? option_filter.power : "electric"],
+                        vegetation: tags["smallYard"],
                     }
                     break;
 
@@ -54,12 +56,17 @@ export const useRoutebyHome = () => {
                     data = {
                         power: "none",
                         frequent: "",
-                        vegetation: tags["none"],
+                        vegetation: [],
                     };
                     break;
             }
             
             sessionStorage.setItem("filter", JSON.stringify(data))
+            dispatch(addProductToCar([]));
+            dispatch(addProductToTrash([]));
+            localStorage.removeItem('car')
+            localStorage.removeItem('trash')
+
             dispatch(filterSelected(data.power, data.frequent, data.vegetation));
 
         }

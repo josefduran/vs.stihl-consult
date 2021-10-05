@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
+import { img_paths } from '../../data/img';
 
-const startFill = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630704635/star_fill_sfuq9n.png'
-
-const startClean = 'https://i.ibb.co/RyqFHVH/star-clean.png'
+const { startClean, startFill }=img_paths;
 
 export const CounterStart = ({ rating, isCardRigth = true }) => {
     const [starts, setStarts] = useState([])

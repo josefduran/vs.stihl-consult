@@ -196,13 +196,14 @@ input[type="radio"]:checked  ~ .label{
 /* 		 Cards 
 /* =========== = =======================*/
 
-.container_cards{
+/* .container_cards{
     margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 1.5em .5em;
     padding-right: 1.3em;
-}
+} */
+
 .card{
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.137);
     text-transform: uppercase;

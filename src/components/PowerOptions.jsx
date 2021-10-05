@@ -1,7 +1,10 @@
 import { useFiltered } from "../hook/useFiltered"
 import { useSelector } from "react-redux";
+import { img_paths } from "../data/img";
 
-const marcador  = 'https://i.ibb.co/Z2cPdWR/marcador-de-posicion.png'
+const { marcador_option }=img_paths
+
+
 export const PowerOptions = () => {
 
     const { handleChange } = useFiltered();
@@ -24,7 +27,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"gas"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
-                            <img src={marcador} alt="img_path" />
+                            <img src={marcador_option} alt="img_path" />
                             <p className={""}><b>Gas</b> </p>
                         </div>
                     </div>
@@ -40,7 +43,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"battery"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container `}>
-                            <img src={marcador} alt="img_path" />
+                            <img src={marcador_option} alt="img_path" />
                             <p className={""}><b>Battery</b> </p>
                         </div>
                     </div>
@@ -56,7 +59,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"electric"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
-                            <img src={marcador} alt="img_path" />
+                            <img src={marcador_option} alt="img_path" />
                             <p className={""}><b>Electric</b> </p>
                         </div>
                     </div>
@@ -72,7 +75,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"none"} className={`cp_none cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
-                            <img src={marcador} alt="img_path" />
+                            <img src={marcador_option} alt="img_path" />
                             <p className={""}><b>All</b> </p>
                         </div>
                     </div>

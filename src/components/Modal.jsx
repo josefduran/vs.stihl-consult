@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCar, changeStateModal } from "../redux/actions/actionCar";
+import { img_paths } from "../data/img";
+import { addProductToCar, addProductToTrash, changeStateModal } from "../redux/actions/actionCar";
 
 
-const remove = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116779/remove_ekiwtc.png'
-const add = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1632196807/plus_pq8nb5.png'
-const vacio = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116733/vacio_te0n0p.png'
-const close = 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116761/close_el9gjl.png'
+const { remove, add, vacio, close }=img_paths;
+
 
 export const Modal = () => {
 
-    const initialTrash = JSON.parse(sessionStorage.getItem('trash')) || [];
-
+    
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0)
-    const [trashStorage, setTrashStorage] = useState(initialTrash);
-    const { car } = useSelector(state => state.car);
+    // const [trashStorage, setTrashStorage] = useState(initialTrash);
+    const { car, trash: trashStorage } = useSelector(state => state.car);
     const { data: products } = useSelector(state => state.products);
-
+    
     useEffect(() => {
         
-        if (car) {
+        const initialTrash = JSON.parse(localStorage.getItem('trash')) || [];
+        
+        if(initialTrash) dispatch(addProductToTrash(initialTrash))
+
+    }, [trashStorage.length])
+
+    useEffect(() => {
+        if (car.length !== 0) {
             
             let total = 0;
             car.forEach(product => {
                 total = product.prices[0].amount + total
             });
+            
             setTotalAmount(total.toFixed(2))
         }
     }, [car,trashStorage]);
@@ -45,8 +51,9 @@ export const Modal = () => {
         if (trashStorage.length !== 0){ arrFinal= [...trash,...trashStorage] }
         else{ arrFinal = trash }
 
-        setTrashStorage(arrFinal)
-        sessionStorage.setItem('trash', JSON.stringify( arrFinal ))
+        // setTrashStorage(arrFinal)
+        dispatch(addProductToTrash( arrFinal ));
+        localStorage.setItem('trash', JSON.stringify( arrFinal ))
     };
 
     const handleAddItemCar = (pcId, data) => {
@@ -57,9 +64,10 @@ export const Modal = () => {
         dispatch(addProductToCar(newCar));
         
         const newTrashStorage = trashStorage.filter( trash => trash.pcId !== pcId);
-        setTrashStorage(newTrashStorage);
+        // setTrashStorage(newTrashStorage);
+        dispatch(addProductToTrash( newTrashStorage ));
 
-        sessionStorage.setItem('trash', JSON.stringify( newTrashStorage ))
+        localStorage.setItem('trash', JSON.stringify( newTrashStorage ))
     };
 
     const handleBuyProducts = () => {

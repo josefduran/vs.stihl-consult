@@ -10,5 +10,6 @@ export const type = {
     otherOptionsProducts: '[Selected other products whit relation]',
     errorInServer: '[error server no data]',
     addToCar: '[Add product to car]',
+    addToTrash: '[Add product to Trash]',
     changeStateModal: '[Open or close modal]'
 }
