@@ -14,7 +14,7 @@ import { type } from '../redux/types/types'
 import { OtherOptions } from './otherOptions/otherOptions'
 import { addProductToCar, addProductToTrash } from '../redux/actions/actionCar'
 
-let productsRecommended = [], productsOptions = [];
+
 
 
 export const RecommendedProducts = () => {
@@ -84,7 +84,7 @@ export const RecommendedProducts = () => {
                             }
                         })
                         arrFiltered = arrTest
-
+                        
                     } else {
 
                         arrFiltered = newArr.filter(product =>
@@ -92,7 +92,8 @@ export const RecommendedProducts = () => {
                             product.lawnSize === size
                         );
                     }
-
+                    
+                    let productsRecommended = [], productsOptions = [];
 
                     [...new Set(arrFiltered)].forEach(arrCategory => {
                         let words = arrCategory.category.split(" ");
@@ -104,13 +105,20 @@ export const RecommendedProducts = () => {
 
                     })
 
-                    // newArrFiltered = [...new Set([...arrFiltered])];
+                    console.log({arr: [...new Set(arrFiltered)], productsOptions, productsRecommended})
 
                     newArrFiltered = [...productsRecommended];
                 }
 
                 setCards(newArrFiltered);
+
+                if(option_filter.power !== 'none'){
+            
+                    dispatch(addProductToCar(newArrFiltered))
+                }
+
                 dispatch(setLoading(type.endLoading))
+
             }, 200);
 
         } else {
@@ -144,14 +152,6 @@ export const RecommendedProducts = () => {
 
 
     }, [products, option_filter])
-
-    useEffect(() => {
-        if (cards.length !== 0) {
-            if (car.length === 0 && option_filter.power !== "none") {
-                dispatch(addProductToCar(cards))
-            }
-        }
-    }, [cards])
 
     useEffect(() => {
 
