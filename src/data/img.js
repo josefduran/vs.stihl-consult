@@ -4,7 +4,7 @@ export const img_paths = {
     home_small: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/small-s_g3b68i.png',
     marcador: "https://res.cloudinary.com/ddeguj0jq/image/upload/v1631558096/place_uywov3.png",
     marcador_card_orange: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631573984/marcador-de-posicion_eonhln.png',
-    logo: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1630705467/logo_mrx3fr.png',
+    logo: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1633444184/STIHL_Consult_LOGO_002_cmyk-02_xcv95y.jpg',
     carta: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1632861207/carta_at3cev.png',
     house: "https://res.cloudinary.com/ddeguj0jq/image/upload/v1632860559/house_menu_yjr9wj.png",
     arrow: "https://res.cloudinary.com/ddeguj0jq/image/upload/v1632860559/arrow_menu_tqroxo.png",

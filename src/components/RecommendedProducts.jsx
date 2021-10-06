@@ -14,6 +14,9 @@ import { type } from '../redux/types/types'
 import { OtherOptions } from './otherOptions/otherOptions'
 import { addProductToCar, addProductToTrash } from '../redux/actions/actionCar'
 
+let productsRecommended = [], productsOptions=[];
+
+
 export const RecommendedProducts = () => {
 
     const dispatch = useDispatch();
@@ -62,20 +65,17 @@ export const RecommendedProducts = () => {
 
                 } else {
 
-
                     let arrFiltered = []
 
                     if (Array.isArray(vegetation) && vegetation?.length !== 0) {
-                        //or
-                        // console.log({vegetation})
+
                         vegetation.forEach(arr => {
                             newArr.forEach(product => {
                                 if (product.tags.includes(arr)) { vegArr.push(product) }
                             });
                         })
 
-                        let arrTest = []
-                        // console.log({vegArr})
+                        let arrTest = [];
 
                         vegArr.forEach(arr => {
 
@@ -83,7 +83,6 @@ export const RecommendedProducts = () => {
                                 arrTest.push(arr)
                             }
                         })
-                        // console.log({arrTest})
                         arrFiltered = arrTest
 
                     } else {
@@ -94,8 +93,22 @@ export const RecommendedProducts = () => {
                         );
                     }
 
-                    newArrFiltered = [...new Set([...arrFiltered])]
+                    
+                    [...new Set(arrFiltered)].forEach( arrCategory =>  {
+                        let words = arrCategory.category.split(" ");
+                        let keyword = words.length === 1 ? words[0] : words[words.length - 1];
+                        
+                        ( productsRecommended.find( product => product.category.includes(keyword) )) 
+                        ? productsOptions.push( arrCategory ) 
+                        : productsRecommended.push(arrCategory);
+                        
+                    })
 
+                    // newArrFiltered = [...new Set([...arrFiltered])];
+                    
+                    console.log({productsRecommended, productsOptions, newArrFiltered:[...new Set(arrFiltered)] });
+                    
+                    newArrFiltered = [...productsRecommended];
                 }
 
                 setCards(newArrFiltered);
@@ -121,9 +134,7 @@ export const RecommendedProducts = () => {
             });
         }
 
-        console.log(option_filter.power)
         if (!(trash.length !== 0) && option_filter.power !== 'none') {
-            console.log('se llena el trash')
             dispatch(addProductToTrash(powerNone));
             setCardsNone(powerNone);
 
