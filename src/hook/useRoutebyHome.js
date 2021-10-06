@@ -25,6 +25,8 @@ export const useRoutebyHome = () => {
         } else {
             if(!address || address === ''){  
                 dispatch(locationSelected(option));
+            }else{
+                sessionStorage.setItem('typeSizeAside', JSON.stringify(option))
             }    
 
             switch (option) {

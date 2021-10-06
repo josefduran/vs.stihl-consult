@@ -13,15 +13,16 @@ let location = "";
 let img_card = "";
 let subtitle = ""
 
-const { logo, carta, marcador_card_orange, home, home_less, home_small } = img_paths;
+const { logo, carta, marcador_card_orange, home, home_less, home_small, arrow } = img_paths;
 
 export const AsideAddress = () => {
 
     const initialState = sessionStorage.getItem('gisacre');
     const [gisacre, setGisacre] = useState((initialState) ? initialState : '');
     const [checkedAcre, setCheckedAcre] = useState("none");
-    
+
     const dataLocation = useSelector(state => state.location);
+    const option_filter = useSelector(state => state.filter);
     const { modal } = useSelector(state => state.car);
     const dispatch = useDispatch();
 
@@ -63,13 +64,11 @@ export const AsideAddress = () => {
                 console.log('ejecucion de la api')
                 const response = await fetch(url);
                 const dataResponse = await response.json();
-                console.log(dataResponse)
                 if (dataResponse.status === "error") {
                     sessionStorage.setItem('gisacre', "No results");
                     setGisacre(dataResponse.message)
                 } else {
                     if (dataResponse.results[0]?.properties?.fields?.ll_gisacre) {
-                        console.log('si hay acre')
                         const gisacreValue = dataResponse.results[0].properties.fields.ll_gisacre;
                         sessionStorage.setItem('gisacre', gisacreValue);
                         setGisacre(gisacreValue);
@@ -79,6 +78,7 @@ export const AsideAddress = () => {
                     } else {
                         sessionStorage.setItem('gisacre', "No results");
                         setGisacre("No results")
+                        evalueteQuiantityAcres("No results")
                     }
                 }
 
@@ -91,6 +91,20 @@ export const AsideAddress = () => {
         }
 
     }, [])
+    
+    useEffect(() => {
+       
+        if(option_filter.frequent){
+
+            switch (option_filter.frequent) {
+                case 'infrequent': setCheckedAcre("Small"); break;
+                case 'frequent': setCheckedAcre("Medium"); break;
+                case 'constant': setCheckedAcre("Large"); break;
+                default:break;
+            }
+        }
+
+    }, [])
 
     const evalueteQuiantityAcres = (acres) => {
         if (acres >= 1) handleClickGoSearch("+1 acre", false)
@@ -99,10 +113,12 @@ export const AsideAddress = () => {
         else if (acres === "No results") handleClickGoSearch("none", false);
     };
 
+   
+
     useEffect(() => {
         return () => {
             isMonted.current = false;
-            sessionStorage.removeItem('gisacre');
+            // sessionStorage.removeItem('gisacre');
         }
     }, [])
 
@@ -153,7 +169,7 @@ export const AsideAddress = () => {
                             ?
                             <>
                                 <p className="aa_parrafo">Want more specific information related to your property? Use our address finder to get more in-depth recommendations.</p>
-                                <Link to="/search" className="aa_btn_search" onClick={() => {sessionStorage.removeItem('full'); dispatch(locationSelected(""))}}>
+                                <Link to="/search" className="aa_btn_search" onClick={() => { sessionStorage.removeItem('full'); dispatch(locationSelected("")) }}>
                                     <img src={marcador_card_orange} alt={marcador_card_orange} />
                                     <p>Find my property</p>
                                 </Link>
@@ -161,30 +177,30 @@ export const AsideAddress = () => {
                             : (!gisacre || gisacre === "No results") &&
                             <div className="grid_sizes">
                                 <div>
-                                    <input type="radio" id="small" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Small")}
-                                        
+                                    <input type="radio" id="small" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Small")}
+
                                     />
-                                    <label htmlFor="small" className="container_typeSize" onClick={() => {handleClickGoSearch("small yard", false); setCheckedAcre("Small") }} >
+                                    <label htmlFor="small" className="container_typeSize" onClick={() => { handleClickGoSearch("small yard", false); setCheckedAcre("Small") }} >
                                         <img className="img_size" src={home_small} alt={home_small} />
                                         <p>small yard</p>
                                     </label>
                                 </div>
 
                                 <div>
-                                    <input type="radio" id="less" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Medium")}
-                                    
+                                    <input type="radio" id="less" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Medium")}
+
                                     />
-                                    <label htmlFor="less" className="container_typeSize" onClick={() => {handleClickGoSearch("-1 acre", false); setCheckedAcre("Medium") }} >
+                                    <label htmlFor="less" className="container_typeSize" onClick={() => { handleClickGoSearch("-1 acre", false); setCheckedAcre("Medium") }} >
                                         <img className="img_size" src={home_less} alt={home_less} />
                                         <p>-1 acre</p>
                                     </label>
                                 </div>
 
                                 <div>
-                                    <input type="radio" id="home" name="typeSize" className="typeSize_radio" defaultChecked={(checkedAcre === "Large")} 
-                                    
+                                    <input type="radio" id="home" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Large")}
+
                                     />
-                                    <label htmlFor="home" className="container_typeSize" onClick={() => {handleClickGoSearch("+1 acre", false); setCheckedAcre("Large") }} >
+                                    <label htmlFor="home" className="container_typeSize" onClick={() => { handleClickGoSearch("+1 acre", false); setCheckedAcre("Large") }} >
                                         <img className="img_size" src={home} alt={home} />
                                         <p>+1 acre</p>
                                     </label>

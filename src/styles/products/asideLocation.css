@@ -57,7 +57,7 @@
   min-height: 240px;
 }
 .full-screen{
-  content: "Your address";
+  
   text-align: center;
   font-size: 2em;
   font-weight: bold;
@@ -66,26 +66,46 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.875);
   z-index: 1;
+
+  display: grid;
+  grid-template-rows: 90vh 10vh;
+  max-height: 100vh;
+
 }
+
 .map-full{
-  width: 95vw;
-  height: 85vh;
-  border-radius: 4px;
+  width: 100vw;
+  /* height: 85vh; */
+  /* border-radius: 4px; */
   background-color: white;
-  margin: .5em auto;
+  /* margin: .5em auto; */
 }
 .close_map{
-  color: red;
+  border: none;
+  background-color: var(--primary);
+  color:white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: .25em 0;
   font-weight: bold;
   font-size: 1em;
-  position: absolute;
-  top: 0%;
-  right: 1%;
-  cursor: pointer;
-  z-index: 2;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+}
+.close_map > img{
+  width: 3%;
+  transform: rotate(-90deg);
+}
+.close_map:active{
+  filter: grayscale(.3);
 }
 
 .py{

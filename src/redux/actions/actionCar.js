@@ -1,7 +1,7 @@
 import { type } from "../types/types";
 
 export const addProductToCar = (data=[]) => {
-
+    
     localStorage.setItem("car",JSON.stringify(data))
 
     return {
@@ -13,7 +13,7 @@ export const addProductToCar = (data=[]) => {
 };
 
 export const addProductToTrash = (data=[]) => {
-
+    
     localStorage.setItem("trash",JSON.stringify(data))
 
     return {

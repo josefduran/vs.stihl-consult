@@ -1,7 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
+import { img_paths } from '../data/img';
 import { loadGoogleMapScript } from "../helper/loadGoogleMapScript";
+
+const { arrow } = img_paths
 
 export const useMapFullScreen = () => {
     const fullScreen = sessionStorage.getItem('full');
@@ -42,7 +45,7 @@ export const useMapFullScreen = () => {
                             tilt: 45,
                             disableDefaultUI: true,
                             mapTypeControl: false,
-                            zoomControl: false
+                            zoomControl: isFullScreen
                         });
                     }
 
@@ -54,34 +57,6 @@ export const useMapFullScreen = () => {
 
     }, [dataLocation, isFullScreen]);
 
-    // useEffect(() => {
-
-    //     if (isFullScreen) {
-    //         setTimeout(() => {
-
-    //             sessionStorage.setItem('full', "false");
-
-    //             const $fullScreen = document.querySelector('.full-screen');
-    //             const $mapFull = document.querySelector('.map-full');
-
-    //             if ($fullScreen) {
-    //                 $fullScreen.classList.add('animate__slideOutLeft');
-    //                 $mapFull.classList.remove('animate__zoomIn')
-    //                 setTimeout(() => {
-    //                     $fullScreen.style.display = "none";
-    //                     $fullScreen.classList.remove('animate__slideOutLeft');
-    //                     setIsFullScreen(false);
-    //                 }, 4000);
-    //             }
-
-
-    //         }, 3000);
-    //     }
-
-    //     return () => {
-    //         setIsFullScreen(false);
-    //     }
-    // }, []);
 
 
     const handleCloseMap = () => {
@@ -99,10 +74,13 @@ export const useMapFullScreen = () => {
     const mapFullScreen = () => {
 
         return (isFullScreen) &&
+
             <div className='full-screen animate__animated'>
-                <span className="close_map" onClick={handleCloseMap}>X</span>
-                <span>Your address</span>
                 <div id="map" className='map-full animate__animated animate__zoomIn'></div>
+                <button className="close_map" onClick={handleCloseMap}>
+                    <span onClick={handleCloseMap}>continue</span>
+                    <img src={arrow} alt={arrow} onClick={handleCloseMap} />
+                </button>
             </div>
     }
 

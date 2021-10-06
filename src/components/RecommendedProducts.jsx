@@ -14,7 +14,7 @@ import { type } from '../redux/types/types'
 import { OtherOptions } from './otherOptions/otherOptions'
 import { addProductToCar, addProductToTrash } from '../redux/actions/actionCar'
 
-let productsRecommended = [], productsOptions=[];
+let productsRecommended = [], productsOptions = [];
 
 
 export const RecommendedProducts = () => {
@@ -62,7 +62,6 @@ export const RecommendedProducts = () => {
                 if (option_filter.power === "none") {
 
                     newArrFiltered = newArr;
-                    
 
                 } else {
 
@@ -94,25 +93,26 @@ export const RecommendedProducts = () => {
                         );
                     }
 
-                    
-                    [...new Set(arrFiltered)].forEach( arrCategory =>  {
+
+                    [...new Set(arrFiltered)].forEach(arrCategory => {
                         let words = arrCategory.category.split(" ");
                         let keyword = words.length === 1 ? words[0] : words[words.length - 1];
-                        
-                        ( productsRecommended.find( product => product.category.includes(keyword) )) 
-                        ? productsOptions.push( arrCategory ) 
-                        : productsRecommended.push(arrCategory);
-                        
+
+                        (productsRecommended.find(product => product.category.includes(keyword)))
+                            ? productsOptions.push(arrCategory)
+                            : productsRecommended.push(arrCategory);
+
                     })
 
                     // newArrFiltered = [...new Set([...arrFiltered])];
-                    
+
                     newArrFiltered = [...productsRecommended];
                 }
 
                 setCards(newArrFiltered);
                 dispatch(setLoading(type.endLoading))
             }, 200);
+
         } else {
 
             const executeMainScript = async () => {
@@ -154,10 +154,10 @@ export const RecommendedProducts = () => {
     }, [cards])
 
     useEffect(() => {
-        
+
         switch (option_filter.frequent) {
-            case "infrequent":setProfile("Backyard Champ") ; break;
-            case "frequent":setProfile("Outdoor Boss") ; break;
+            case "infrequent": setProfile("Backyard Champ"); break;
+            case "frequent": setProfile("Outdoor Boss"); break;
             case "constant": setProfile("Property Master"); break;
         }
 
@@ -184,9 +184,10 @@ export const RecommendedProducts = () => {
                                 {
                                     (loading)
                                         ? <Loader />
-                                        : (car.length === 0)
+                                        : (car.length === 0 && option_filter.power !== "none")
                                             ? <b className="no_products">No products, select another filter</b>
-                                            : <>
+                                            : (option_filter.power !== "none") 
+                                                ?
                                                 <div className="container_cards">
                                                     {
                                                         car.map((product, index) => (
@@ -194,7 +195,15 @@ export const RecommendedProducts = () => {
                                                         ))
                                                     }
                                                 </div>
-                                            </>
+                                                :
+                                                <div className="container_cards">
+                                                    {
+                                                        cards.map((product, index) => (
+                                                            (product?.power) && <Card key={index} productOnly={product} />
+                                                        ))
+                                                    }
+                                                </div>
+
                                 }
                                 {
                                     // (cardsNone.length !== 0)
