@@ -37,10 +37,13 @@ export const HomePage = () => {
 
     return (
         <div className="hp_background">
-            <label className="hp_label">NEW!</label>
+            {/* <label className="hp_label">NEW!</label> */}
+            <div className="hp_img_container">
+                <img src={logo} alt={logo} />
+            </div>
             <div className="hp_container_text">
-                <h1 className="hp_title">Build your lawn care bundle</h1>
-                <p className="hp_subtitle">Use our simple tool to find the perfect set of yard tools for your yard</p>
+                <h1 className="hp_title">Build Your Ultimate Lawn Care Kit</h1>
+                <p className="hp_subtitle">Get started to customize the perfect set of tools for your yard</p>
             </div>
 
             <div className="hp_container_cards">

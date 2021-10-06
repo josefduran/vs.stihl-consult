@@ -97,18 +97,19 @@ input[type="radio"]:checked ~ .cp_label_circle {
   /* background-color: rgba(48, 46, 49, 0.219); */
   align-items: center;
   flex-wrap: wrap;
-  gap: .2em;
+  gap: .5em .2em;
   width:80%;
   margin: auto;
   /* min-height: 95px; */
 }
 .tag_cp_label{
   text-transform: none;
-  font-size: .8em;
+  font-size: 1em;
+  /* font-weight: bold; */
   margin-left: .5em;
   cursor: pointer;
   border-radius: 5px;
-  padding: .2em .5em;
+  padding: .4em .5em;
   background-color: var(--primary);
   color:white;
 

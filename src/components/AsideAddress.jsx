@@ -103,7 +103,6 @@ export const AsideAddress = () => {
         return () => {
             isMonted.current = false;
             sessionStorage.removeItem('gisacre');
-            dispatch(locationSelected(""));
         }
     }, [])
 
@@ -154,7 +153,7 @@ export const AsideAddress = () => {
                             ?
                             <>
                                 <p className="aa_parrafo">Want more specific information related to your property? Use our address finder to get more in-depth recommendations.</p>
-                                <Link to="/search" className="aa_btn_search" onClick={() => sessionStorage.removeItem('full')}>
+                                <Link to="/search" className="aa_btn_search" onClick={() => {sessionStorage.removeItem('full'); dispatch(locationSelected(""))}}>
                                     <img src={marcador_card_orange} alt={marcador_card_orange} />
                                     <p>Find my property</p>
                                 </Link>

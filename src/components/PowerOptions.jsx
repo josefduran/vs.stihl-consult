@@ -12,7 +12,7 @@ export const PowerOptions = () => {
 
     return (
         <div className="rp_container_item_radio" >
-                <span className="cp_question">What is your preference for power</span>
+                <span className="cp_question">What is your power preference?</span>
                 <div className="cp_grid_power">
                 <div className="line_point_large"></div>
                     <div>

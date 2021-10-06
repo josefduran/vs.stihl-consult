@@ -57,7 +57,7 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
                 disabled={(disabledBtn)? true: false}
             >
                 {
-                    (disabledBtn) ? 'Added to cart': 'Add to cart'
+                    (disabledBtn) ? 'Added to Kit': 'Add to Kit'
                 }
                 <img src={carBtn} alt={carBtn} />
             </button>

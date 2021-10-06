@@ -4,37 +4,37 @@ import { img_paths } from "../data/img";
 import { addProductToCar, addProductToTrash, changeStateModal } from "../redux/actions/actionCar";
 
 
-const { remove, add, vacio, close }=img_paths;
+const { remove, add, vacio, close, carta } = img_paths;
 
 
 export const Modal = () => {
 
-    
+
     const dispatch = useDispatch();
     const [totalAmount, setTotalAmount] = useState(0)
     // const [trashStorage, setTrashStorage] = useState(initialTrash);
     const { car, trash: trashStorage } = useSelector(state => state.car);
     const { data: products } = useSelector(state => state.products);
-    
+
     useEffect(() => {
-        
+
         const initialTrash = JSON.parse(localStorage.getItem('trash')) || [];
-        
-        if(initialTrash) dispatch(addProductToTrash(initialTrash))
+
+        if (initialTrash) dispatch(addProductToTrash(initialTrash))
 
     }, [trashStorage.length])
 
     useEffect(() => {
         if (car.length !== 0) {
-            
+
             let total = 0;
             car.forEach(product => {
                 total = product.prices[0].amount + total
             });
-            
+
             setTotalAmount(total.toFixed(2))
         }
-    }, [car,trashStorage]);
+    }, [car, trashStorage]);
 
     const handleDeleteItemCar = (pcId) => {
         let newCar = []
@@ -48,29 +48,30 @@ export const Modal = () => {
         dispatch(addProductToCar(newCar));
 
         let arrFinal = []
-        if (trashStorage.length !== 0){ arrFinal= [...trash,...trashStorage] }
-        else{ arrFinal = trash }
+        if (trashStorage.length !== 0) { arrFinal = [...trash, ...trashStorage] }
+        else { arrFinal = trash }
 
         // setTrashStorage(arrFinal)
-        dispatch(addProductToTrash( arrFinal ));
-        localStorage.setItem('trash', JSON.stringify( arrFinal ))
+        dispatch(addProductToTrash(arrFinal));
+        localStorage.setItem('trash', JSON.stringify(arrFinal))
     };
 
     const handleAddItemCar = (pcId, data) => {
 
-        let item = data.filter( product => product.pcId === pcId );
+        let item = data.filter(product => product.pcId === pcId);
         let newCar = (car) ? car : [];
         newCar.unshift(...item);
         dispatch(addProductToCar(newCar));
-        
-        const newTrashStorage = trashStorage.filter( trash => trash.pcId !== pcId);
-        // setTrashStorage(newTrashStorage);
-        dispatch(addProductToTrash( newTrashStorage ));
 
-        localStorage.setItem('trash', JSON.stringify( newTrashStorage ))
+        const newTrashStorage = trashStorage.filter(trash => trash.pcId !== pcId);
+        // setTrashStorage(newTrashStorage);
+        dispatch(addProductToTrash(newTrashStorage));
+
+        localStorage.setItem('trash', JSON.stringify(newTrashStorage))
     };
 
-    const handleBuyProducts = () => {
+    const handleBuyProducts = (e) => {
+        e.preventDefault();
         if (window.navigator.onLine) {
             if (totalAmount === 0) alert('Selecciona productos para comprar')
             else alert(`Total a pagar ${totalAmount}`)
@@ -82,11 +83,11 @@ export const Modal = () => {
     return (
         <>
             <div className="overlay">
-                <div className={`container_modal ${ (trashStorage.length === 0 ) && 'container_modal_three' }`}>
+                <div className={`container_modal ${(trashStorage.length === 0) && 'container_modal_three'}`}>
                     <img className="close_modal_btn" src={close} alt={close} onClick={() => dispatch(changeStateModal())} />
-                    <h2 className="title_car">Shopping cart</h2>
+                    <h2 className="title_car">Lawn Care Kit Summary</h2>
 
-                    <div className={`container_items_car ${ (trashStorage.length === 0 ) && 'container_items_car_full' } `}>
+                    <div className={`container_items_car ${(trashStorage.length === 0) && 'container_items_car_full'} `}>
                         {
                             (Number(totalAmount) === 0.00)
                                 ?
@@ -106,8 +107,8 @@ export const Modal = () => {
                         }
                     </div>
 
-                    <div className={` ${ (trashStorage.length === 0 ) && 'hidden' } `}>
-                        <p>Products recently removed from cart 🗑️</p>
+                    <div className={` ${(trashStorage.length === 0) && 'hidden'} `}>
+                        <p>Products recently removed from kit 🗑️</p>
                         <div className="container_trash">
                             {
                                 (trashStorage.length !== 0) && trashStorage.map((item, index) => (
@@ -124,12 +125,20 @@ export const Modal = () => {
                     </div>
 
                     <div className="container_btn_card">
-                        <p className="amount_total">Total price: <b>$ {totalAmount}</b></p>
-                        <button
-                            className="btn_buy"
-                            onClick={handleBuyProducts}
-                            disabled={(Number(totalAmount) === 0.00) ? true : false}
-                        >Pay now</button>
+                        <form onSubmit={handleBuyProducts} className="form_email_modal">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">Insert Your email:</label>
+                                <input type="email" id="email_send" placeholder="example@example.com" required />
+                            </div>
+
+                            <button
+                                className="btn_buy"
+                                disabled={(Number(totalAmount) === 0.00) ? true : false}
+                            >
+                                <span>Email Me</span>
+                                <img src={carta} alt={carta} />
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

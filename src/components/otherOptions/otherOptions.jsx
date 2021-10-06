@@ -23,7 +23,7 @@ export const OtherOptions = () => {
                     (!isProductSelected)
                     && <h2 
                     className={`title_otheroptions ${ (!isProductSelected) && 'mt-title'}`}
-                >Other options: <u>({category.split(" ").join(" - ")})</u></h2>
+                >Other options: <u>{category}</u></h2>
                 
                 }
 

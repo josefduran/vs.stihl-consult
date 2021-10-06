@@ -7,7 +7,7 @@ export const FrecuentOptions = () => {
 
     return (
         <div className="rp_container_item_radio" >
-        <span className="cp_question">How frequent do you plan  on working on your lawn</span>
+        <span className="cp_question">How often do you tend to your lawn?</span>
         <div className="cp_grid">
         <div className="line_point_large_three"></div>
             <div> 
@@ -24,7 +24,7 @@ export const FrecuentOptions = () => {
                     
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
-                    <p><b>infrequent</b> </p>
+                    <p><b>Occasional </b> </p>
                     <p className="cp_subtitle">once or Twice/month</p>
                 </div>
             </div>
@@ -41,7 +41,7 @@ export const FrecuentOptions = () => {
                     <label htmlFor={"frequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
-                    <p className={""}><b>frequent</b> </p>
+                    <p className={""}><b>Moderate </b> </p>
                     <p className="cp_subtitle">weekly</p>
                 </div>
             </div>
@@ -58,8 +58,8 @@ export const FrecuentOptions = () => {
                     <label htmlFor={"constant"} className={`cp_none ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
                 <div className={`cp_icon_item_container cp_column`}>
-                    <p className={""}><b>constant</b> </p>
-                    <p className="cp_subtitle">daily</p>
+                    <p className={""}><b>Heavy</b> </p>
+                    <p className="cp_subtitle">almost daily</p>
                 </div>
             </div>
         </div>

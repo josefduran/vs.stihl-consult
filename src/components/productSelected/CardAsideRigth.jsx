@@ -29,7 +29,7 @@ export const CardAsideRigth = ({ productSelected }) => {
                     <CounterStart isCardRigth={false} rating={(ratings) ? ratings.rating : 0} />
                 </div>
 
-                <p className="desc_other_product"><b>{category.split(" ").join(" - ")}</b></p>
+                <p className="desc_other_product"><b>{category}</b></p>
                 <p className="desc_other_product">{shortDescription}</p>
                 <p className="price_other_product"> <b>${prices[0].amount}</b></p>
 

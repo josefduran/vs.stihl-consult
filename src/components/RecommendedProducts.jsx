@@ -22,7 +22,8 @@ export const RecommendedProducts = () => {
     const dispatch = useDispatch();
 
     const [cards, setCards] = useState([]);
-    const [cardsNone, setCardsNone] = useState([])
+    // const [cardsNone, setCardsNone] = useState([]);
+    const [profile, setProfile] = useState("You're an outdoor boss")
 
     const { data: products, loading, error, otherOptions } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
@@ -106,8 +107,6 @@ export const RecommendedProducts = () => {
 
                     // newArrFiltered = [...new Set([...arrFiltered])];
                     
-                    console.log({productsRecommended, productsOptions, newArrFiltered:[...new Set(arrFiltered)] });
-                    
                     newArrFiltered = [...productsRecommended];
                 }
 
@@ -136,11 +135,11 @@ export const RecommendedProducts = () => {
 
         if (!(trash.length !== 0) && option_filter.power !== 'none') {
             dispatch(addProductToTrash(powerNone));
-            setCardsNone(powerNone);
+            // setCardsNone(powerNone);
 
         } else if (option_filter.power === 'none') {
             dispatch(addProductToTrash([]));
-            setCardsNone([]);
+            // setCardsNone([]);
         }
 
 
@@ -154,7 +153,15 @@ export const RecommendedProducts = () => {
         }
     }, [cards])
 
+    useEffect(() => {
+        
+        switch (option_filter.frequent) {
+            case "infrequent":setProfile("Backyard Champ") ; break;
+            case "frequent":setProfile("Outdoor Boss") ; break;
+            case "constant": setProfile("Property Master"); break;
+        }
 
+    }, [option_filter.frequent])
 
     return (
         <div className="rp_container">
@@ -165,7 +172,7 @@ export const RecommendedProducts = () => {
                     : (otherOptions?.length !== 0)
                         ? <OtherOptions />
                         : <>
-                            <h2 className="rp_subtitle">You're an outdoor boss</h2>
+                            <h2 className="rp_subtitle">YOU'RE AN {profile}</h2>
 
                             <div className="">
                                 <PowerOptions />
@@ -177,12 +184,12 @@ export const RecommendedProducts = () => {
                                 {
                                     (loading)
                                         ? <Loader />
-                                        : (cards.length === 0)
+                                        : (car.length === 0)
                                             ? <b className="no_products">No products, select another filter</b>
                                             : <>
                                                 <div className="container_cards">
                                                     {
-                                                        cards.map((product, index) => (
+                                                        car.map((product, index) => (
                                                             (product?.power) && <Card key={index} productOnly={product} />
                                                         ))
                                                     }
@@ -190,16 +197,20 @@ export const RecommendedProducts = () => {
                                             </>
                                 }
                                 {
-                                    (cardsNone.length !== 0)
+                                    // (cardsNone.length !== 0)
+                                    (trash.length !== 0)
                                     &&
                                     <>
                                         <div className="container_saparator">
-                                            <b className="rp_subtitle_separator">Other options</b>
+                                            <b className="rp_subtitle_separator">Other Suggested Products</b>
                                             <hr />
                                         </div>
                                         <div className="container_cards">
                                             {
-                                                cardsNone.map((product, index) => (
+                                                // cardsNone.map((product, index) => (
+                                                //     (product?.power) && <Card key={index} productOnly={product} />
+                                                // ))
+                                                trash.map((product, index) => (
                                                     (product?.power) && <Card key={index} productOnly={product} />
                                                 ))
                                             }

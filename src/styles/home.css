@@ -13,20 +13,11 @@
   background-color: var(--primary);
   color: white;
 }
-.hp_label {
-  display: block;
-  font-size: 1.5em;
-  margin: 1em auto;
-  padding: 0.3em 0;
-  text-align: center;
-  width: 9%;
-  letter-spacing: 2px;
-}
 
 .hp_title {
   color: white;
-  text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.493);
-  font-size: 4.5em;
+  text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.83);
+  font-size: 4em;
   font-family: 'STIHL';
   font-weight: bold;
   text-align: center;
@@ -35,9 +26,9 @@
 }
 .hp_subtitle {
   color: white;
-  text-shadow: 7px 1px 5px rgba(0, 0, 0, 0.671);
+  text-shadow: 6px 1px 4px rgba(0, 0, 0, .83);
   font-size: 2em;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
   margin: 0.5em auto auto auto;
   text-align: center;
   text-transform: uppercase;
@@ -100,6 +91,14 @@
 .hp_logo>img{
   width: 100%;
   vertical-align: top;
+}
+.hp_img_container{
+  margin: 1em auto;
+  text-align: center;
+  width: 9%;
+}
+.hp_img_container > img{
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

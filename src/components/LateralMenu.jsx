@@ -7,8 +7,6 @@ import { img_paths } from '../data/img';
 const { house, arrow, card, lupa }=img_paths
 
 
-
-
 export const LateralMenu = () => {
 
     const { modal } = useSelector(state => state.car);

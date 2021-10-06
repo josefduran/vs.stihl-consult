@@ -30,22 +30,20 @@ export const Card = ({ productOnly }) => {
             (element?.power && element.pcId !== pcId) && newArr.push(element)
         });
 
-        const arrCategroyWords = category.split(" ");
         sessionStorage.setItem("category", category);
-        let othersProducts = [];
 
-        arrCategroyWords.forEach(word => {
-            newArr.forEach(element => {
+        let othersProducts = []
 
-                let arrWords = element.category.split(" ");
+        newArr.forEach( arr => {
+            let words = category.split(" ");
+            let keyword = words.length === 1 ? words[0] : words[words.length - 1];
+            if(arr.pcId !== pcId){
+                if( arr.category.includes(keyword) ){
+                    othersProducts.push(arr)
+                }
+            }
+        })
 
-                arrWords.forEach(e => {
-                    if (e === word) othersProducts.push(element);
-                })
-
-            });
-
-        });
 
         if (othersProducts.length !== 0) {
             document.querySelector('.rp_container').scrollTop = 0;
@@ -57,7 +55,7 @@ export const Card = ({ productOnly }) => {
     };
 
     useEffect(() => {
-        
+
         if (car) {
             car.forEach(element => {
                 if (element.pcId === pcId) {
@@ -66,7 +64,7 @@ export const Card = ({ productOnly }) => {
             });
         }
 
-        if(trash){
+        if (trash) {
             trash.forEach(element => {
                 if (element.pcId === pcId) {
                     setIconType(false)
@@ -77,29 +75,29 @@ export const Card = ({ productOnly }) => {
     }, [car.length, trash.length]);
 
     const handleActionToCart = () => {
-        
+
         if (iconType) {
-            
+
             let productsCart = [];
             let productsTrash = [];
             //remover del carrito y ponerlo en el trash ( quitar la X y poner la Y );
             productsTrash = car.filter(product => product.pcId === pcId);
             productsCart = car.filter(product => product.pcId !== pcId);
-
-            dispatch(addProductToTrash( [...productsTrash, ...trash] ))
-            dispatch(addProductToCar( productsCart ));
+            
+            dispatch(addProductToTrash([...productsTrash, ...trash]))
+            dispatch(addProductToCar(productsCart));
 
         } else {
             let productsCart = [];
             let productsTrash = [];
             //agregar al carrito y quitarlo del trash
-            productsCart = trash.filter(product => product.pcId === pcId); 
+            productsCart = trash.filter(product => product.pcId === pcId);
             productsTrash = trash.filter(product => product.pcId !== pcId);
 
-            productsCart = [...productsCart, ...car];
+            productsCart = [...car,...productsCart ];
 
-            dispatch(addProductToCar( productsCart ));
-            dispatch(addProductToTrash( productsTrash ))
+            dispatch(addProductToCar(productsCart));
+            dispatch(addProductToTrash(productsTrash))
         }
 
         setIconType(state => !state);
