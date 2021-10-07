@@ -97,9 +97,9 @@ export const AsideAddress = () => {
         if(option_filter.frequent){
 
             switch (option_filter.frequent) {
-                case 'infrequent': setCheckedAcre("Small"); break;
-                case 'frequent': setCheckedAcre("Medium"); break;
-                case 'constant': setCheckedAcre("Large"); break;
+                case 'infrequent': setCheckedAcre("Small");handleClickGoSearch("small yard", false); break;
+                case 'frequent': setCheckedAcre("Medium");handleClickGoSearch("-1 acre", false); break;
+                case 'constant': setCheckedAcre("Large"); handleClickGoSearch("+1 acre", false); break;
                 default:break;
             }
         }
@@ -110,7 +110,7 @@ export const AsideAddress = () => {
         if (acres >= 1) handleClickGoSearch("+1 acre", false)
         else if (acres <= 0.99 && acres >= 0.34) handleClickGoSearch("-1 acre", false)
         else if (acres <= 0.33 && acres >= 0.01) handleClickGoSearch("small yard", false)
-        else if (acres === "No results") handleClickGoSearch("none", false);
+        else if (acres === "No results") handleClickGoSearch("small yard", false);//handleClickGoSearch("none", false);
     };
 
    
@@ -118,7 +118,7 @@ export const AsideAddress = () => {
     useEffect(() => {
         return () => {
             isMonted.current = false;
-            // sessionStorage.removeItem('gisacre');
+            sessionStorage.removeItem('gisacre');
         }
     }, [])
 

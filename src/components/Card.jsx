@@ -123,7 +123,7 @@ export const Card = ({ productOnly }) => {
 
             <div className="container_btn">
                 <button onClick={handleMoreDetails}>More details</button>
-                <button onClick={handleOtherOptions}>Other options</button>
+                <button onClick={handleOtherOptions}>Other Suggested Products</button>
             </div>
 
         </div>

@@ -43,7 +43,7 @@ export const HomePage = () => {
             </div>
             <div className="hp_container_text">
                 <h1 className="hp_title">Build Your Ultimate Lawn Care Kit</h1>
-                <p className="hp_subtitle">Get started to customize the perfect set of tools for your yard</p>
+                <p className="hp_subtitle">Get started to customize the perfect set of tools for <strong>your</strong> yard</p>
             </div>
 
             <div className="hp_container_cards">
