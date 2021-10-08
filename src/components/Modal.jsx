@@ -168,7 +168,7 @@ export const Modal = () => {
                             className="btn_buy"
                             disabled={(Number(totalAmount) === 0.00) ? true : false}
                         >
-                            <span>mail Me</span>
+                            <span>Email Me</span>
                             <img src={carta} alt={carta} />
                         </button>
                          </form>
