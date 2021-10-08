@@ -15,6 +15,7 @@ export const Modal = () => {
     // const [trashStorage, setTrashStorage] = useState(initialTrash);
     const { car, trash: trashStorage } = useSelector(state => state.car);
     const { data: products } = useSelector(state => state.products);
+    const [checked, setchecked] = useState(true)
 
     useEffect(() => {
 
@@ -72,12 +73,13 @@ export const Modal = () => {
 
     const handleBuyProducts = (e) => {
         e.preventDefault();
-        if (window.navigator.onLine) {
-            if (totalAmount === 0) alert('Selecciona productos para comprar')
-            else alert(`Total a pagar ${totalAmount}`)
-        } else {
-            alert("Internet is required to make this purchase")
-        }
+        setchecked(false);
+        // if (window.navigator.onLine) {
+        //     if (totalAmount === 0) alert('Selecciona productos para comprar')
+        //     else alert(`Total a pagar ${totalAmount}`)
+        // } else {
+        //     alert("Internet is required to make this purchase")
+        // }
     };
 
     return (
@@ -87,7 +89,10 @@ export const Modal = () => {
                     <img className="close_modal_btn" src={close} alt={close} onClick={() => dispatch(changeStateModal())} />
                     <h2 className="title_car">Lawn Care Kit Summary</h2>
 
-                    <div className={`container_items_car ${(trashStorage.length === 0) && 'container_items_car_full'} `}>
+                    <span>
+                    {checked ? (
+                        <span>
+                        <div className={`container_items_car ${(trashStorage.length === 0) && 'container_items_car_full'} `}>
                         {
                             (Number(totalAmount) === 0.00)
                                 ?
@@ -105,9 +110,73 @@ export const Modal = () => {
                                     </div>
                                 ))
                         }
-                    </div>
+                        </div>
+                        
+                            <div className="container_btn_card">
+                            <form onSubmit={handleBuyProducts} className="form_email_modal">
+                                <button
+                                    className="btn_buy"
+                                    disabled={(Number(totalAmount) === 0.00) ? true : false}
+                                >
+                                    <span>Continue</span>
+                                    <img src={carta} alt={carta} />
+                                </button>
+                            </form>
+                        </div>
+                        </span>
+                    ) : (
+                        <span>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">Your email:</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">Street Address</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">City:</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">Zip Code:</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">State:</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <div className="container_btn_card">
+                            <div className="container_input_modal">
+                                <label htmlFor="email_send">Country:</label>
+                                <input type="email" id="email_send" placeholder="" required />
+                            </div>
+                        </div>
+                        <br></br>
+                        <form onSubmit={handleBuyProducts} className="form_email_modal">
+                        <button
+                            className="btn_buy"
+                            disabled={(Number(totalAmount) === 0.00) ? true : false}
+                        >
+                            <span>mail Me</span>
+                            <img src={carta} alt={carta} />
+                        </button>
+                         </form>
+                        </span>
+                    )}
+                    </span>
 
-                    <div className={` ${(trashStorage.length === 0) && 'hidden'} `}>
+                    {/* <div className={` ${(trashStorage.length === 0) && 'hidden'} `}>
                         <p>Products recently removed from kit 🗑️</p>
                         <div className="container_trash">
                             {
@@ -122,24 +191,8 @@ export const Modal = () => {
                                 ))
                             }
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="container_btn_card">
-                        <form onSubmit={handleBuyProducts} className="form_email_modal">
-                            <div className="container_input_modal">
-                                <label htmlFor="email_send">Insert Your email:</label>
-                                <input type="email" id="email_send" placeholder="example@example.com" required />
-                            </div>
-
-                            <button
-                                className="btn_buy"
-                                disabled={(Number(totalAmount) === 0.00) ? true : false}
-                            >
-                                <span>Email Me</span>
-                                <img src={carta} alt={carta} />
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </>

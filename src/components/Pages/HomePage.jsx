@@ -20,9 +20,12 @@ export const HomePage = () => {
     const { mainScript } = useFetchproducts();
 
     useEffect(() => {
+
         dispatch(selectProduct({}))
         localStorage.removeItem("product");
         localStorage.removeItem("optionProducts");
+        localStorage.removeItem("location");
+        localStorage.clear();
 
         const executeMainScript = async () => {
             dispatch(setLoading(type.starLoading));
