@@ -105,7 +105,7 @@ export const AsideAddress = () => {
             }
         }
 
-    }, [])
+    }, [option_filter.frequent])
 
     const evalueteQuiantityAcres = (acres) => {
         if (acres >= 1) handleClickGoSearch("+1 acre", false)
@@ -120,6 +120,20 @@ export const AsideAddress = () => {
             sessionStorage.removeItem('gisacre');
         }
     }, [])
+
+
+    const typeSizeAsidee = () => {
+        let image;
+        let size;
+        switch (option_filter.frequent) {
+            case 'infrequent':  size= 'Small Yard';  image = home_small; break;
+            case 'frequent':  size= 'Medium'; image = home_less; break;
+            case 'constant':  size= 'Large';image = home; break;
+            default: break;
+        }
+
+        return {image, size}
+    };
 
     return (
         <>
@@ -147,17 +161,16 @@ export const AsideAddress = () => {
                     </header>
 
                     <div className={`aa_container_img ${(!dataLocation.lat || !dataLocation.lng) && 'py'}`} >
-
                         {
-                            (dataLocation.lat || dataLocation.lng)
+                            (!(gisacre === "No results" || gisacre.trim() === ""))
                                 ? <>
                                     {mapFullScreen()}
                                     <div className="aa_map" onClick={handleOpenMap}></div>
                                 </>
 
                                 : <>
-                                    <img src={img_card} alt="ubication_img" />
-                                    <p className="aa_location">{location}</p>
+                                    <img src={typeSizeAsidee().image} alt="ubication_img" />
+                                    <p className="aa_location">{typeSizeAsidee().size}</p>
                                 </>
                         }
                     </div>
