@@ -14,9 +14,12 @@ export const useMapFullScreen = () => {
 
     useEffect(() => {
 
+        const $aa_map = document.querySelector('.aa_map');
+
         if (!isFullScreen) {
-            const $aa_map = document.querySelector('.aa_map');
             if ($aa_map) $aa_map.id = "map"
+        }else{
+            if ($aa_map) $aa_map.id = ""
         }
 
     }, [])
@@ -28,6 +31,7 @@ export const useMapFullScreen = () => {
 
         //     $map.textContent ="YO TENGO EL ID MAP"
         // }
+
         loadGoogleMapScript(() => {
 
             if (dataLocation.lat || dataLocation.lng) {
@@ -43,9 +47,10 @@ export const useMapFullScreen = () => {
                             mapTypeId: "satellite",
                             heading: 90,
                             tilt: 45,
-                            disableDefaultUI: true,
-                            mapTypeControl: false,
-                            zoomControl: isFullScreen
+                            disableDefaultUI: !isFullScreen,
+                            mapTypeControl: isFullScreen,
+                            zoomControl: isFullScreen,
+                            fullscreenControl: false,
                         });
                     }
 
@@ -64,17 +69,30 @@ export const useMapFullScreen = () => {
         sessionStorage.setItem('full', "false");
         setIsFullScreen(false);
 
+        const $mapfull = document.querySelector('.map-full');
+        if ($mapfull) $mapfull.id = "";
+
         const $aa_map = document.querySelector('.aa_map');
         if ($aa_map) $aa_map.id = "map"
 
+    };
+
+    const handleOpenMap = () => {
+
+        sessionStorage.setItem('full', "true");
+        setIsFullScreen(true);
+
         const $mapfull = document.querySelector('.map-full');
-        if ($mapfull) $mapfull.remove()
+        if ($mapfull) $mapfull.id = "map";
+        
+        const $aa_map = document.querySelector('.aa_map');
+        if ($aa_map) $aa_map.id = ""
     };
 
     const mapFullScreen = () => {
 
         return (isFullScreen) &&
-
+        
             <div className='full-screen animate__animated'>
                 <div id="map" className='map-full animate__animated animate__zoomIn'></div>
                 <button className="close_map" onClick={handleCloseMap}>
@@ -86,5 +104,6 @@ export const useMapFullScreen = () => {
 
     return {
         mapFullScreen,
+        handleOpenMap
     }
 }

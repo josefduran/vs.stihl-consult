@@ -1,10 +1,19 @@
+body, html{
+  overflow: hidden;
+}
 .hp_background {
   background-color: rgb(53, 53, 53);
   background-image: url("https://res.cloudinary.com/ddeguj0jq/image/upload/v1633530315/STIHL-Consult-BG-5_uqjaf2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  height: 100vh;
+  /* width: 100vw; */
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hp_label,
@@ -37,12 +46,13 @@
 }
 
 .hp_container_cards {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 4em auto auto auto;
-  width: 90vw;
   gap: 2.5em;
+  width: 90vw;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
 
 .hp_card {
@@ -50,12 +60,13 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 1em;
+  font-size: .9em;
+  text-align: center;
   font-weight: bold;
-  min-height: 240px;
-  height: 240px;
-  width: 240px;
-  max-height: 250px;
+  min-height: 150px;
+  height: 150px;
+  width: 150px;
+  max-height: 150px;
   justify-content: space-evenly;
   padding: 1em;
   text-transform: uppercase;
@@ -104,6 +115,7 @@
 @media screen and (max-width: 768px) {
   .hp_container_cards {
     gap: 1em;
+    margin-bottom: 4em;
   }
   .hp_card {
     

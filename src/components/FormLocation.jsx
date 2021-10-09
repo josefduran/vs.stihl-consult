@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { img_paths } from '../data/img';
@@ -29,6 +29,9 @@ export const FormLocation = () => {
     };
 
     // var vslynxKey = require("@spectrio/vslynx-key");
+    useEffect(() => {
+        dispatch(locationSelected(""));
+    }, [])
 
 
     return (

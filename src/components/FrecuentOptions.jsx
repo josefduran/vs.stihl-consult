@@ -3,7 +3,7 @@ import { useFiltered } from '../hook/useFiltered'
 
 export const FrecuentOptions = () => {
 
-    const { handleChange, opt_filtered} = useFiltered();
+    const { opt_filtered} = useFiltered();
 
     return (
         <div className="rp_container_item_radio" >
@@ -16,14 +16,13 @@ export const FrecuentOptions = () => {
                         type="radio"
                         name={"frequent"}
                         id={"infrequent"}
-                        onChange={handleChange}
-                        checked={([opt_filtered.frequent].includes("infrequent")) ? true : false}
+                        checked={ ([opt_filtered.frequent].includes("infrequent")) ? true : false }
                         disabled={true}
                     />
                     <label htmlFor={"infrequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                     
                 </div>
-                <div className={`cp_icon_item_container cp_column`}>
+                <div className={`cp_icon_item_container cp_column ${ (![opt_filtered.frequent].includes("infrequent")) && 'opacity_dis'} `}>
                     <p><b>Occasional </b> </p>
                     <p className="cp_subtitle">once or Twice/month</p>
                 </div>
@@ -34,13 +33,12 @@ export const FrecuentOptions = () => {
                         type="radio"
                         name={"frequent"}
                         id={"frequent"}
-                        onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("frequent")) ? true : false}
                         disabled={true}
                     />
                     <label htmlFor={"frequent"} className={`cp_line ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
-                <div className={`cp_icon_item_container cp_column`}>
+                <div className={`cp_icon_item_container cp_column ${ (![opt_filtered.frequent].includes("frequent")) && 'opacity_dis'}`}>
                     <p className={""}><b>Moderate </b> </p>
                     <p className="cp_subtitle">weekly</p>
                 </div>
@@ -51,13 +49,12 @@ export const FrecuentOptions = () => {
                         type="radio"
                         name={"frequent"}
                         id={"constant"}
-                        onChange={handleChange}
                         checked={([opt_filtered.frequent].includes("constant")) ? true : false}
                         disabled={true}
                     />
                     <label htmlFor={"constant"} className={`cp_none ${(opt_filtered.power)!=="none" && 'cp_label_circle' } `} />
                 </div>
-                <div className={`cp_icon_item_container cp_column`}>
+                <div className={`cp_icon_item_container cp_column ${ (![opt_filtered.frequent].includes("constant")) && 'opacity_dis'} `}>
                     <p className={""}><b>Heavy</b> </p>
                     <p className="cp_subtitle">almost daily</p>
                 </div>

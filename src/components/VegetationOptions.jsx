@@ -111,7 +111,7 @@ export const VegetationOptions = () => {
         <>
 
             <div className="rp_container_item_radio" >
-                <span className="cp_question">How heavy is the vegetation on your property</span>
+                <span className="cp_question">Adjust your property features</span>
                 <div className="cp_grid_tags">
                     {
                         (getTags(typeSize) && opt_filtered.power !== 'none') && getTags(typeSize).map(tag => (

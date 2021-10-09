@@ -60,6 +60,10 @@ input[type="radio"] {
   font-weight: bold;
   color: rgb(59, 59, 59);
 }
+.opacity_dis >p{
+  color: rgb(156, 156, 156);
+}
+
 .cp_icon_item_container > img {
   filter: grayscale(1);
   height: 20px;

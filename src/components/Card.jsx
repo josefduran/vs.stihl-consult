@@ -118,12 +118,13 @@ export const Card = ({ productOnly }) => {
                 <h5>{name}</h5>
                 <p className="card_desc">{shortDescription}</p>
                 <p className="card_desc"><b>{power}</b></p>
-                <p className="card_desc">Category: <b>{category}</b></p>
+                <p className="card_desc">Category: <u>{category}</u></p>
+                <p className="card_desc">TAGS: <b>{tags}</b></p>
             </div>
 
             <div className="container_btn">
                 <button onClick={handleMoreDetails}>More details</button>
-                <button onClick={handleOtherOptions}>Other Suggested Products</button>
+                <button onClick={handleOtherOptions}>Other options</button>
             </div>
 
         </div>

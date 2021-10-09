@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductToCar } from '../redux/actions/actionCar';
+import { addProductToCar, addProductToTrash } from '../redux/actions/actionCar';
 import {  useEffect, useState } from 'react';
 import { useBackFilter } from '../hook/useBackFilter';
 import { img_paths } from '../data/img';
@@ -9,14 +9,15 @@ const { carBtn } = img_paths;
 export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
 
     const dispatch = useDispatch();
-    const { car } = useSelector(state => state.car);
+    const { car, trash } = useSelector(state => state.car);
     const [disabledBtn, setDisabledBtn] = useState(false);
     const { handleClick } = useBackFilter();
 
     const handleAddToCar = () => {
         setDisabledBtn(true)
-        let newCar = (car) ? car : []
+        let newCar = (car) ? [...car] : []
         let isAProductEqual = false 
+
         if(car){
             car.forEach( product => {
                 if(productSelected.pcId === product.pcId){
@@ -25,9 +26,14 @@ export const BtnAddToCar = ({isOtherProduct=false, productSelected}) => {
             });
         }
 
+        if(trash){
+            const newTrash = trash.filter( p => p.pcId !== productSelected.pcId );
+            dispatch(addProductToTrash(newTrash));
+        }
+
         if(!isAProductEqual){
             newCar.push(productSelected);
-            dispatch(addProductToCar(newCar))
+            dispatch(addProductToCar(newCar));
         }
         else alert(`The - ${productSelected.name} - product is already in the car`)
 

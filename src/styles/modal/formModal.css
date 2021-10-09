@@ -1,0 +1,92 @@
+.container_modal_form{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+}
+.title_modal_form{
+    text-align: center;
+    background-color: var(--primary);
+    color: white;
+    padding-bottom: .5em;
+    /* padding: 0em 0em .3em 0em; */
+    /* width: 99.9%; */
+    /* margin: auto; */
+    font-weight: bold;
+    font-size: 2em;
+}
+.fm_content{
+    /* outline: auto; */
+    width: 60%;
+    margin: 0.3em auto;
+    text-align: center;
+}
+
+.fm_content > label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: .5em;
+}
+.fm_content > input{
+    width: 100%;
+    font-size: 1.3em;
+    padding: .5em;
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+.fm_content > select{
+    font-size: 1.3em;
+    padding: .5em;
+    width: 40%;
+}
+
+.container_btn_fm{
+    width: 25%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.container_btn_fm> button{
+    width: 100%;
+    padding: .05em 0;
+    font-size: 2.5em;
+    cursor: pointer;
+    background:none;
+    appearance: none;
+    outline: none;
+    border: 1px solid rgb(189, 187, 187);
+    background-color: #777575;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+
+}
+.container_btn_fm> button>img{
+    width: 12%;
+    vertical-align: top;
+    transform: rotate(180deg);
+
+}
+.container_btn_fm> button:active{
+    background-color: #616060;
+}
+.container_btn_fm> button:disabled{
+    background-color: #928d8d;
+    color: rgb(172, 171, 171);
+    cursor: not-allowed;
+}
+.error_fm{
+    color: red;
+    font-weight: bold;
+}
+.fm_content > input.error_input_fm{
+    border-bottom: 2px solid red;
+}

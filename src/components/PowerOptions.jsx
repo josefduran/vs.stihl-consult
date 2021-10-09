@@ -13,8 +13,8 @@ export const PowerOptions = () => {
     return (
         <div className="rp_container_item_radio" >
                 <span className="cp_question">What is your power preference?</span>
-                <div className="cp_grid_power">
-                <div className="line_point_large"></div>
+                <div className="cp_grid">
+                <div className="line_point_large_three"></div>
                     <div>
                         <div className="cp_radio_circle">
                             <input
@@ -27,7 +27,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"gas"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
-                            <img src={marcador_option} alt="img_path" />
+                            {/* <img src={marcador_option} alt="img_path" /> */}
                             <p className={""}><b>Gas</b> </p>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ export const PowerOptions = () => {
                             <label htmlFor={"battery"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container `}>
-                            <img src={marcador_option} alt="img_path" />
+                            {/* <img src={marcador_option} alt="img_path" /> */}
                             <p className={""}><b>Battery</b> </p>
                         </div>
                     </div>
@@ -59,11 +59,11 @@ export const PowerOptions = () => {
                             <label htmlFor={"electric"} className={`cp_line_power cp_label_circle`} />
                         </div>
                         <div className={`cp_icon_item_container`}>
-                            <img src={marcador_option} alt="img_path" />
+                            {/* <img src={marcador_option} alt="img_path" /> */}
                             <p className={""}><b>Electric</b> </p>
                         </div>
                     </div>
-                    <div>
+                    {/* <div>
                         <div className="cp_radio_circle">
                             <input
                                 type="radio"
@@ -78,7 +78,7 @@ export const PowerOptions = () => {
                             <img src={marcador_option} alt="img_path" />
                             <p className={""}><b>All</b> </p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
     )

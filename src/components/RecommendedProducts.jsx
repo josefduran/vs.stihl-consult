@@ -23,7 +23,7 @@ export const RecommendedProducts = () => {
 
     const [cards, setCards] = useState([]);
     // const [cardsNone, setCardsNone] = useState([]);
-    const [profile, setProfile] = useState("You're an outdoor boss")
+    const [profile, setProfile] = useState("an outdoor boss")
 
     const { data: products, loading, error, otherOptions } = useSelector(state => state.products)
     const option_filter = useSelector(state => state.filter);
@@ -41,6 +41,16 @@ export const RecommendedProducts = () => {
                     return
                 };
 
+                const carStorage = JSON.parse(localStorage.getItem("car"));
+                const trashStorage = JSON.parse(localStorage.getItem("trash"));
+                if(carStorage?.length !== 0){
+                    console.log({carStorage,trashStorage})
+                    dispatch(setLoading(type.endLoading));
+                    dispatch(addProductToCar(carStorage))  
+                    dispatch(addProductToTrash(trashStorage));
+                    return;  
+                }
+
                 let size = "";
                 switch (option_filter.frequent) {
                     case "infrequent": size = "Small Yard"; break;
@@ -51,7 +61,7 @@ export const RecommendedProducts = () => {
                 let vegetation = option_filter.vegetation;
 
                 let newArr = [];
-
+                let powerNone = [];
                 products.forEach(element => {
                     (element?.power) && newArr.push(element)
                 });
@@ -84,7 +94,7 @@ export const RecommendedProducts = () => {
                             }
                         })
                         arrFiltered = arrTest
-                        
+
                     } else {
 
                         arrFiltered = newArr.filter(product =>
@@ -92,7 +102,7 @@ export const RecommendedProducts = () => {
                             product.lawnSize === size
                         );
                     }
-                    
+
                     let productsRecommended = [], productsOptions = [];
 
                     [...new Set(arrFiltered)].forEach(arrCategory => {
@@ -105,21 +115,34 @@ export const RecommendedProducts = () => {
 
                     })
 
-                    console.log({arr: [...new Set(arrFiltered)], productsOptions, productsRecommended})
+                    // console.log({arr: [...new Set(arrFiltered)], productsOptions, productsRecommended})
 
-                    newArrFiltered = [...productsRecommended];
+
+                    // if (car.length === 0) {
+                    //     console.log('car length = 0')
+                        newArrFiltered = [...productsRecommended];
+                    // } else {
+                    //     console.log('car length != 0');
+                    //     console.log({ car })
+                    //     newArrFiltered = [...car];
+                    // }
                 }
 
                 setCards(newArrFiltered);
 
-                if(option_filter.power !== 'none'){
-            
-                    dispatch(addProductToCar(newArrFiltered))
+                if (Object.keys(products).length !== 0 && !error) {
+                    products.forEach(element => {
+                        (element?.power && element?.power === "none") && powerNone.push(element)
+                    });
                 }
 
-                dispatch(setLoading(type.endLoading))
+                dispatch(addProductToTrash(powerNone));
 
-            }, 200);
+                if (option_filter.power !== 'none') dispatch(addProductToCar(newArrFiltered));
+
+                dispatch(setLoading(type.endLoading));
+
+            }, 100);
 
         } else {
 
@@ -132,33 +155,13 @@ export const RecommendedProducts = () => {
 
     }, [products, option_filter])
 
-    useEffect(() => {
-        let powerNone = [];
-
-        if (Object.keys(products).length !== 0 && !error) {
-            products.forEach(element => {
-                (element?.power && element?.power === "none") && powerNone.push(element)
-            });
-        }
-
-        if (!(trash.length !== 0) && option_filter.power !== 'none') {
-            dispatch(addProductToTrash(powerNone));
-            // setCardsNone(powerNone);
-
-        } else if (option_filter.power === 'none') {
-            dispatch(addProductToTrash([]));
-            // setCardsNone([]);
-        }
-
-
-    }, [products, option_filter])
 
     useEffect(() => {
 
         switch (option_filter.frequent) {
-            case "infrequent": setProfile("Backyard Champ"); break;
-            case "frequent": setProfile("Outdoor Boss"); break;
-            case "constant": setProfile("Property Master"); break;
+            case "infrequent": setProfile("a Backyard Champ"); break;
+            case "frequent": setProfile("an Outdoor Boss"); break;
+            case "constant": setProfile("a Property Master"); break;
         }
 
     }, [option_filter.frequent])
@@ -172,7 +175,7 @@ export const RecommendedProducts = () => {
                     : (otherOptions?.length !== 0)
                         ? <OtherOptions />
                         : <>
-                            <h2 className="rp_subtitle">YOU'RE AN {profile}</h2>
+                            <h2 className="rp_subtitle">YOU'RE {profile}</h2>
 
                             <div className="">
                                 <PowerOptions />
@@ -186,7 +189,7 @@ export const RecommendedProducts = () => {
                                         ? <Loader />
                                         : (car.length === 0 && option_filter.power !== "none")
                                             ? <b className="no_products">No products, select another filter</b>
-                                            : (option_filter.power !== "none") 
+                                            : (option_filter.power !== "none")
                                                 ?
                                                 <div className="container_cards">
                                                     {

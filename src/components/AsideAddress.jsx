@@ -8,12 +8,7 @@ import { changeStateModal } from '../redux/actions/actionCar';
 import { locationSelected } from '../redux/actions/actionLocation';
 import { Modal } from './Modal';
 
-
-let location = "";
-let img_card = "";
-let subtitle = ""
-
-const { logo, carta, marcador_card_orange, home, home_less, home_small, arrow } = img_paths;
+const { logo, carta, marcador_card_orange, home, home_less, home_small } = img_paths;
 
 export const AsideAddress = () => {
 
@@ -22,16 +17,20 @@ export const AsideAddress = () => {
     const [checkedAcre, setCheckedAcre] = useState("none");
 
     const dataLocation = useSelector(state => state.location);
+
     const option_filter = useSelector(state => state.filter);
     const { modal } = useSelector(state => state.car);
     const dispatch = useDispatch();
 
     const { handleClickGoSearch } = useRoutebyHome();
-    const { mapFullScreen } = useMapFullScreen();
+    const { mapFullScreen, handleOpenMap } = useMapFullScreen();
 
 
     const isMonted = useRef(true);
 
+    let location = "";
+    let img_card = "";
+    let subtitle = "";
 
     switch (dataLocation.address) {
         case "+1 acre": location = "Large"; img_card = home; subtitle = "MORE THAN AN ACRE"
@@ -47,6 +46,8 @@ export const AsideAddress = () => {
     const handleSendEmail = () => {
         dispatch(changeStateModal(true))
     };
+
+   
 
     useEffect(() => {
 
@@ -91,16 +92,16 @@ export const AsideAddress = () => {
         }
 
     }, [])
-    
+
     useEffect(() => {
-       
-        if(option_filter.frequent){
+
+        if (option_filter.frequent && dataLocation.lat && dataLocation.lng) {
 
             switch (option_filter.frequent) {
-                case 'infrequent': setCheckedAcre("Small");handleClickGoSearch("small yard", false); break;
-                case 'frequent': setCheckedAcre("Medium");handleClickGoSearch("-1 acre", false); break;
+                case 'infrequent': setCheckedAcre("Small"); handleClickGoSearch("small yard", false); break;
+                case 'frequent': setCheckedAcre("Medium"); handleClickGoSearch("-1 acre", false); break;
                 case 'constant': setCheckedAcre("Large"); handleClickGoSearch("+1 acre", false); break;
-                default:break;
+                default: break;
             }
         }
 
@@ -112,8 +113,6 @@ export const AsideAddress = () => {
         else if (acres <= 0.33 && acres >= 0.01) handleClickGoSearch("small yard", false)
         else if (acres === "No results") handleClickGoSearch("small yard", false);//handleClickGoSearch("none", false);
     };
-
-   
 
     useEffect(() => {
         return () => {
@@ -153,7 +152,7 @@ export const AsideAddress = () => {
                             (dataLocation.lat || dataLocation.lng)
                                 ? <>
                                     {mapFullScreen()}
-                                    <div className="aa_map"></div>
+                                    <div className="aa_map" onClick={handleOpenMap}></div>
                                 </>
 
                                 : <>
@@ -182,7 +181,7 @@ export const AsideAddress = () => {
                                     />
                                     <label htmlFor="small" className="container_typeSize" onClick={() => { handleClickGoSearch("small yard", false); setCheckedAcre("Small") }} >
                                         <img className="img_size" src={home_small} alt={home_small} />
-                                        <p>small yard</p>
+                                        <p>small</p>
                                     </label>
                                 </div>
 
