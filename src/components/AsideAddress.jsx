@@ -47,7 +47,7 @@ export const AsideAddress = () => {
         dispatch(changeStateModal(true))
     };
 
-   
+
 
     useEffect(() => {
 
@@ -108,10 +108,10 @@ export const AsideAddress = () => {
     }, [option_filter.frequent])
 
     const evalueteQuiantityAcres = (acres) => {
-        if (acres >= 1) handleClickGoSearch("+1 acre", false)
-        else if (acres <= 0.99 && acres >= 0.34) handleClickGoSearch("-1 acre", false)
-        else if (acres <= 0.33 && acres >= 0.01) handleClickGoSearch("small yard", false)
-        else if (acres === "No results") handleClickGoSearch("small yard", false);//handleClickGoSearch("none", false);
+        if (acres >= 1) handleClickGoSearch("+1 acre", false);
+        else if (acres <= 0.99 && acres >= 0.34) handleClickGoSearch("-1 acre", false);
+        else if (acres <= 0.33 && acres >= 0.01) handleClickGoSearch("small yard", false);
+        else if (acres === "No results") handleClickGoSearch("small yard", false);
     };
 
     useEffect(() => {
@@ -126,15 +126,15 @@ export const AsideAddress = () => {
         let image;
         let size;
         switch (option_filter.frequent) {
-            case 'infrequent':  size= 'Small Yard';  image = home_small; break;
-            case 'frequent':  size= 'Medium'; image = home_less; break;
-            case 'constant':  size= 'Large';image = home; break;
+            case 'infrequent': size = 'Small Yard'; image = home_small; break;
+            case 'frequent': size = 'Medium'; image = home_less; break;
+            case 'constant': size = 'Large'; image = home; break;
             default: break;
         }
 
-        return {image, size}
+        return { image, size }
     };
-
+    console.log({gisacre})
     return (
         <>
             {
@@ -162,15 +162,15 @@ export const AsideAddress = () => {
 
                     <div className={`aa_container_img ${(!dataLocation.lat || !dataLocation.lng) && 'py'}`} >
                         {
-                            (!(gisacre === "No results" || gisacre.trim() === ""))
+                            (  !dataLocation.lat || !dataLocation.lng )
                                 ? <>
-                                    {mapFullScreen()}
-                                    <div className="aa_map" onClick={handleOpenMap}></div>
+                                    <img src={typeSizeAsidee().image} alt="ubication_img" />
+                                    <p className="aa_location">{typeSizeAsidee().size}</p>
                                 </>
 
                                 : <>
-                                    <img src={typeSizeAsidee().image} alt="ubication_img" />
-                                    <p className="aa_location">{typeSizeAsidee().size}</p>
+                                    {mapFullScreen()}
+                                    <div className="aa_map" onClick={handleOpenMap}></div>
                                 </>
                         }
                     </div>

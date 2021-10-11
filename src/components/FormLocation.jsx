@@ -18,6 +18,7 @@ export const FormLocation = () => {
         if (placeInputRef.current.value !== "") {
                 if(place){
                     sessionStorage.removeItem('full');
+                    sessionStorage.removeItem('gisacre');
                     dispatch(locationSelected(place.address, place.lat, place.lng))
                     history.push(`/options`)
                 }else{

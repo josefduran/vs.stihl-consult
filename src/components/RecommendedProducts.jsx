@@ -44,7 +44,7 @@ export const RecommendedProducts = () => {
                 const carStorage = JSON.parse(localStorage.getItem("car"));
                 const trashStorage = JSON.parse(localStorage.getItem("trash"));
                 if(carStorage?.length !== 0){
-                    console.log({carStorage,trashStorage})
+                    
                     dispatch(setLoading(type.endLoading));
                     dispatch(addProductToCar(carStorage))  
                     dispatch(addProductToTrash(trashStorage));

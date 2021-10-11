@@ -8,6 +8,8 @@ const { arrow } = img_paths
 
 export const useMapFullScreen = () => {
     const fullScreen = sessionStorage.getItem('full');
+   
+    
 
     const [isFullScreen, setIsFullScreen] = useState((fullScreen === "false") ? false : true)
     const dataLocation = useSelector(state => state.location);
@@ -37,7 +39,7 @@ export const useMapFullScreen = () => {
             if (dataLocation.lat || dataLocation.lng) {
 
                 const $map = document.getElementById("map");
-
+                console.log($map)
                 if ($map) {
                     console.log('ejeucion del mapa- alerta -')
                     function initMap() {
@@ -90,7 +92,7 @@ export const useMapFullScreen = () => {
     };
 
     const mapFullScreen = () => {
-
+        
         return (isFullScreen) &&
         
             <div className='full-screen animate__animated'>
