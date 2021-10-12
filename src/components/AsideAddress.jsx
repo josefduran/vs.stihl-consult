@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { img_paths } from '../data/img';
 import { useMapFullScreen } from '../hook/useMapFullScreen';
 import { useRoutebyHome } from '../hook/useRoutebyHome';
-import { changeStateModal } from '../redux/actions/actionCar';
+import { addProductToCar, changeStateModal } from '../redux/actions/actionCar';
 import { locationSelected } from '../redux/actions/actionLocation';
 import { Modal } from './Modal';
 
-const { logo, carta, marcador_card_orange, home, home_less, home_small } = img_paths;
+const { logo, carta, marcador_card_orange, home, home_less, home_small, fullScreen } = img_paths;
 
 export const AsideAddress = () => {
 
@@ -134,7 +134,6 @@ export const AsideAddress = () => {
 
         return { image, size }
     };
-    console.log({gisacre})
     return (
         <>
             {
@@ -146,11 +145,11 @@ export const AsideAddress = () => {
                         {
                             (!["Large", "Medium", "Small"].includes(location))
                                 ? <>
-                                    <h3><b>Your address</b></h3>
+                                    <h3><b className="your_address">Your address</b></h3>
                                     <hr />
                                     <h4>{location}</h4>
                                     <hr />
-                                    <h2>ACREAGE: {gisacre}</h2>
+                                    <h2>ACREAGE: <b>{gisacre}</b></h2>
                                 </>
                                 : <>
                                     <h3 className="aa_title_type_acre"><b>{location} yard</b></h3>
@@ -170,7 +169,12 @@ export const AsideAddress = () => {
 
                                 : <>
                                     {mapFullScreen()}
-                                    <div className="aa_map" onClick={handleOpenMap}></div>
+                                    <div className="container_mapAside">
+                                        <button onClick={handleOpenMap} className="btn_full-screen">
+                                            <img src={fullScreen} alt={fullScreen} />
+                                        </button>
+                                        <div className="aa_map"></div>
+                                    </div>
                                 </>
                         }
                     </div>
@@ -192,7 +196,9 @@ export const AsideAddress = () => {
                                     <input type="radio" id="small" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Small")}
 
                                     />
-                                    <label htmlFor="small" className="container_typeSize" onClick={() => { handleClickGoSearch("small yard", false); setCheckedAcre("Small") }} >
+                                    <label htmlFor="small" className="container_typeSize" 
+                                        onClick={() => { handleClickGoSearch("small yard", false); setCheckedAcre("Small"); dispatch(addProductToCar([])) }} 
+                                    >
                                         <img className="img_size" src={home_small} alt={home_small} />
                                         <p>small</p>
                                     </label>
@@ -202,7 +208,9 @@ export const AsideAddress = () => {
                                     <input type="radio" id="less" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Medium")}
 
                                     />
-                                    <label htmlFor="less" className="container_typeSize" onClick={() => { handleClickGoSearch("-1 acre", false); setCheckedAcre("Medium") }} >
+                                    <label htmlFor="less" className="container_typeSize" 
+                                        onClick={() => { handleClickGoSearch("-1 acre", false); setCheckedAcre("Medium"); dispatch(addProductToCar([])) }} 
+                                    >
                                         <img className="img_size" src={home_less} alt={home_less} />
                                         <p>-1 acre</p>
                                     </label>
@@ -212,7 +220,9 @@ export const AsideAddress = () => {
                                     <input type="radio" id="home" name="typeSize" className="typeSize_radio" readOnly checked={(checkedAcre === "Large")}
 
                                     />
-                                    <label htmlFor="home" className="container_typeSize" onClick={() => { handleClickGoSearch("+1 acre", false); setCheckedAcre("Large") }} >
+                                    <label htmlFor="home" className="container_typeSize" 
+                                        onClick={() => { handleClickGoSearch("+1 acre", false); setCheckedAcre("Large"); dispatch(addProductToCar([])) }} 
+                                    >
                                         <img className="img_size" src={home} alt={home} />
                                         <p>+1 acre</p>
                                     </label>

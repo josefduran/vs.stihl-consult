@@ -19,6 +19,7 @@ export const img_paths = {
     add: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1632196807/plus_pq8nb5.png',
     vacio: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116733/vacio_te0n0p.png',
     close: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1631116761/close_el9gjl.png',
+    fullScreen: 'https://res.cloudinary.com/ddeguj0jq/image/upload/v1633996118/full-screen_sxvism.png'
 }
 
 

@@ -45,7 +45,7 @@ export const useMapFullScreen = () => {
                     function initMap() {
                         new window.google.maps.Map($map, {
                             center: { lat: dataLocation.lat, lng: dataLocation.lng },
-                            zoom: 18,
+                            zoom: (isFullScreen) ? 20 : 17, 
                             mapTypeId: "satellite",
                             heading: 90,
                             tilt: 45,

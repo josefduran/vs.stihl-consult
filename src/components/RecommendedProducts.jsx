@@ -43,8 +43,8 @@ export const RecommendedProducts = () => {
 
                 const carStorage = JSON.parse(localStorage.getItem("car"));
                 const trashStorage = JSON.parse(localStorage.getItem("trash"));
+                console.log({carStorage})
                 if(carStorage?.length !== 0){
-                    
                     dispatch(setLoading(type.endLoading));
                     dispatch(addProductToCar(carStorage))  
                     dispatch(addProductToTrash(trashStorage));
@@ -137,7 +137,7 @@ export const RecommendedProducts = () => {
                 }
 
                 dispatch(addProductToTrash(powerNone));
-
+                
                 if (option_filter.power !== 'none') dispatch(addProductToCar(newArrFiltered));
 
                 dispatch(setLoading(type.endLoading));

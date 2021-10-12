@@ -1,9 +1,18 @@
 
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useFiltered } from '../hook/useFiltered'
 
 export const FrecuentOptions = () => {
 
-    const { opt_filtered} = useFiltered();
+    const { opt_filtered } = useFiltered();
+    const { car } = useSelector(state => state.car);
+
+    // useEffect(() => {
+    //     // if(car.length !== 0){
+    //     //     car[0].tags;
+    //     // }
+    // }, [opt_filtered.frequent])
 
     return (
         <div className="rp_container_item_radio" >
