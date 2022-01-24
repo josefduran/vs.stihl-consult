@@ -1,29 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { img_paths } from '../data/img';
 import { usePlaceAutocomplete } from '../hook/usePlaceAutocomplete';
 import { locationSelected } from '../redux/actions/actionLocation';
 
-import placeHolder from '../assets/placeholder.png'
+const { logo, marcador_option } = img_paths
 
 export const FormLocation = () => {
 
     const { place, placeInputRef } = usePlaceAutocomplete()
     const dispatch = useDispatch();
     const history = useHistory();
-
+    
     const handleClick = () => {
-
+        
         if (placeInputRef.current.value !== "") {
-            (place)
-                ? dispatch(locationSelected(place.address, place.lat, place.lng))
-                : dispatch(locationSelected(placeInputRef.current.value));
-
-            history.push(`/options`)
+                if(place){
+                    sessionStorage.removeItem('full');
+                    sessionStorage.removeItem('gisacre');
+                    dispatch(locationSelected(place.address, place.lat, place.lng))
+                    history.push(`/options`)
+                }else{
+                    alert('Select an option for the address')
+                }
         } else {
             alert("Enter your address")
         }
     };
+
+    // var vslynxKey = require("@spectrio/vslynx-key");
+    useEffect(() => {
+        dispatch(locationSelected(""));
+    }, [])
 
 
     return (
@@ -31,15 +40,15 @@ export const FormLocation = () => {
             <div className="sh_backgorund_page"></div>
             <div className="sh_overlay_page"></div>
 
-            <div className="sh_logo logo media_logo">
-                <p>EDGE</p>
+            <div className="sh_logo logo">
+            <img src={logo} alt={logo} />
             </div>
 
             <p className="sp_text">Let's get started</p>
 
             <div className="sp_form">
                 <div className="sp_container_input">
-                    <img src={placeHolder} alt="placeholder.png" />
+                    <img src={marcador_option} alt="placeholder.png" />
 
                     <input
                         autoFocus
@@ -47,8 +56,14 @@ export const FormLocation = () => {
                         placeholder="Enter your address"
                         ref={placeInputRef}
                     />
+                    
                 </div>
-                <button onClick={handleClick}>show my fd</button>
+                <div>
+            <input readonly="readonly" id="email-address" name="email-address" type="text" />
+            <div class="email-product-info-errors"></div>
+        </div>
+                <button onClick={handleClick}>show my kit</button>
+                <div className="email-keyboard"></div>
             </div>
 
         </>
